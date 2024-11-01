@@ -4,16 +4,18 @@ project(ov_msckf)
 # Include libraries (if we don't have opencv 4, then fallback to opencv 3)
 # The OpenCV version needs to match the one used by cv_bridge otherwise you will get a segmentation fault!
 find_package(Eigen3 REQUIRED)
-find_package(OpenCV 3 QUIET)
+find_package(OpenCV 4.4 QUIET)
 if (NOT OpenCV_FOUND)
-    find_package(OpenCV 4 REQUIRED)
+    message("OpenCV 4 not found, trying OpenCV 3. ov msckf")
+    find_package(OpenCV 3 REQUIRED)
 endif ()
 find_package(Boost REQUIRED COMPONENTS system filesystem thread date_time)
 find_package(Ceres REQUIRED)
 message(STATUS "OPENCV: " ${OpenCV_VERSION} " | BOOST: " ${Boost_VERSION} " | CERES: " ${Ceres_VERSION})
 
 # If we will compile with aruco support
-option(ENABLE_ARUCO_TAGS "Enable or disable aruco tag (disable if no contrib modules)" ON)
+# Change this to OFF
+option(ENABLE_ARUCO_TAGS "Enable or disable aruco tag (disable if no contrib modules)" OFF)
 if (NOT ENABLE_ARUCO_TAGS)
     add_definitions(-DENABLE_ARUCO_TAGS=0)
     message(WARNING "DISABLING ARUCOTAG TRACKING!")
