@@ -392,26 +392,27 @@ void TrackKLT::feed_stereo(const CameraData &message, size_t msg_id_left, size_t
   PRINT_ALL("[TIME-KLT]: %.4f seconds for total\n", (rT6 - rT1).total_microseconds() * 1e-6);
 }
 
+// mask0 is the predefined mask for specific dataset
 void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, const cv::Mat &mask0, std::vector<cv::KeyPoint> &pts0,
                                            std::vector<size_t> &ids0) {
 
   // Create a 2D occupancy grid for this current image
   // Note that we scale this down, so that each grid point is equal to a set of pixels
   // This means that we will reject points that less than grid_px_size points away then existing features
-  cv::Size size_close((int)((float)img0pyr.at(0).cols / (float)min_px_dist),
+  cv::Size size_close((int)((float)img0pyr.at(0).cols / (float)min_px_dist), // 640/10
                       (int)((float)img0pyr.at(0).rows / (float)min_px_dist)); // width x height
-  cv::Mat grid_2d_close = cv::Mat::zeros(size_close, CV_8UC1);
-  float size_x = (float)img0pyr.at(0).cols / (float)grid_x;
-  float size_y = (float)img0pyr.at(0).rows / (float)grid_y;
-  cv::Size size_grid(grid_x, grid_y); // width x height
-  cv::Mat grid_2d_grid = cv::Mat::zeros(size_grid, CV_8UC1);
+  cv::Mat grid_2d_close = cv::Mat::zeros(size_close, CV_8UC1); // 64x48
+  float size_x = (float)img0pyr.at(0).cols / (float)grid_x; // 640/5 = 128
+  float size_y = (float)img0pyr.at(0).rows / (float)grid_y; // 480/5 = 96
+  cv::Size size_grid(grid_x, grid_y); // 5x5
+  cv::Mat grid_2d_grid = cv::Mat::zeros(size_grid, CV_8UC1); // 5x5
   cv::Mat mask0_updated = mask0.clone();
   auto it0 = pts0.begin();
   auto it1 = ids0.begin();
   while (it0 != pts0.end()) {
     // Get current left keypoint, check that it is in bounds
     cv::KeyPoint kpt = *it0;
-    int x = (int)kpt.pt.x;
+    int x = (int)kpt.pt.x; // maybe+0.5 will be more accurate?
     int y = (int)kpt.pt.y;
     int edge = 10;
     if (x < edge || x >= img0pyr.at(0).cols - edge || y < edge || y >= img0pyr.at(0).rows - edge) {
@@ -420,23 +421,26 @@ void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, 
       continue;
     }
     // Calculate mask coordinates for close points
-    int x_close = (int)(kpt.pt.x / (float)min_px_dist);
-    int y_close = (int)(kpt.pt.y / (float)min_px_dist);
+    //? this should not happen?
+    int x_close = (int)(kpt.pt.x / (float)min_px_dist); // x/10
+    int y_close = (int)(kpt.pt.y / (float)min_px_dist); // y/10
     if (x_close < 0 || x_close >= size_close.width || y_close < 0 || y_close >= size_close.height) {
       it0 = pts0.erase(it0);
       it1 = ids0.erase(it1);
       continue;
     }
     // Calculate what grid cell this feature is in
-    int x_grid = std::floor(kpt.pt.x / size_x);
-    int y_grid = std::floor(kpt.pt.y / size_y);
+    //? this should not happen?
+    int x_grid = std::floor(kpt.pt.x / size_x); // x/128
+    int y_grid = std::floor(kpt.pt.y / size_y); // y/96
     if (x_grid < 0 || x_grid >= size_grid.width || y_grid < 0 || y_grid >= size_grid.height) {
       it0 = pts0.erase(it0);
       it1 = ids0.erase(it1);
       continue;
     }
     // Check if this keypoint is near another point
-    if (grid_2d_close.at<uint8_t>(y_close, x_close) > 127) {
+    // So this means we only keep one feature per grid cell (10x10)
+    if (grid_2d_close.at<uint8_t>(y_close, x_close) > 127) {  // 64x48.at(0~48, 0~64)
       it0 = pts0.erase(it0);
       it1 = ids0.erase(it1);
       continue;
@@ -451,13 +455,13 @@ void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, 
     // Else we are good, move forward to the next point
     grid_2d_close.at<uint8_t>(y_close, x_close) = 255;
     if (grid_2d_grid.at<uint8_t>(y_grid, x_grid) < 255) {
-      grid_2d_grid.at<uint8_t>(y_grid, x_grid) += 1;
+      grid_2d_grid.at<uint8_t>(y_grid, x_grid) += 1; // 5x5.at(0~5, 0~5) this stores how many features are in this 5*5 large grid
     }
     // Append this to the local mask of the image
     if (x - min_px_dist >= 0 && x + min_px_dist < img0pyr.at(0).cols && y - min_px_dist >= 0 && y + min_px_dist < img0pyr.at(0).rows) {
       cv::Point pt1(x - min_px_dist, y - min_px_dist);
       cv::Point pt2(x + min_px_dist, y + min_px_dist);
-      cv::rectangle(mask0_updated, pt1, pt2, cv::Scalar(255), -1);
+      cv::rectangle(mask0_updated, pt1, pt2, cv::Scalar(255), -1); // only keep 1 feature in 20x20 area
     }
     it0++;
     it1++;
@@ -466,8 +470,8 @@ void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, 
   // First compute how many more features we need to extract from this image
   // If we don't need any features, just return
   double min_feat_percent = 0.50;
-  int num_featsneeded = num_features - (int)pts0.size();
-  if (num_featsneeded < std::min(20, (int)(min_feat_percent * num_features)))
+  int num_featsneeded = num_features - (int)pts0.size(); // 150-pts0.size()
+  if (num_featsneeded < std::min(20, (int)(min_feat_percent * num_features))) // < 20
     return;
 
   // This is old extraction code that would extract from the whole image
@@ -480,17 +484,18 @@ void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, 
   cv::resize(mask0, mask0_grid, size_grid, 0.0, 0.0, cv::INTER_NEAREST);
 
   // Create grids we need to extract from and then extract our features (use fast with griding)
-  int num_features_grid = (int)((double)num_features / (double)(grid_x * grid_y)) + 1;
-  int num_features_grid_req = std::max(1, (int)(min_feat_percent * num_features_grid));
+  int num_features_grid = (int)((double)num_features / (double)(grid_x * grid_y)) + 1; // 150/(5*5)+1 = 7. 7 features per grid
+  int num_features_grid_req = std::max(1, (int)(min_feat_percent * num_features_grid)); // require 3 features per grid
   std::vector<std::pair<int, int>> valid_locs;
-  for (int x = 0; x < grid_2d_grid.cols; x++) {
+  for (int x = 0; x < grid_2d_grid.cols; x++) { // 5 * 5 grid
     for (int y = 0; y < grid_2d_grid.rows; y++) {
+      // remaining features less than required features and the small 5*5 mask is not blocking this grid
       if ((int)grid_2d_grid.at<uint8_t>(y, x) < num_features_grid_req && (int)mask0_grid.at<uint8_t>(y, x) != 255) {
-        valid_locs.emplace_back(x, y);
+        valid_locs.emplace_back(x, y); // xy is 5*5 grids, it stores valid locs and we want to extract features
       }
     }
   }
-  std::vector<cv::KeyPoint> pts0_ext;
+  std::vector<cv::KeyPoint> pts0_ext; // extracted features
   Grider_GRID::perform_griding(img0pyr.at(0), mask0_updated, valid_locs, pts0_ext, num_features, grid_x, grid_y, threshold, true);
 
   // Now, reject features that are close a current feature
@@ -518,7 +523,7 @@ void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, 
   // NOTE: not sure how to remove... maybe a better way?
   for (size_t i = 0; i < pts0_new.size(); i++) {
     // update the uv coordinates
-    kpts0_new.at(i).pt = pts0_new.at(i);
+    kpts0_new.at(i).pt = pts0_new.at(i); // this is not necessary?
     // append the new uv coordinate
     pts0.push_back(kpts0_new.at(i));
     // move id foward and append this new point
@@ -855,6 +860,7 @@ void TrackKLT::perform_matching(const std::vector<cv::Mat> &img0pyr, const std::
   std::vector<uchar> mask_klt;
   std::vector<float> error;
   cv::TermCriteria term_crit = cv::TermCriteria(cv::TermCriteria::COUNT | cv::TermCriteria::EPS, 30, 0.01);
+  // mask_klt stores Output status vector indicating whether the flow for the corresponding feature point was found.
   cv::calcOpticalFlowPyrLK(img0pyr, img1pyr, pts0, pts1, mask_klt, error, win_size, pyr_levels, term_crit, cv::OPTFLOW_USE_INITIAL_FLOW);
 
   // Normalize these points, so we can then do ransac

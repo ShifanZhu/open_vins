@@ -90,34 +90,37 @@ public:
       grid_y = std::ceil(std::sqrt(num_features / ratio));
       grid_x = std::ceil(grid_y * ratio);
     }
-    int num_features_grid = (int)((double)num_features / (double)(grid_x * grid_y)) + 1;
+    int num_features_grid = (int)((double)num_features / (double)(grid_x * grid_y)) + 1; // 150/(5*5)+1 = 7. 7 features per grid
     assert(grid_x > 0);
     assert(grid_y > 0);
     assert(num_features_grid > 0);
 
     // Calculate the size our extraction boxes should be
-    int size_x = img.cols / grid_x;
-    int size_y = img.rows / grid_y;
+    int size_x = img.cols / grid_x; // 640/5 = 128
+    int size_y = img.rows / grid_y; // 480/5 = 96
 
     // Make sure our sizes are not zero
     assert(size_x > 0);
     assert(size_y > 0);
 
     // Parallelize our 2d grid extraction!!
+    // In 5*5 grids, valid_locs stores valid locs and we want to extract features
     std::vector<std::vector<cv::KeyPoint>> collection(valid_locs.size());
     parallel_for_(cv::Range(0, (int)valid_locs.size()), LambdaBody([&](const cv::Range &range) {
                     for (int r = range.start; r < range.end; r++) {
 
                       // Calculate what cell xy value we are in
-                      auto grid = valid_locs.at(r);
-                      int x = grid.first * size_x;
-                      int y = grid.second * size_y;
+                      auto grid = valid_locs.at(r); // grid stores the valid locs that are from 0 to 5
+                      int x = grid.first * size_x; // (0~5)*128
+                      int y = grid.second * size_y; // (0~5)*96
 
                       // Skip if we are out of bounds
                       if (x + size_x > img.cols || y + size_y > img.rows)
                         continue;
 
                       // Calculate where we should be extracting from
+                      // say x=0, y=0. We will extract from [128, 96] region
+                      // So we devide the image into 5*5 grids and extract features from each grid
                       cv::Rect img_roi = cv::Rect(x, y, size_x, size_y);
 
                       // Extract FAST features for this part of the image
