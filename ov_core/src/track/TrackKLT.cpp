@@ -94,6 +94,7 @@ void TrackKLT::feed_new_camera(const CameraData &message) {
 }
 
 void TrackKLT::feed_monocular(const CameraData &message, size_t msg_id) {
+  std::cout << "Current time is: " << std::setprecision(16) << message.timestamp << std::endl;
 
   // Lock this data feed for this camera
   size_t cam_id = message.sensor_ids.at(msg_id);
@@ -473,6 +474,8 @@ void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, 
   int num_featsneeded = num_features - (int)pts0.size(); // 150-pts0.size()
   if (num_featsneeded < std::min(20, (int)(min_feat_percent * num_features))) // < 20
     return;
+  // std::cout << "num_featsneeded: " << num_featsneeded_1 << std::endl;
+  PRINT_INFO("num_featsneeded = %.5d\n", num_featsneeded);
 
   // This is old extraction code that would extract from the whole image
   // This can be slow as this will recompute extractions for grid areas that we have max features already
@@ -497,7 +500,8 @@ void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, 
   }
   std::vector<cv::KeyPoint> pts0_ext; // extracted features
   Grider_GRID::perform_griding(img0pyr.at(0), mask0_updated, valid_locs, pts0_ext, num_features, grid_x, grid_y, threshold, true);
-
+  // std::cout << "newly detected before reject: " << pts0_ext.size() << std::endl;
+  PRINT_INFO("newly detected before reject = %.5d\n", pts0_ext.size());
   // Now, reject features that are close a current feature
   std::vector<cv::KeyPoint> kpts0_new;
   std::vector<cv::Point2f> pts0_new;
@@ -876,7 +880,10 @@ void TrackKLT::perform_matching(const std::vector<cv::Mat> &img0pyr, const std::
   double max_focallength_img0 = std::max(camera_calib.at(id0)->get_K()(0, 0), camera_calib.at(id0)->get_K()(1, 1));
   double max_focallength_img1 = std::max(camera_calib.at(id1)->get_K()(0, 0), camera_calib.at(id1)->get_K()(1, 1));
   double max_focallength = std::max(max_focallength_img0, max_focallength_img1);
-  cv::findFundamentalMat(pts0_n, pts1_n, cv::FM_RANSAC, 2.0 / max_focallength, 0.999, mask_rsc);
+  // Images captured with different focal lengths will have different scales.
+  // Dividing the threshold by max_focallength normalizes the threshold, making it independent of the image scale.
+  // This will fail in degenerated scenarios (planar scenes)
+  cv::findFundamentalMat(pts0_n, pts1_n, cv::FM_RANSAC, 2.0 / max_focallength, 0.999, mask_rsc); // mask_rsc stores inlider or not
 
   // Loop through and record only ones that are valid
   for (size_t i = 0; i < mask_klt.size(); i++) {

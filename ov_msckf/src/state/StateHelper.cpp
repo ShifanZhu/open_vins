@@ -290,10 +290,14 @@ void StateHelper::marginalize(std::shared_ptr<State> state, std::shared_ptr<Type
   //
   // i.e. x_1 goes from 0 to marg_id, x_2 goes from marg_id+marg_size to Cov.rows() in the original covariance
 
-  int marg_size = marg->size();
-  int marg_id = marg->id();
-  int x2_size = (int)state->_Cov.rows() - marg_id - marg_size;
-
+  int marg_size = marg->size(); // 3
+  int marg_id = marg->id(); // 30
+  int x2_size = (int)state->_Cov.rows() - marg_id - marg_size; // 108-30-3=75
+  // if (marg_size == 3) {
+  //   std::cout << "marg id size: " << marg_id << " " << marg_size << " " << x2_size << " " << (int)state->_Cov.rows() << std::endl;
+  //   std::cout << "xyz fej: " << marg->fej().transpose() << "  value: " << marg->value().transpose() << std::endl;
+  // }
+  
   Eigen::MatrixXd Cov_new(state->_Cov.rows() - marg_size, state->_Cov.rows() - marg_size);
 
   // P_(x_1,x_1)
@@ -320,13 +324,20 @@ void StateHelper::marginalize(std::shared_ptr<State> state, std::shared_ptr<Type
   for (size_t i = 0; i < state->_variables.size(); i++) {
     // Only keep non-marginal states
     if (state->_variables.at(i) != marg) {
+      // std::cout << "id: " << state->_variables.at(i)->id() << " marg_id: " << marg_id << " marg_size: " << marg_size << std::endl;
       if (state->_variables.at(i)->id() > marg_id) {
+        // std::cout << "move forward: " << state->_variables.at(i)->id() - marg_size << std::endl;
         // If the variable is "beyond" the marginal one in ordering, need to "move it forward"
         state->_variables.at(i)->set_local_id(state->_variables.at(i)->id() - marg_size);
       }
       remaining_variables.push_back(state->_variables.at(i));
     }
   }
+  // Order: IMU, td, extrinsics, intrinsics, landmarks, camera poses
+  // for (size_t i = 0; i < remaining_variables.size(); i++) {
+  //   std::cout << "data: " << remaining_variables[i]->value().transpose() << std::endl;
+  // }
+  // std::cout << "size: " << remaining_variables.size() << std::endl;
 
   // Delete the old state variable to free up its memory
   // NOTE: we don't need to do this any more since our variable is a shared ptr
