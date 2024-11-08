@@ -36,14 +36,14 @@ bool FeatureInitializer::single_triangulation(std::shared_ptr<Feature> feat,
   size_t anchor_most_meas = 0;
   size_t most_meas = 0;
   for (auto const &pair : feat->timestamps) {
-    total_meas += (int)pair.second.size();
-    if (pair.second.size() > most_meas) {
+    total_meas += (int)pair.second.size(); // pair.second.size() is the number of measurements for each camera
+    if (pair.second.size() > most_meas) { // if we have 2 cameras, we select the one with the most measurements as anchor
       anchor_most_meas = pair.first;
       most_meas = pair.second.size();
     }
   }
-  feat->anchor_cam_id = anchor_most_meas;
-  feat->anchor_clone_timestamp = feat->timestamps.at(feat->anchor_cam_id).back();
+  feat->anchor_cam_id = anchor_most_meas; // the camera with the most measurements is the anchor
+  feat->anchor_clone_timestamp = feat->timestamps.at(feat->anchor_cam_id).back(); // we select the last measurement as anchor?
 
   // Our linear system matrices
   Eigen::Matrix3d A = Eigen::Matrix3d::Zero();
@@ -55,7 +55,7 @@ bool FeatureInitializer::single_triangulation(std::shared_ptr<Feature> feat,
   const Eigen::Matrix<double, 3, 1> &p_AinG = anchorclone.pos();
 
   // Loop through each camera for this feature
-  for (auto const &pair : feat->timestamps) {
+  for (auto const &pair : feat->timestamps) { // if we only have one camera, pair.first is always 0
 
     // Add CAM_I features
     for (size_t m = 0; m < feat->timestamps.at(pair.first).size(); m++) {
@@ -173,7 +173,7 @@ bool FeatureInitializer::single_triangulation_1d(std::shared_ptr<Feature> feat,
       Eigen::Matrix3d Bperp = skew_x(b_i);
 
       // Append to our linear system
-      Eigen::Vector3d BperpBanchor = Bperp * bearing_inA;
+      Eigen::Vector3d BperpBanchor = Bperp * bearing_inA; // Ni * bf
       A += BperpBanchor.dot(BperpBanchor);
       b += BperpBanchor.dot(Bperp * p_CiinA);
     }

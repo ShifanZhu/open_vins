@@ -84,6 +84,7 @@ void FeatureDatabase::update_feature(size_t id, double timestamp, size_t cam_id,
   features_idlookup[id] = feat;
 }
 
+// Get features that are not being actively tracked after timestamp, which are feat_lost
 std::vector<std::shared_ptr<Feature>> FeatureDatabase::features_not_containing_newer(double timestamp, bool remove, bool skip_deleted) {
 
   // Our vector of features that do not have measurements after the specified time
@@ -166,6 +167,7 @@ std::vector<std::shared_ptr<Feature>> FeatureDatabase::features_containing_older
   return feats_old;
 }
 
+// Get features that are detected at this timestamp (maybe for marginalization)
 std::vector<std::shared_ptr<Feature>> FeatureDatabase::features_containing(double timestamp, bool remove, bool skip_deleted) {
 
   // Our vector of old features

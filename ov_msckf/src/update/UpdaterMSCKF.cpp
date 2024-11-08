@@ -76,17 +76,19 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   while (it0 != feature_vec.end()) {
 
     // Clean the feature
+    // Loop through measurement times for this feature, remove ones that are not in target timestamp range (clonetimes)
     (*it0)->clean_old_measurements(clonetimes);
 
     // Count how many measurements
     int ct_meas = 0;
-    for (const auto &pair : (*it0)->timestamps) {
-      ct_meas += (*it0)->timestamps[pair.first].size();
+    for (const auto &pair : (*it0)->timestamps) { // no need for this for loop if we only have 1 camera
+      // for this feature (it0), how many measurements we have
+      ct_meas += (*it0)->timestamps[pair.first].size(); // pair.first is the camera id
     }
 
     // Remove if we don't have enough
     if (ct_meas < 2) {
-      (*it0)->to_delete = true;
+      (*it0)->to_delete = true; // set to_delete flag to true, so that we can remove it not only from feature_vec but also from other vectors
       it0 = feature_vec.erase(it0);
     } else {
       it0++;
@@ -96,7 +98,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
 
   // 2. Create vector of cloned *CAMERA* poses at each of our clone timesteps
   std::unordered_map<size_t, std::unordered_map<double, FeatureInitializer::ClonePose>> clones_cam;
-  for (const auto &clone_calib : state->_calib_IMUtoCAM) {
+  for (const auto &clone_calib : state->_calib_IMUtoCAM) { // we may have multiple cameras
 
     // For this camera, create the vector of camera poses
     std::unordered_map<double, FeatureInitializer::ClonePose> clones_cami;
@@ -107,11 +109,11 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
       Eigen::Matrix<double, 3, 1> p_CioinG = clone_imu.second->pos() - R_GtoCi.transpose() * clone_calib.second->pos();
 
       // Append to our map
-      clones_cami.insert({clone_imu.first, FeatureInitializer::ClonePose(R_GtoCi, p_CioinG)});
+      clones_cami.insert({clone_imu.first, FeatureInitializer::ClonePose(R_GtoCi, p_CioinG)}); // timestamp, pose for cam i
     }
 
     // Append to our map
-    clones_cam.insert({clone_calib.first, clones_cami});
+    clones_cam.insert({clone_calib.first, clones_cami}); // camera id, cam i
   }
 
   // 3. Try to triangulate all MSCKF or new SLAM features that have measurements
@@ -126,7 +128,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
       success_tri = initializer_feat->single_triangulation(*it1, clones_cam);
     }
 
-    // Gauss-newton refine the feature
+    // Gauss-newton refine the feature position
     bool success_refine = true;
     if (initializer_feat->config().refine_features) {
       success_refine = initializer_feat->single_gaussnewton(*it1, clones_cam);
@@ -145,8 +147,8 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   // Calculate the max possible measurement size
   size_t max_meas_size = 0;
   for (size_t i = 0; i < feature_vec.size(); i++) {
-    for (const auto &pair : feature_vec.at(i)->timestamps) {
-      max_meas_size += 2 * feature_vec.at(i)->timestamps[pair.first].size();
+    for (const auto &pair : feature_vec.at(i)->timestamps) { // no need for this for loop if we only have 1 camera
+      max_meas_size += 2 * feature_vec.at(i)->timestamps[pair.first].size(); //? why assign 2* instead of just 1*?
     }
   }
 

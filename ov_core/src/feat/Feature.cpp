@@ -23,6 +23,7 @@
 
 using namespace ov_core;
 
+// Loop through measurement times for this feature, remove ones that are not in target timestamp range (valid_times)
 void Feature::clean_old_measurements(const std::vector<double> &valid_times) {
 
   // Loop through each of the cameras we have
