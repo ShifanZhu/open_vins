@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.3)
 # Find ROS build system
 find_package(catkin QUIET COMPONENTS roscpp ov_core)
 
+# add_compile_definitions(GLOG_USE_GLOG_EXPORT)
+# find_package(Glog REQUIRED)
+# include_directories(${Glog_INCLUDE_DIRS})
+
 # Describe ROS project
 option(ENABLE_ROS "Enable or disable building with ROS (if it is found)" ON)
 if (catkin_FOUND AND ENABLE_ROS)
@@ -75,6 +79,7 @@ list(APPEND LIBRARY_SOURCES
 file(GLOB_RECURSE LIBRARY_HEADERS "src/*.h")
 add_library(ov_init_lib SHARED ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
 target_link_libraries(ov_init_lib ${thirdparty_libraries})
+# target_link_libraries(ov_init_lib ${thirdparty_libraries} glog::glog)
 target_include_directories(ov_init_lib PUBLIC src/)
 install(TARGETS ov_init_lib
         ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

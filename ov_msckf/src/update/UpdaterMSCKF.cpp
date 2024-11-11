@@ -102,7 +102,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
 
     // For this camera, create the vector of camera poses
     std::unordered_map<double, FeatureInitializer::ClonePose> clones_cami;
-    for (const auto &clone_imu : state->_clones_IMU) {
+    for (const auto &clone_imu : state->_clones_IMU) { // This pose seems to be preintegrated pose
 
       // Get current camera pose
       Eigen::Matrix<double, 3, 3> R_GtoCi = clone_calib.second->Rot() * clone_imu.second->Rot();
@@ -144,19 +144,20 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   }
   rT2 = boost::posix_time::microsec_clock::local_time();
 
-  // Calculate the max possible measurement size
+  // Calculate the max possible measurement count for left (and right) cameras
   size_t max_meas_size = 0;
   for (size_t i = 0; i < feature_vec.size(); i++) {
-    for (const auto &pair : feature_vec.at(i)->timestamps) { // no need for this for loop if we only have 1 camera
+    for (const auto &pair : feature_vec.at(i)->timestamps) { // pair represents left/right camera.
       max_meas_size += 2 * feature_vec.at(i)->timestamps[pair.first].size(); //? why assign 2* instead of just 1*?
     }
   }
 
   // Calculate max possible state size (i.e. the size of our covariance)
+  // Feature number limit in the sliding window: cov size - 3 * SLAM feat number
   // NOTE: that when we have the single inverse depth representations, those are only 1dof in size
-  size_t max_hx_size = state->max_covariance_size();
+  size_t max_hx_size = state->max_covariance_size(); // MSCKF covariance size
   for (auto &landmark : state->_features_SLAM) {
-    max_hx_size -= landmark.second->size();
+    max_hx_size -= landmark.second->size(); // SLAM feature size * 3
   }
 
   // Large Jacobian and residual of *all* features for this update
@@ -185,20 +186,20 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
     }
 
     // Save the position and its fej value
-    if (LandmarkRepresentation::is_relative_representation(feat.feat_representation)) {
+    if (LandmarkRepresentation::is_relative_representation(feat.feat_representation)) { // local representation
       feat.anchor_cam_id = (*it2)->anchor_cam_id;
       feat.anchor_clone_timestamp = (*it2)->anchor_clone_timestamp;
       feat.p_FinA = (*it2)->p_FinA;
       feat.p_FinA_fej = (*it2)->p_FinA;
-    } else {
+    } else { // global representation
       feat.p_FinG = (*it2)->p_FinG;
       feat.p_FinG_fej = (*it2)->p_FinG;
     }
 
     // Our return values (feature jacobian, state jacobian, residual, and order of state jacobian)
-    Eigen::MatrixXd H_f;
-    Eigen::MatrixXd H_x;
-    Eigen::VectorXd res;
+    Eigen::MatrixXd H_f; // jacobian of observation wrt feature
+    Eigen::MatrixXd H_x; // jacobian of observation wrt state
+    Eigen::VectorXd res; // residual
     std::vector<std::shared_ptr<Type>> Hx_order;
 
     // Get the Jacobian for this feature
