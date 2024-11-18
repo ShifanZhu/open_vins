@@ -423,6 +423,8 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
   }
 }
 
+// r = H_x * dx + H_f * dP + n (original)
+// r_o = H_0 * dx + n_o (after left nullspace projection)
 void UpdaterHelper::nullspace_project_inplace(Eigen::MatrixXd &H_f, Eigen::MatrixXd &H_x, Eigen::VectorXd &res) {
 
   // Apply the left nullspace of H_f to all variables
