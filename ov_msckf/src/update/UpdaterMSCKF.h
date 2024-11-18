@@ -72,7 +72,7 @@ protected:
   UpdaterOptions _options;
 
   /// Feature initializer class object
-  std::shared_ptr<ov_core::FeatureInitializer> initializer_feat;
+  std::shared_ptr<ov_core::FeatureInitializer> initializer_feat; // for triangulation
 
   /// Chi squared 95th percentile table (lookup would be size of residual)
   std::map<int, double> chi_squared_table;

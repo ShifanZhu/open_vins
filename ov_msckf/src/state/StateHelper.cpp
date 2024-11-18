@@ -113,6 +113,14 @@ void StateHelper::EKFPropagation(std::shared_ptr<State> state, const std::vector
   }
 }
 
+/**
+ * @brief Performs EKF update of the state (see @ref linear-meas page)
+ * @param state Pointer to state
+ * @param H_order Variable ordering used in the compressed Jacobian
+ * @param H Condensed Jacobian of updating measurement
+ * @param res Residual of updating measurement
+ * @param R Updating measurement covariance
+ */
 void StateHelper::EKFUpdate(std::shared_ptr<State> state, const std::vector<std::shared_ptr<Type>> &H_order, const Eigen::MatrixXd &H,
                             const Eigen::VectorXd &res, const Eigen::MatrixXd &R) {
 

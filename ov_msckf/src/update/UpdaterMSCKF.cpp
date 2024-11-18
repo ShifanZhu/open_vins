@@ -45,7 +45,7 @@ UpdaterMSCKF::UpdaterMSCKF(UpdaterOptions &options, ov_core::FeatureInitializerO
   _options.sigma_pix_sq = std::pow(_options.sigma_pix, 2);
 
   // Save our feature initializer
-  initializer_feat = std::shared_ptr<ov_core::FeatureInitializer>(new ov_core::FeatureInitializer(feat_init_options));
+  initializer_feat = std::shared_ptr<ov_core::FeatureInitializer>(new ov_core::FeatureInitializer(feat_init_options)); // For triangulation
 
   // Initialize the chi squared test table with confidence level 0.95
   // https://github.com/KumarRobotics/msckf_vio/blob/050c50defa5a7fd9a04c1eed5687b405f02919b5/src/msckf_vio.cpp#L215-L221
@@ -65,13 +65,13 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   boost::posix_time::ptime rT0, rT1, rT2, rT3, rT4, rT5;
   rT0 = boost::posix_time::microsec_clock::local_time();
 
-  // 0. Get all timestamps our clones are at (and thus valid measurement times)
+  // Step 0: Get all timestamps our clones are at (and thus valid measurement times)
   std::vector<double> clonetimes;
   for (const auto &clone_imu : state->_clones_IMU) {
     clonetimes.emplace_back(clone_imu.first);
   }
 
-  // 1. Clean all feature measurements and make sure they all have valid clone times
+  // Step 1: Clean all feature measurements and make sure they all have valid clone times
   auto it0 = feature_vec.begin();
   while (it0 != feature_vec.end()) {
 
@@ -96,7 +96,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   }
   rT1 = boost::posix_time::microsec_clock::local_time();
 
-  // 2. Create vector of cloned *CAMERA* poses at each of our clone timesteps
+  // Step 2: Create vector of cloned *CAMERA* poses at each of our clone timesteps
   std::unordered_map<size_t, std::unordered_map<double, FeatureInitializer::ClonePose>> clones_cam;
   for (const auto &clone_calib : state->_calib_IMUtoCAM) { // we may have multiple cameras
 
@@ -116,7 +116,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
     clones_cam.insert({clone_calib.first, clones_cami}); // camera id, cam i
   }
 
-  // 3. Try to triangulate all MSCKF or new SLAM features that have measurements
+  // Step 3: Try to triangulate all MSCKF or new SLAM features that have measurements
   auto it1 = feature_vec.begin();
   while (it1 != feature_vec.end()) {
 
@@ -144,7 +144,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   }
   rT2 = boost::posix_time::microsec_clock::local_time();
 
-  // Calculate the max possible measurement count for left (and right) cameras
+  // Step 4: Calculate the max possible measurement count for left (and right) cameras
   size_t max_meas_size = 0;
   for (size_t i = 0; i < feature_vec.size(); i++) {
     for (const auto &pair : feature_vec.at(i)->timestamps) { // pair represents left/right camera.
@@ -168,11 +168,11 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   size_t ct_jacob = 0;
   size_t ct_meas = 0;
 
-  // 4. Compute linear system for each feature, nullspace project, and reject
+  // Step 5: Compute linear system for each feature, nullspace project, and reject
   auto it2 = feature_vec.begin();
   while (it2 != feature_vec.end()) {
 
-    // Convert our feature into our current format
+    // Step 5.1: Convert our feature into our current format
     UpdaterHelper::UpdaterHelperFeature feat;
     feat.featid = (*it2)->featid;
     feat.uvs = (*it2)->uvs;
@@ -185,7 +185,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
       feat.feat_representation = LandmarkRepresentation::Representation::ANCHORED_MSCKF_INVERSE_DEPTH;
     }
 
-    // Save the position and its fej value
+    // Step 5.2: Save the position and its fej value
     if (LandmarkRepresentation::is_relative_representation(feat.feat_representation)) { // local representation
       feat.anchor_cam_id = (*it2)->anchor_cam_id;
       feat.anchor_clone_timestamp = (*it2)->anchor_clone_timestamp;
@@ -202,13 +202,13 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
     Eigen::VectorXd res; // residual
     std::vector<std::shared_ptr<Type>> Hx_order;
 
-    // Get the Jacobian for this feature
+    // Step 5.3: Get the Jacobian for this feature
     UpdaterHelper::get_feature_jacobian_full(state, feat, H_f, H_x, res, Hx_order);
 
-    // Nullspace project
+    // Step 5.4: Nullspace project (to remove feature position dependence)
     UpdaterHelper::nullspace_project_inplace(H_f, H_x, res);
 
-    /// Chi2 distance check
+    /// Step 5.5: Chi2 distance check and remove if not good
     Eigen::MatrixXd P_marg = StateHelper::get_marginal_covariance(state, Hx_order);
     Eigen::MatrixXd S = H_x * P_marg * H_x.transpose();
     S.diagonal() += _options.sigma_pix_sq * Eigen::VectorXd::Ones(S.rows());
@@ -236,7 +236,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
       continue;
     }
 
-    // We are good!!! Append to our large H vector
+    // Step 5.6: We are good!!! Append to our large H jacobian vector and large residual vector
     size_t ct_hx = 0;
     for (const auto &var : Hx_order) {
 
@@ -259,10 +259,10 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   }
   rT3 = boost::posix_time::microsec_clock::local_time();
 
-  // We have appended all features to our Hx_big, res_big
+  // Step 6: We have appended all features to our Hx_big, res_big
   // Delete it so we do not reuse information
   for (size_t f = 0; f < feature_vec.size(); f++) {
-    feature_vec[f]->to_delete = true;
+    feature_vec[f]->to_delete = true; //? Delete all features since we only want to use once?
   }
 
   // Return if we don't have anything and resize our matrices
@@ -274,7 +274,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   res_big.conservativeResize(ct_meas, 1);
   Hx_big.conservativeResize(ct_meas, ct_jacob);
 
-  // 5. Perform measurement compression
+  // Step 7. Perform measurement compression
   UpdaterHelper::measurement_compress_inplace(Hx_big, res_big);
   if (Hx_big.rows() < 1) {
     return;
