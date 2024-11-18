@@ -367,16 +367,16 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
       state->_cam_intrinsics_cameras.at(pair.first)->compute_distort_jacobian(uv_norm, dz_dzn, dz_dzeta);
 
       // Normalized coordinates in respect to projection function
-      Eigen::MatrixXd dzn_dpfc = Eigen::MatrixXd::Zero(2, 3);
+      Eigen::MatrixXd dzn_dpfc = Eigen::MatrixXd::Zero(2, 3); // Perspective projection function: hp w.r.t. p_FinCi
       dzn_dpfc << 1 / p_FinCi(2), 0, -p_FinCi(0) / (p_FinCi(2) * p_FinCi(2)), 0, 1 / p_FinCi(2), -p_FinCi(1) / (p_FinCi(2) * p_FinCi(2));
 
-      // Derivative of p_FinCi in respect to p_FinIi
+      // Derivative of p_FinCi in respect to p_FinIi    h w.r.t. p_FinG
       Eigen::MatrixXd dpfc_dpfg = R_ItoC * R_GtoIi;
 
       // Derivative of p_FinCi in respect to camera clone state
       Eigen::MatrixXd dpfc_dclone = Eigen::MatrixXd::Zero(3, 6);
-      dpfc_dclone.block(0, 0, 3, 3).noalias() = R_ItoC * skew_x(p_FinIi);
-      dpfc_dclone.block(0, 3, 3, 3) = -dpfc_dpfg;
+      dpfc_dclone.block(0, 0, 3, 3).noalias() = R_ItoC * skew_x(p_FinIi); // h w.r.t. R_GtoIi
+      dpfc_dclone.block(0, 3, 3, 3) = -dpfc_dpfg; // h w.r.t. p_IiinG
 
       //=========================================================================
       //=========================================================================
