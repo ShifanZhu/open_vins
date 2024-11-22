@@ -87,7 +87,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
     }
 
     // Remove if we don't have enough
-    if (ct_meas < 2) {
+    if (ct_meas < 2) { // we only have 1 observation
       (*it0)->to_delete = true; // set to_delete flag to true, so that we can remove it not only from feature_vec but also from other vectors
       it0 = feature_vec.erase(it0);
     } else {
@@ -202,7 +202,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
     Eigen::VectorXd res; // residual
     std::vector<std::shared_ptr<Type>> Hx_order;
 
-    // Step 5.3: Get the Jacobian for this feature
+    // Step 5.3: Get the Jacobian for this feature by considering its representation (H_f is 2N*3 or 2N*1; H_x is 2N*15)
     UpdaterHelper::get_feature_jacobian_full(state, feat, H_f, H_x, res, Hx_order);
 
     // Step 5.4: Nullspace project (to remove feature position dependence)
@@ -284,7 +284,7 @@ void UpdaterMSCKF::update(std::shared_ptr<State> state, std::vector<std::shared_
   // Our noise is isotropic, so make it here after our compression
   Eigen::MatrixXd R_big = _options.sigma_pix_sq * Eigen::MatrixXd::Identity(res_big.rows(), res_big.rows());
 
-  // 6. With all good features update the state
+  // Step 8. With all good features update the state (EKF update step)
   StateHelper::EKFUpdate(state, Hx_order_big, Hx_big, res_big, R_big);
   rT5 = boost::posix_time::microsec_clock::local_time();
 

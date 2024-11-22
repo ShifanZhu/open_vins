@@ -270,6 +270,7 @@ void VioManager::retriangulate_active_tracks(const ov_core::CameraData &message)
       }
 
       // For this feature, recover its 3d position if we have enough observations!
+      // We will only do this if we have more than 3 observations
       if (active_feat_linsys_count_new.at(featid) > 3) {
 
         // Recover feature estimate
@@ -289,7 +290,7 @@ void VioManager::retriangulate_active_tracks(const ov_core::CameraData &message)
         // Then set the flag for bad (i.e. set z-axis to nan)
         if (std::abs(condA) <= params.featinit_options.max_cond_number && p_FinCi(2, 0) >= params.featinit_options.min_dist &&
             p_FinCi(2, 0) <= params.featinit_options.max_dist && !std::isnan(p_FinCi.norm())) {
-          active_tracks_posinG_new[featid] = p_FinG;
+          active_tracks_posinG_new[featid] = p_FinG; // the white points in rviz
         }
       }
     }
@@ -300,7 +301,7 @@ void VioManager::retriangulate_active_tracks(const ov_core::CameraData &message)
   active_feat_linsys_A = active_feat_linsys_A_new;
   active_feat_linsys_b = active_feat_linsys_b_new;
   active_feat_linsys_count = active_feat_linsys_count_new;
-  active_tracks_posinG = active_tracks_posinG_new;
+  active_tracks_posinG = active_tracks_posinG_new; // the white points in rviz
   retri_rT2 = boost::posix_time::microsec_clock::local_time();
 
   // Return if no features
@@ -404,7 +405,10 @@ cv::Mat VioManager::get_historical_viz_image() {
 
   // Get the current active tracks
   cv::Mat img_history;
+  std::cout << "current time 1: " << ros::Time::now() << std::endl;
+
   trackFEATS->display_history(img_history, 255, 255, 0, 255, 255, 255, highlighted_ids, overlay);
+  std::cout << "current time 5: " << ros::Time::now() << std::endl;
   if (trackARUCO != nullptr) {
     trackARUCO->display_history(img_history, 0, 255, 255, 255, 255, 255, highlighted_ids, overlay);
     // trackARUCO->display_active(img_history, 0, 255, 255, 255, 255, 255, overlay);

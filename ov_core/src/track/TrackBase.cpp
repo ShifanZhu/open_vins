@@ -169,6 +169,7 @@ void TrackBase::display_history(cv::Mat &img_out, int r1, int g1, int b1, int r2
     else
       img_temp = img_out(cv::Rect(max_width * index_cam, 0, max_width, max_height));
     // draw, loop through all keypoints
+    std::cout << "ids_last_cache[pair.first].size(): " << ids_last_cache[pair.first].size() << std::endl;
     for (size_t i = 0; i < ids_last_cache[pair.first].size(); i++) {
       // If a highlighted point, then put a nice box around it
       if (std::find(highlighted.begin(), highlighted.end(), ids_last_cache[pair.first].at(i)) != highlighted.end()) {

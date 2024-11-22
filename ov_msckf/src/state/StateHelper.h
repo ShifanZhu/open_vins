@@ -99,7 +99,7 @@ public:
                                      const std::vector<std::shared_ptr<ov_type::Type>> &order);
 
   /**
-   * @brief For a given set of variables, this will this will calculate a smaller covariance.
+   * @brief For a given set of variables, this will calculate a smaller covariance.
    *
    * That only includes the ones specified with all crossterms.
    * Thus the size of the return will be the summed dimension of all the passed variables.
