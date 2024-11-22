@@ -32,7 +32,13 @@
 using namespace ov_core;
 using namespace ov_type;
 using namespace ov_msckf;
-
+/*
+* @param state: Pointer to state
+* @param order_NEW: Contiguous variables that have evolved according to this state transition
+* @param order_OLD: Variable ordering used in the state transition
+* @param Phi: State transition matrix (size: order_NEW * order_OLD)
+* @param Q Additive state propagation noise matrix (size: order_NEW * order_NEW)
+*/
 void StateHelper::EKFPropagation(std::shared_ptr<State> state, const std::vector<std::shared_ptr<Type>> &order_NEW,
                                  const std::vector<std::shared_ptr<Type>> &order_OLD, const Eigen::MatrixXd &Phi,
                                  const Eigen::MatrixXd &Q) {
@@ -127,15 +133,15 @@ void StateHelper::EKFUpdate(std::shared_ptr<State> state, const std::vector<std:
   //==========================================================
   //==========================================================
   // Part of the Kalman Gain K = (P*H^T)*S^{-1} = M*S^{-1}
-  assert(res.rows() == R.rows());
-  assert(H.rows() == res.rows());
+  assert(res.rows() == R.rows()); // Ensure residual vector and noise covariance matrix are compatible.
+  assert(H.rows() == res.rows()); // Ensure observation matrix and residual vector have the same number of rows.
   Eigen::MatrixXd M_a = Eigen::MatrixXd::Zero(state->_Cov.rows(), res.rows());
 
   // Get the location in small jacobian for each measuring variable
   int current_it = 0;
   std::vector<int> H_id;
   for (const auto &meas_var : H_order) {
-    H_id.push_back(current_it);
+    H_id.push_back(current_it); // Store starting index for each measuring variable in the observation matrix.
     current_it += meas_var->size();
   }
 
@@ -143,19 +149,21 @@ void StateHelper::EKFUpdate(std::shared_ptr<State> state, const std::vector<std:
   //==========================================================
   // For each active variable find its M = P*H^T
   for (const auto &var : state->_variables) {
-    // Sum up effect of each subjacobian = K_i= \sum_m (P_im Hm^T)
+    // Sum up effect of each subjacobian = K_i = \sum_m (P_im Hm^T)    (Sinv is computed later)
     Eigen::MatrixXd M_i = Eigen::MatrixXd::Zero(var->size(), res.rows());
+    // Efficiently compute product of covariance block and part of observation matrix.
     for (size_t i = 0; i < H_order.size(); i++) {
       std::shared_ptr<Type> meas_var = H_order[i];
       M_i.noalias() += state->_Cov.block(var->id(), meas_var->id(), var->size(), meas_var->size()) *
-                       H.block(0, H_id[i], H.rows(), meas_var->size()).transpose();
+                      H.block(0, H_id[i], H.rows(), meas_var->size()).transpose(); // P_i*H^T
     }
-    M_a.block(var->id(), 0, var->size(), res.rows()) = M_i;
+    M_a.block(var->id(), 0, var->size(), res.rows()) = M_i; // all M_i's are concatenated to form M_a
   }
 
   //==========================================================
   //==========================================================
-  // Get covariance of the involved terms
+  // Get covariance of the involved terms(based on H_oder). 
+  // Because the whole covariance matrix can be large andwe are only interested in the covariance of the involved terms.
   Eigen::MatrixXd P_small = StateHelper::get_marginal_covariance(state, H_order);
 
   // Residual covariance S = H*Cov*H' + R
@@ -167,7 +175,7 @@ void StateHelper::EKFUpdate(std::shared_ptr<State> state, const std::vector<std:
   // Invert our S (should we use a more stable method here??)
   Eigen::MatrixXd Sinv = Eigen::MatrixXd::Identity(R.rows(), R.rows());
   S.selfadjointView<Eigen::Upper>().llt().solveInPlace(Sinv);
-  Eigen::MatrixXd K = M_a * Sinv.selfadjointView<Eigen::Upper>();
+  Eigen::MatrixXd K = M_a * Sinv.selfadjointView<Eigen::Upper>(); // kalman gain
   // Eigen::MatrixXd K = M_a * S.inverse();
 
   // Update Covariance

@@ -29,6 +29,10 @@ using namespace ov_core;
 using namespace ov_type;
 using namespace ov_msckf;
 
+// Check https://docs.openvins.com/update-feat.html#feat-rep-global-xyz for reference
+// H_f is 3*3 or 3*1(only when ANCHORED_INVERSE_DEPTH_SINGLE) depending on the representation
+// H_x is a vector of 3*6 matrices (1*3*6 when only consider anchor IMU pose; 2*3*6 when we also consider calibration)
+// x_order: Extra variables our extra Jacobian has (for example anchored pose)
 void UpdaterHelper::get_feature_jacobian_representation(std::shared_ptr<State> state, UpdaterHelperFeature &feature, Eigen::MatrixXd &H_f,
                                                         std::vector<Eigen::MatrixXd> &H_x, std::vector<std::shared_ptr<Type>> &x_order) {
 
@@ -102,7 +106,7 @@ void UpdaterHelper::get_feature_jacobian_representation(std::shared_ptr<State> s
   H_anc.block(0, 3, 3, 3).setIdentity();
 
   // Add anchor Jacobians to our return vector
-  x_order.push_back(state->_clones_IMU.at(feature.anchor_clone_timestamp));
+  x_order.push_back(state->_clones_IMU.at(feature.anchor_clone_timestamp)); // add type of anchor pose
   H_x.push_back(H_anc);
 
   // Get calibration Jacobians (for anchor clone)
@@ -189,16 +193,18 @@ void UpdaterHelper::get_feature_jacobian_representation(std::shared_ptr<State> s
   assert(false);
 }
 
+// This function will construct the "stacked" Jacobians for a single feature from all its measurements 
+// Get H_x (jacobian of residual w.r.t. IMU pose) and H_f (jacobian of residual w.r.t. feature position)
 void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, UpdaterHelperFeature &feature, Eigen::MatrixXd &H_f,
                                               Eigen::MatrixXd &H_x, Eigen::VectorXd &res, std::vector<std::shared_ptr<Type>> &x_order) {
 
-  // Total number of measurements for this feature
+  // Step 1: Get total number of measurements for this feature
   int total_meas = 0;
   for (auto const &pair : feature.timestamps) {
     total_meas += (int)pair.second.size();
   }
 
-  // Compute the size of the states involved with this feature
+  // Step 2: Compute the size of the states involved with this feature. And store the order(start index) of the states
   int total_hx = 0;
   std::unordered_map<std::shared_ptr<Type>, size_t> map_hx;
   for (auto const &pair : feature.timestamps) {
@@ -221,7 +227,7 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
       total_hx += distortion->size();
     }
 
-    // Loop through all measurements for this specific camera
+    // Step 2.1: Loop through all measurements for this specific camera
     for (size_t m = 0; m < feature.timestamps[pair.first].size(); m++) {
 
       // Add this clone if it is not added already
@@ -234,7 +240,8 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
     }
   }
 
-  // If we are using an anchored representation, make sure that the anchor is also added
+  // Step 3: Check if we are using an anchored representation, *make sure that the anchor is also added*
+  // If we are using an anchored representation, we also need to add the anchored pose to optimize
   if (LandmarkRepresentation::is_relative_representation(feature.feat_representation)) {
 
     // Assert we have a clone
@@ -242,8 +249,8 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
 
     // Add this anchor if it is not added already
     std::shared_ptr<PoseJPL> clone_Ai = state->_clones_IMU.at(feature.anchor_clone_timestamp);
-    if (map_hx.find(clone_Ai) == map_hx.end()) {
-      map_hx.insert({clone_Ai, total_hx});
+    if (map_hx.find(clone_Ai) == map_hx.end()) { // no need to insert if state is already in the map
+      map_hx.insert({clone_Ai, total_hx}); // insert the anchored pose
       x_order.push_back(clone_Ai);
       total_hx += clone_Ai->size();
     }
@@ -263,7 +270,7 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
   //=========================================================================
   //=========================================================================
 
-  // Calculate the position of this feature in the global frame
+  // Step 4: Check again. If anchored representation, we calculate the position of this feature in the global frame
   // If anchored, then we need to calculate the position of the feature in the global
   Eigen::Vector3d p_FinG = feature.p_FinG;
   if (LandmarkRepresentation::is_relative_representation(feature.feat_representation)) {
@@ -279,7 +286,7 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
     p_FinG = R_GtoI.transpose() * R_ItoC.transpose() * (feature.p_FinA - p_IinC) + p_IinG;
   }
 
-  // Calculate the position of this feature in the global frame FEJ
+  // Step 5: Calculate the position of this feature in the global frame FEJ
   // If anchored, then we can use the "best" p_FinG since the value of p_FinA does not matter
   Eigen::Vector3d p_FinG_fej = feature.p_FinG_fej;
   if (LandmarkRepresentation::is_relative_representation(feature.feat_representation)) {
@@ -296,6 +303,7 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
   H_f = Eigen::MatrixXd::Zero(2 * total_meas, jacobsize);
   H_x = Eigen::MatrixXd::Zero(2 * total_meas, total_hx);
 
+  // Step 6: Calculate 1st order jacobian of Hx(1*3*6 or 2*3*6) and Hf(3*3 or 3*1) for each measurement
   // Derivative of p_FinG in respect to feature representation.
   // This only needs to be computed once and thus we pull it out of the loop
   Eigen::MatrixXd dpfg_dlambda;
@@ -423,8 +431,8 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
   }
 }
 
-// r = H_x * dx + H_f * dP + n (original)
-// r_o = H_0 * dx + n_o (after left nullspace projection)
+// r = H_x * dx + H_f * dP + n (original)  ==>  r_o = H_0 * dx + n_o (after left nullspace projection)
+// 2n*1 = 2n*15 * 15*1 + 2n*3 * 3*1 + 2n*1 = 2n*1  ==> 2n-3 * 1 = 2n-3 *15 * 15*1  +  2n-3 * 1
 void UpdaterHelper::nullspace_project_inplace(Eigen::MatrixXd &H_f, Eigen::MatrixXd &H_x, Eigen::VectorXd &res) {
 
   // Apply the left nullspace of H_f to all variables
@@ -454,11 +462,15 @@ void UpdaterHelper::nullspace_project_inplace(Eigen::MatrixXd &H_f, Eigen::Matri
   // Sanity check
   assert(H_x.rows() == res.rows());
 }
-
+// One of the most costly opeerations in the EKF update is the matrix multiplication. To mitigate this issue, 
+// we perform the thin QR decomposition of the measurement Jacobian after nullspace projection.
+// This QR decomposition can be performed again using Givens rotations (note that this operation in general is not cheap though). 
+// We apply this QR to the linearized measurement residuals to compress measurements.
+// As a result, the compressed measurement Jacobian will be of the size of the state, which will signficantly reduce the EKF update cost
 void UpdaterHelper::measurement_compress_inplace(Eigen::MatrixXd &H_x, Eigen::VectorXd &res) {
 
   // Return if H_x is a fat matrix (there is no need to compress in this case)
-  if (H_x.rows() <= H_x.cols())
+  if (H_x.rows() <= H_x.cols()) // H_x's cols are the size of the state usually should be much smaller than the rows (measurements)
     return;
 
   // Do measurement compression through givens rotations

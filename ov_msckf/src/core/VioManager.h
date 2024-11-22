@@ -166,7 +166,7 @@ protected:
   bool try_to_initialize(const ov_core::CameraData &message);
 
   /**
-   * @brief This function will will re-triangulate all features in the current frame
+   * @brief This function will re-triangulate all features in the current frame
    *
    * For all features that are currently being tracked by the system, this will re-triangulate them.
    * This is useful for downstream applications which need the current pointcloud of points (e.g. loop closure).

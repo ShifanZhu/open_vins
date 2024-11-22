@@ -338,7 +338,7 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   // NOTE: if the state is already at the given time (can happen in sim)
   // NOTE: then no need to prop since we already are at the desired timestep
   if (state->_timestamp != message.timestamp) {
-    propagator->propagate_and_clone(state, message.timestamp);
+    propagator->propagate_and_clone(state, message.timestamp); // This is called only when new image comes
   }
   rT3 = boost::posix_time::microsec_clock::local_time();
 
@@ -367,6 +367,7 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   // We explicitly request features that have not been deleted (used) in another update step
   // feats_lost: features that are not being actively tracked after timestamp
   // feats_marg: features that are detected at target timestamp. As of right now, since we are using a sliding window, this is the oldest clone.
+  // feats_slam: features that reached a specific track count and are ready to be used as SLAM features
   std::vector<std::shared_ptr<Feature>> feats_lost, feats_marg, feats_slam;
   feats_lost = trackFEATS->get_feature_database()->features_not_containing_newer(state->_timestamp, false, true);
 
@@ -422,7 +423,7 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
         break;
       }
     }
-    // If max track, then add it to our possible slam feature list
+    // If reached specific track count, then add it to our possible slam feature list
     if (reached_max) {
       feats_maxtracks.push_back(*it2);
       it2 = feats_marg.erase(it2); // Now feats_marg only contains the features that are detected at oldest frame and not reached max track
@@ -458,6 +459,7 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   }
 
   // _features_SLAM stores the features that are *already* used for SLAM update, note that this is different from feats_slam which are ones reach max tracking in marg features
+  // _features_SLAM shows the *red* points in rviz
   // Loop through current SLAM features, we have tracks of them, grab them for this update!
   // NOTE: if we have a slam feature that has lost tracking, then we should marginalize it out
   // NOTE: we only enforce this if the current camera message is where the feature was seen from
@@ -493,13 +495,13 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   // Separate our SLAM features into new ones, and old ones
   std::vector<std::shared_ptr<Feature>> feats_slam_DELAYED, feats_slam_UPDATE;
   for (size_t i = 0; i < feats_slam.size(); i++) {
-    // if the new feature is already in the SLAM features: no need to do triangulation
+    // if the new feature is already in the SLAM features: no need to do triangulation, directly do SLAM update by putting into state
     if (state->_features_SLAM.find(feats_slam.at(i)->featid) != state->_features_SLAM.end()) {
-      feats_slam_UPDATE.push_back(feats_slam.at(i));
+      feats_slam_UPDATE.push_back(feats_slam.at(i)); // will be added to state, and used for SLAM update
       // PRINT_DEBUG("[UPDATE-SLAM]: found old feature %d (%d
       // measurements)\n",(int)feats_slam.at(i)->featid,(int)feats_slam.at(i)->timestamps_left.size());
     } else {
-      feats_slam_DELAYED.push_back(feats_slam.at(i)); // new feature: need to do triangulation
+      feats_slam_DELAYED.push_back(feats_slam.at(i)); // features that are not in _features_SLAM, will do delayed_init(triangulation, and add to _features_SLAM in delayed_init())
       // PRINT_DEBUG("[UPDATE-SLAM]: new feature ready %d (%d
       // measurements)\n",(int)feats_slam.at(i)->featid,(int)feats_slam.at(i)->timestamps_left.size());
     }
@@ -540,6 +542,8 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   if ((int)featsup_MSCKF.size() > state->_options.max_msckf_in_update) // more than 1000
     featsup_MSCKF.erase(featsup_MSCKF.begin(), featsup_MSCKF.end() - state->_options.max_msckf_in_update);
   
+  // Inside the update function, we will erase the features in featsup_MSCKF in the following conditions:
+  // 1. We only have 1 observation; 2. unsuccess_tri or unsuccess_refine; 3. above chi2 threshold
   updaterMSCKF->update(state, featsup_MSCKF);
   propagator->invalidate_cache();
   rT4 = boost::posix_time::microsec_clock::local_time();
@@ -551,18 +555,19 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   while (!feats_slam_UPDATE.empty()) {
     // Get sub vector of the features we will update with
     std::vector<std::shared_ptr<Feature>> featsup_TEMP;
-    featsup_TEMP.insert(featsup_TEMP.begin(), feats_slam_UPDATE.begin(),
+    featsup_TEMP.insert(featsup_TEMP.begin(), feats_slam_UPDATE.begin(), // Only take the limited number of features for one update
                         feats_slam_UPDATE.begin() + std::min(state->_options.max_slam_in_update, (int)feats_slam_UPDATE.size()));
+    // Remove the features we already used, and do the update. In the next while loop, we update the left features
     feats_slam_UPDATE.erase(feats_slam_UPDATE.begin(),
                             feats_slam_UPDATE.begin() + std::min(state->_options.max_slam_in_update, (int)feats_slam_UPDATE.size()));
     // Do the update
-    updaterSLAM->update(state, featsup_TEMP);
-    feats_slam_UPDATE_TEMP.insert(feats_slam_UPDATE_TEMP.end(), featsup_TEMP.begin(), featsup_TEMP.end());
-    propagator->invalidate_cache();
+    updaterSLAM->update(state, featsup_TEMP); // Update the state, and SLAM features
+    feats_slam_UPDATE_TEMP.insert(feats_slam_UPDATE_TEMP.end(), featsup_TEMP.begin(), featsup_TEMP.end()); // insert the used features for SLAM update
+    propagator->invalidate_cache(); // we have new updated states with new observations
   }
-  feats_slam_UPDATE = feats_slam_UPDATE_TEMP;
+  feats_slam_UPDATE = feats_slam_UPDATE_TEMP; // this stores all the used features for SLAM update
   rT5 = boost::posix_time::microsec_clock::local_time();
-  updaterSLAM->delayed_init(state, feats_slam_DELAYED);
+  updaterSLAM->delayed_init(state, feats_slam_DELAYED); // features that are not in _features_SLAM, will do delayed_init(triangulation, and add to _features_SLAM in delayed_init())
   rT6 = boost::posix_time::microsec_clock::local_time();
 
   //===================================================================================
@@ -572,8 +577,8 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   // Re-triangulate all current tracks in the current frame
   if (message.sensor_ids.at(0) == 0) {
 
-    // Re-triangulate features
-    retriangulate_active_tracks(message);
+    // Re-triangulate features: we try to update the 3D position of the features (actively tracking, whitish-redish lines in rviz)
+    retriangulate_active_tracks(message); // the white points in rviz
 
     // Clear the MSCKF features only on the base camera
     // Thus we should be able to visualize the other unique camera stream
@@ -581,9 +586,15 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
     good_features_MSCKF.clear();
   }
 
+
+  // featsup_MSCKF contains  (orange points in rviz)
+  // 1: the features that are not being actively tracked after timestamp, and 
+  // 2: the features that are detected at oldest frame and not reached max track
+  // 3: the features that reached max track, but we do not have much room
+
   // Save all the MSCKF features used in the update
   for (auto const &feat : featsup_MSCKF) {
-    good_features_MSCKF.push_back(feat->p_FinG);
+    good_features_MSCKF.push_back(feat->p_FinG); // orange points in rviz
     feat->to_delete = true;
   }
 
@@ -612,6 +623,7 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   }
 
   // Finally marginalize the oldest clone if needed
+  // Remove the oldest clone, if we have more then the max clone count!!
   StateHelper::marginalize_old_clone(state);
   rT7 = boost::posix_time::microsec_clock::local_time();
 

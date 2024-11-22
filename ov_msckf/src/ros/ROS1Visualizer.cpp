@@ -662,9 +662,11 @@ void ROS1Visualizer::publish_images() {
     return;
 
   // Get our image of history tracks
+  std::cout << "current time before: " << ros::Time::now() << std::endl;
   cv::Mat img_history = _app->get_historical_viz_image();
+  std::cout << "current time after: " << ros::Time::now() << std::endl;
   if (img_history.empty())
-    return;
+      return;
 
   // Create our message
   std_msgs::Header header;

@@ -58,6 +58,9 @@ UpdaterSLAM::UpdaterSLAM(UpdaterOptions &options_slam, UpdaterOptions &options_a
   }
 }
 
+// delayed_init deals with features reached specific tracking count, but not added to _features_SLAM yet.
+// After triangulation and refinement, features are added to _features_SLAM, so next time will not enter here, 
+// will do updateSLAM-update() instead.
 void UpdaterSLAM::delayed_init(std::shared_ptr<State> state, std::vector<std::shared_ptr<Feature>> &feature_vec) {
 
   // Return if no features
@@ -68,13 +71,13 @@ void UpdaterSLAM::delayed_init(std::shared_ptr<State> state, std::vector<std::sh
   boost::posix_time::ptime rT0, rT1, rT2, rT3;
   rT0 = boost::posix_time::microsec_clock::local_time();
 
-  // 0. Get all timestamps our clones are at (and thus valid measurement times)
+  // Step 0: Get all timestamps our clones are at (and thus valid measurement times)
   std::vector<double> clonetimes;
   for (const auto &clone_imu : state->_clones_IMU) {
     clonetimes.emplace_back(clone_imu.first);
   }
 
-  // 1. Clean all feature measurements and make sure they all have valid clone times
+  // Step 1: Clean all feature measurements and make sure they all have valid clone times
   auto it0 = feature_vec.begin();
   while (it0 != feature_vec.end()) {
 
@@ -97,7 +100,7 @@ void UpdaterSLAM::delayed_init(std::shared_ptr<State> state, std::vector<std::sh
   }
   rT1 = boost::posix_time::microsec_clock::local_time();
 
-  // 2. Create vector of cloned *CAMERA* poses at each of our clone timesteps
+  // Step 2: Create vector of cloned *CAMERA* poses at each of our clone timesteps
   std::unordered_map<size_t, std::unordered_map<double, FeatureInitializer::ClonePose>> clones_cam;
   for (const auto &clone_calib : state->_calib_IMUtoCAM) {
 
@@ -117,11 +120,11 @@ void UpdaterSLAM::delayed_init(std::shared_ptr<State> state, std::vector<std::sh
     clones_cam.insert({clone_calib.first, clones_cami});
   }
 
-  // 3. Try to triangulate all MSCKF or new SLAM features that have measurements
+  // Step 3: Try to triangulate all MSCKF or new SLAM features that have measurements
   auto it1 = feature_vec.begin();
   while (it1 != feature_vec.end()) {
 
-    // Triangulate the feature and remove if it fails
+    // Step 3.1: Triangulate the feature and remove if it fails
     bool success_tri = true;
     if (initializer_feat->config().triangulate_1d) {
       success_tri = initializer_feat->single_triangulation_1d(*it1, clones_cam);
@@ -129,13 +132,13 @@ void UpdaterSLAM::delayed_init(std::shared_ptr<State> state, std::vector<std::sh
       success_tri = initializer_feat->single_triangulation(*it1, clones_cam);
     }
 
-    // Gauss-newton refine the feature
+    // Step 3.2: Gauss-newton refine the feature
     bool success_refine = true;
     if (initializer_feat->config().refine_features) {
       success_refine = initializer_feat->single_gaussnewton(*it1, clones_cam);
     }
 
-    // Remove the feature if not a success
+    // Step 3.3: Remove the feature if not a success
     if (!success_tri || !success_refine) {
       (*it1)->to_delete = true;
       it1 = feature_vec.erase(it1);
@@ -145,7 +148,7 @@ void UpdaterSLAM::delayed_init(std::shared_ptr<State> state, std::vector<std::sh
   }
   rT2 = boost::posix_time::microsec_clock::local_time();
 
-  // 4. Compute linear system for each feature, nullspace project, and reject
+  // Step 4: Compute linear system for each feature, nullspace project, and reject
   auto it2 = feature_vec.begin();
   while (it2 != feature_vec.end()) {
 
@@ -160,7 +163,7 @@ void UpdaterSLAM::delayed_init(std::shared_ptr<State> state, std::vector<std::sh
     auto feat_rep =
         ((int)feat.featid < state->_options.max_aruco_features) ? state->_options.feat_rep_aruco : state->_options.feat_rep_slam;
     feat.feat_representation = feat_rep;
-    if (feat_rep == LandmarkRepresentation::Representation::ANCHORED_INVERSE_DEPTH_SINGLE) {
+    if (feat_rep == LandmarkRepresentation::Representation::ANCHORED_INVERSE_DEPTH_SINGLE) { // Note the type change here
       feat.feat_representation = LandmarkRepresentation::Representation::ANCHORED_MSCKF_INVERSE_DEPTH;
     }
 
@@ -187,6 +190,7 @@ void UpdaterSLAM::delayed_init(std::shared_ptr<State> state, std::vector<std::sh
     // If we are doing the single feature representation, then we need to remove the bearing portion
     // To do so, we project the bearing portion onto the state and depth Jacobians and the residual.
     // This allows us to directly initialize the feature as a depth-old feature
+    // Note: due to the type change above, we will never execute this if statement
     if (feat_rep == LandmarkRepresentation::Representation::ANCHORED_INVERSE_DEPTH_SINGLE) {
 
       // Append the Jacobian in respect to the depth of the feature
@@ -231,7 +235,7 @@ void UpdaterSLAM::delayed_init(std::shared_ptr<State> state, std::vector<std::sh
     double chi2_multipler =
         ((int)feat.featid < state->_options.max_aruco_features) ? _options_aruco.chi2_multipler : _options_slam.chi2_multipler;
     if (StateHelper::initialize(state, landmark, Hx_order, H_x, H_f, R, res, chi2_multipler)) {
-      state->_features_SLAM.insert({(*it2)->featid, landmark});
+      state->_features_SLAM.insert({(*it2)->featid, landmark}); // add to _features_SLAM, so next time will not enter here, will do updateSLAM-update()
       (*it2)->to_delete = true;
       it2++;
     } else {
@@ -260,13 +264,13 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
   boost::posix_time::ptime rT0, rT1, rT2, rT3;
   rT0 = boost::posix_time::microsec_clock::local_time();
 
-  // 0. Get all timestamps our clones are at (and thus valid measurement times)
+  // Step 0: Get all timestamps our clones are at (and thus valid measurement times)
   std::vector<double> clonetimes;
   for (const auto &clone_imu : state->_clones_IMU) {
     clonetimes.emplace_back(clone_imu.first);
   }
 
-  // 1. Clean all feature measurements and make sure they all have valid clone times
+  // Step 1: Clean all feature measurements and make sure they all have valid clone times
   auto it0 = feature_vec.begin();
   while (it0 != feature_vec.end()) {
 
@@ -297,7 +301,7 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
   }
   rT1 = boost::posix_time::microsec_clock::local_time();
 
-  // Calculate the max possible measurement size
+  // Step 2: Calculate the max *possible* measurement size
   size_t max_meas_size = 0;
   for (size_t i = 0; i < feature_vec.size(); i++) {
     for (const auto &pair : feature_vec.at(i)->timestamps) {
@@ -305,7 +309,8 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
     }
   }
 
-  // Calculate max possible state size (i.e. the size of our covariance)
+  // Step 3: Calculate max *possible* state size (i.e. the size of our covariance)
+  // Why is possible? Because we may not have all the features in our state vector
   size_t max_hx_size = state->max_covariance_size();
 
   // Large Jacobian, residual, and measurement noise of *all* features for this update
@@ -317,7 +322,7 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
   size_t ct_jacob = 0;
   size_t ct_meas = 0;
 
-  // 4. Compute linear system for each feature, nullspace project, and reject
+  // Step 4: Compute linear system for each feature, nullspace project, and reject
   auto it2 = feature_vec.begin();
   while (it2 != feature_vec.end()) {
 
@@ -325,10 +330,11 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
     assert(state->_features_SLAM.find((*it2)->featid) != state->_features_SLAM.end());
     assert(state->_features_SLAM.at((*it2)->featid)->_featid == (*it2)->featid);
 
-    // Get our landmark from the state
+    // Step 4.1: First, let's get our landmark from the state vector
+    // _features_SLAM is a map of all Our current set of SLAM features
     std::shared_ptr<Landmark> landmark = state->_features_SLAM.at((*it2)->featid);
 
-    // Convert the state landmark into our current format
+    // Step 4.2: Convert the state landmark into our current format
     UpdaterHelper::UpdaterHelperFeature feat;
     feat.featid = (*it2)->featid;
     feat.uvs = (*it2)->uvs;
@@ -345,8 +351,8 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
     if (LandmarkRepresentation::is_relative_representation(feat.feat_representation)) {
       feat.anchor_cam_id = landmark->_anchor_cam_id;
       feat.anchor_clone_timestamp = landmark->_anchor_clone_timestamp;
-      feat.p_FinA = landmark->get_xyz(false);
-      feat.p_FinA_fej = landmark->get_xyz(true);
+      feat.p_FinA = landmark->get_xyz(false); // updated value
+      feat.p_FinA_fej = landmark->get_xyz(true); // fej value
     } else {
       feat.p_FinG = landmark->get_xyz(false);
       feat.p_FinG_fej = landmark->get_xyz(true);
@@ -358,35 +364,40 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
     Eigen::VectorXd res;
     std::vector<std::shared_ptr<Type>> Hx_order;
 
-    // Get the Jacobian for this feature
+    // Step 5: Get the Jacobian for this feature
+    // H_f is 2N*3 or 2N*1; H_x is 2N*15 where N is the number of measurements for this feature
     UpdaterHelper::get_feature_jacobian_full(state, feat, H_f, H_x, res, Hx_order);
 
-    // Place Jacobians in one big Jacobian, since the landmark is already in our state vector
-    Eigen::MatrixXd H_xf = H_x;
+    // Step 6: Place all Jacobians (x and f) in one big Jacobian H_xf, since the landmark is already in our state vector
+    // H_x (jacobian of residual w.r.t. IMU pose)
+    Eigen::MatrixXd H_xf = H_x; // H_xf is the Jacobian of residual w.r.t. state + feature
     if (landmark->_feat_representation == LandmarkRepresentation::Representation::ANCHORED_INVERSE_DEPTH_SINGLE) {
 
       // Append the Jacobian in respect to the depth of the feature
-      H_xf.conservativeResize(H_x.rows(), H_x.cols() + 1);
-      H_xf.block(0, H_x.cols(), H_x.rows(), 1) = H_f.block(0, H_f.cols() - 1, H_f.rows(), 1);
-      H_f.conservativeResize(H_f.rows(), H_f.cols() - 1);
+      // Note that if the representation is ANCHORED_INVERSE_DEPTH_SINGLE, we will change to ANCHORED_MSCKF_INVERSE_DEPTH,
+      // so we will have H_f is 2n*3 even it is inverse_depth_single. Actually, it will not enter here.
+      H_xf.conservativeResize(H_x.rows(), H_x.cols() + 1); // This is in a while loop, so we only need to add one column at a time
+      H_xf.block(0, H_x.cols(), H_x.rows(), 1) = H_f.block(0, H_f.cols() - 1, H_f.rows(), 1); // only put the depth Jacobian in the last column
+      H_f.conservativeResize(H_f.rows(), H_f.cols() - 1); // Remove the depth portion, and bearing portion will be ignored in the nullspace projection
 
       // Nullspace project the bearing portion
       // This takes into account that we have marginalized the bearing already
       // Thus this is crucial to ensuring estimator consistency as we are not taking the bearing to be true
-      UpdaterHelper::nullspace_project_inplace(H_f, H_xf, res);
+      // 2n*1 = 2n*15 * 15*1 + 2n*3 * 3*1 + 2n*1 = 2n*1  ==> 2n-3 * 1 = 2n-3 *15 * 15*1  +  2n-3 * 1
+      UpdaterHelper::nullspace_project_inplace(H_f, H_xf, res); // nullspace project to get rid of the H_f part
 
     } else {
 
       // Else we have the full feature in our state, so just append it
       H_xf.conservativeResize(H_x.rows(), H_x.cols() + H_f.cols());
-      H_xf.block(0, H_x.cols(), H_x.rows(), H_f.cols()) = H_f;
+      H_xf.block(0, H_x.cols(), H_x.rows(), H_f.cols()) = H_f; // append H_f to the right of H_xf
     }
 
-    // Append to our Jacobian order vector
-    std::vector<std::shared_ptr<Type>> Hxf_order = Hx_order;
-    Hxf_order.push_back(landmark);
+    // Step 7: Append feature(f landmark) to our Jacobian order vector Hx_order -> Hxf_order
+    std::vector<std::shared_ptr<Type>> Hxf_order = Hx_order; // get all IMU states
+    Hxf_order.push_back(landmark); // get the SLAM feature state
 
-    // Chi2 distance check
+    // Step 8: Chi2 distance check
     Eigen::MatrixXd P_marg = StateHelper::get_marginal_covariance(state, Hxf_order);
     Eigen::MatrixXd S = H_xf * P_marg * H_xf.transpose();
     double sigma_pix_sq =
@@ -414,7 +425,7 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
       } else {
         landmark->update_fail_count++;
       }
-      (*it2)->to_delete = true;
+      (*it2)->to_delete = true; // bad feature(above chi2 threshold), delete it
       it2 = feature_vec.erase(it2);
       continue;
     }
@@ -424,7 +435,7 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
       PRINT_DEBUG("[SLAM-UP]: accepted aruco tag %d for chi2 thresh (%.3f < %.3f)\n", (int)feat.featid, chi2, chi2_multipler * chi2_check);
     }
 
-    // We are good!!! Append to our large H vector
+    // Step 9: We are good!!! Append to our large H vector
     size_t ct_hx = 0;
     for (const auto &var : Hxf_order) {
 
@@ -450,7 +461,7 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
   }
   rT2 = boost::posix_time::microsec_clock::local_time();
 
-  // We have appended all features to our Hx_big, res_big
+  // Step 10: We have appended all features to our Hx_big, res_big
   // Delete it so we do not reuse information
   for (size_t f = 0; f < feature_vec.size(); f++) {
     feature_vec[f]->to_delete = true;
@@ -466,7 +477,7 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
   Hx_big.conservativeResize(ct_meas, ct_jacob);
   R_big.conservativeResize(ct_meas, ct_meas);
 
-  // 5. With all good SLAM features update the state
+  // Step 11: With all good SLAM features update the state
   StateHelper::EKFUpdate(state, Hx_order_big, Hx_big, res_big, R_big);
   rT3 = boost::posix_time::microsec_clock::local_time();
 
@@ -488,7 +499,7 @@ void UpdaterSLAM::change_anchors(std::shared_ptr<State> state) {
   // Get the marginalization timestep, and change the anchor for any feature seen from it
   // NOTE: for now we have anchor the feature in the same camera as it is before
   // NOTE: this also does not change the representation of the feature at all right now
-  double marg_timestep = state->margtimestep();
+  double marg_timestep = state->margtimestep(); // oldest clone timestamp
   for (auto &f : state->_features_SLAM) {
     // Skip any features that are in the global frame
     if (f.second->_feat_representation == LandmarkRepresentation::Representation::GLOBAL_3D ||
@@ -496,7 +507,7 @@ void UpdaterSLAM::change_anchors(std::shared_ptr<State> state) {
       continue;
     // Else lets see if it is anchored in the clone that will be marginalized
     assert(marg_timestep <= f.second->_anchor_clone_timestamp);
-    if (f.second->_anchor_clone_timestamp == marg_timestep) {
+    if (f.second->_anchor_clone_timestamp == marg_timestep) { // only change anchor for the feature anchored in the pose to be marginalized
       perform_anchor_change(state, f.second, state->_timestamp, f.second->_anchor_cam_id);
     }
   }
@@ -521,7 +532,7 @@ void UpdaterSLAM::perform_anchor_change(std::shared_ptr<State> state, std::share
   // Get Jacobians of p_FinG wrt old representation
   Eigen::MatrixXd H_f_old;
   std::vector<Eigen::MatrixXd> H_x_old;
-  std::vector<std::shared_ptr<Type>> x_order_old;
+  std::vector<std::shared_ptr<Type>> x_order_old; // stores type of anchor pose
   UpdaterHelper::get_feature_jacobian_representation(state, old_feat, H_f_old, H_x_old, x_order_old);
 
   // Create future feature representation
@@ -536,19 +547,19 @@ void UpdaterSLAM::perform_anchor_change(std::shared_ptr<State> state, std::share
 
   // OLD: anchor camera position and orientation
   Eigen::Matrix<double, 3, 3> R_GtoIOLD = state->_clones_IMU.at(old_feat.anchor_clone_timestamp)->Rot();
-  Eigen::Matrix<double, 3, 3> R_GtoOLD = state->_calib_IMUtoCAM.at(old_feat.anchor_cam_id)->Rot() * R_GtoIOLD;
+  Eigen::Matrix<double, 3, 3> R_GtoCOLD = state->_calib_IMUtoCAM.at(old_feat.anchor_cam_id)->Rot() * R_GtoIOLD;
   Eigen::Matrix<double, 3, 1> p_OLDinG = state->_clones_IMU.at(old_feat.anchor_clone_timestamp)->pos() -
-                                         R_GtoOLD.transpose() * state->_calib_IMUtoCAM.at(old_feat.anchor_cam_id)->pos();
+                                         R_GtoCOLD.transpose() * state->_calib_IMUtoCAM.at(old_feat.anchor_cam_id)->pos();
 
   // NEW: anchor camera position and orientation
   Eigen::Matrix<double, 3, 3> R_GtoINEW = state->_clones_IMU.at(new_feat.anchor_clone_timestamp)->Rot();
-  Eigen::Matrix<double, 3, 3> R_GtoNEW = state->_calib_IMUtoCAM.at(new_feat.anchor_cam_id)->Rot() * R_GtoINEW;
+  Eigen::Matrix<double, 3, 3> R_GtoCNEW = state->_calib_IMUtoCAM.at(new_feat.anchor_cam_id)->Rot() * R_GtoINEW;
   Eigen::Matrix<double, 3, 1> p_NEWinG = state->_clones_IMU.at(new_feat.anchor_clone_timestamp)->pos() -
-                                         R_GtoNEW.transpose() * state->_calib_IMUtoCAM.at(new_feat.anchor_cam_id)->pos();
+                                         R_GtoCNEW.transpose() * state->_calib_IMUtoCAM.at(new_feat.anchor_cam_id)->pos();
 
   // Calculate transform between the old anchor and new one
-  Eigen::Matrix<double, 3, 3> R_OLDtoNEW = R_GtoNEW * R_GtoOLD.transpose();
-  Eigen::Matrix<double, 3, 1> p_OLDinNEW = R_GtoNEW * (p_OLDinG - p_NEWinG);
+  Eigen::Matrix<double, 3, 3> R_OLDtoNEW = R_GtoCNEW * R_GtoCOLD.transpose();
+  Eigen::Matrix<double, 3, 1> p_OLDinNEW = R_GtoCNEW * (p_OLDinG - p_NEWinG);
   new_feat.p_FinA = R_OLDtoNEW * landmark->get_xyz(false) + p_OLDinNEW;
 
   //==========================================================================
@@ -556,19 +567,19 @@ void UpdaterSLAM::perform_anchor_change(std::shared_ptr<State> state, std::share
 
   // OLD: anchor camera position and orientation
   Eigen::Matrix<double, 3, 3> R_GtoIOLD_fej = state->_clones_IMU.at(old_feat.anchor_clone_timestamp)->Rot_fej();
-  Eigen::Matrix<double, 3, 3> R_GtoOLD_fej = state->_calib_IMUtoCAM.at(old_feat.anchor_cam_id)->Rot() * R_GtoIOLD_fej;
+  Eigen::Matrix<double, 3, 3> R_GtoCOLD_fej = state->_calib_IMUtoCAM.at(old_feat.anchor_cam_id)->Rot() * R_GtoIOLD_fej;
   Eigen::Matrix<double, 3, 1> p_OLDinG_fej = state->_clones_IMU.at(old_feat.anchor_clone_timestamp)->pos_fej() -
-                                             R_GtoOLD_fej.transpose() * state->_calib_IMUtoCAM.at(old_feat.anchor_cam_id)->pos();
+                                             R_GtoCOLD_fej.transpose() * state->_calib_IMUtoCAM.at(old_feat.anchor_cam_id)->pos();
 
   // NEW: anchor camera position and orientation
   Eigen::Matrix<double, 3, 3> R_GtoINEW_fej = state->_clones_IMU.at(new_feat.anchor_clone_timestamp)->Rot_fej();
-  Eigen::Matrix<double, 3, 3> R_GtoNEW_fej = state->_calib_IMUtoCAM.at(new_feat.anchor_cam_id)->Rot() * R_GtoINEW_fej;
+  Eigen::Matrix<double, 3, 3> R_GtoCNEW_fej = state->_calib_IMUtoCAM.at(new_feat.anchor_cam_id)->Rot() * R_GtoINEW_fej;
   Eigen::Matrix<double, 3, 1> p_NEWinG_fej = state->_clones_IMU.at(new_feat.anchor_clone_timestamp)->pos_fej() -
-                                             R_GtoNEW_fej.transpose() * state->_calib_IMUtoCAM.at(new_feat.anchor_cam_id)->pos();
+                                             R_GtoCNEW_fej.transpose() * state->_calib_IMUtoCAM.at(new_feat.anchor_cam_id)->pos();
 
   // Calculate transform between the old anchor and new one
-  Eigen::Matrix<double, 3, 3> R_OLDtoNEW_fej = R_GtoNEW_fej * R_GtoOLD_fej.transpose();
-  Eigen::Matrix<double, 3, 1> p_OLDinNEW_fej = R_GtoNEW_fej * (p_OLDinG_fej - p_NEWinG_fej);
+  Eigen::Matrix<double, 3, 3> R_OLDtoNEW_fej = R_GtoCNEW_fej * R_GtoCOLD_fej.transpose();
+  Eigen::Matrix<double, 3, 1> p_OLDinNEW_fej = R_GtoCNEW_fej * (p_OLDinG_fej - p_NEWinG_fej);
   new_feat.p_FinA_fej = R_OLDtoNEW_fej * landmark->get_xyz(true) + p_OLDinNEW_fej;
 
   // Get Jacobians of p_FinG wrt new representation
@@ -585,13 +596,15 @@ void UpdaterSLAM::perform_anchor_change(std::shared_ptr<State> state, std::share
   phi_order_NEW.push_back(landmark);
 
   // Loop through all our orders and append them
+  // A mapping (Phi_id_map) is created that tracks the position of each variable in the new stacked Jacobian matrix (Phi). 
+  // This mapping is used to construct the Jacobian Phi that represents the change in the state vector due to the anchor change.
   std::vector<std::shared_ptr<Type>> phi_order_OLD;
   int current_it = 0;
   std::map<std::shared_ptr<Type>, int> Phi_id_map;
   for (const auto &var : x_order_old) {
     if (Phi_id_map.find(var) == Phi_id_map.end()) {
-      Phi_id_map.insert({var, current_it});
-      phi_order_OLD.push_back(var);
+      Phi_id_map.insert({var, current_it}); // insert the type of anchor pose and its position in the new stacked Jacobian matrix
+      phi_order_OLD.push_back(var); // push_back the type of anchor pose
       current_it += var->size();
     }
   }
@@ -621,19 +634,30 @@ void UpdaterSLAM::perform_anchor_change(std::shared_ptr<State> state, std::share
   }
 
   // Place Jacobians for old anchor
+  // H_x_old[i] is the Jacobian of the landmark position in the global frame (p_FinG) with respect to the old anchor state variables.
+  // H_f_new_inv is the inverse of the new representation Jacobian (H_f_new). This inverse converts errors from new representation back into global frame.
+  // The product H_f_new_inv * H_x_old[i] is used to express how the change in the old anchor state contributes to the feature representation in new anchor.
+  // This relationship is placed into the state transition matrix Phi, specifically in the columns corresponding to the old anchor state (x_order_old).
+  // dx_new <- dp_global  <=  dp_global <- dx_old
+  // Block Phi_f,x_old
   for (size_t i = 0; i < H_x_old.size(); i++) {
     Phi.block(0, Phi_id_map.at(x_order_old[i]), phisize, x_order_old[i]->size()).noalias() += H_f_new_inv * H_x_old[i];
   }
 
   // Place Jacobians for old feat
+  // df_new <- dp_global  <=  dp_global <- df_old
+  // Block Phi_f,f_old
   Phi.block(0, Phi_id_map.at(landmark), phisize, phisize) = H_f_new_inv * H_f_old;
 
   // Place Jacobians for new anchor
+  // df_new <- dp_global  <=  dp_global <- dx_new
+  // Block Phi_f,x_new
   for (size_t i = 0; i < H_x_new.size(); i++) {
     Phi.block(0, Phi_id_map.at(x_order_new[i]), phisize, x_order_new[i]->size()).noalias() -= H_f_new_inv * H_x_new[i];
   }
 
   // Perform covariance propagation
+  // phi_order_OLD stores the type of anchor pose
   StateHelper::EKFPropagation(state, phi_order_NEW, phi_order_OLD, Phi, Q);
 
   // Set state from new feature

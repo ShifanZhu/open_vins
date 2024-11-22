@@ -30,6 +30,7 @@ using namespace ov_core;
 using namespace ov_type;
 using namespace ov_msckf;
 
+// This is called only when new image comes
 void Propagator::propagate_and_clone(std::shared_ptr<State> state, double timestamp) {
 
   // If the difference between the current update time and state is zero
@@ -73,7 +74,7 @@ void Propagator::propagate_and_clone(std::shared_ptr<State> state, double timest
   // Q_summed = Phi_i*Q_summed*Phi_i^T + Q_i
   // After summing we can multiple the total phi to get the updated covariance
   // We will then add the noise to the IMU portion of the state
-  Eigen::MatrixXd Phi_summed = Eigen::MatrixXd::Identity(state->imu_intrinsic_size() + 15, state->imu_intrinsic_size() + 15);
+  Eigen::MatrixXd Phi_summed = Eigen::MatrixXd::Identity(state->imu_intrinsic_size() + 15, state->imu_intrinsic_size() + 15); // TODO 15 is the IMU state size
   Eigen::MatrixXd Qd_summed = Eigen::MatrixXd::Zero(state->imu_intrinsic_size() + 15, state->imu_intrinsic_size() + 15);
   double dt_summed = 0;
 
@@ -141,7 +142,7 @@ bool Propagator::fast_state_propagate(std::shared_ptr<State> state, double times
                                       Eigen::Matrix<double, 12, 12> &covariance) {
 
   // First we will store the current calibration / estimates of the state
-  if (!cache_imu_valid) {
+  if (!cache_imu_valid) { // we have new updated state with observations
     cache_state_time = state->_timestamp;
     cache_state_est = state->_imu->value();
     cache_state_covariance = StateHelper::get_marginal_covariance(state, {state->_imu});
