@@ -358,7 +358,7 @@ void UpdaterSLAM::update(std::shared_ptr<State> state, std::vector<std::shared_p
       feat.p_FinG_fej = landmark->get_xyz(true);
     }
 
-    // Our return values (feature jacobian, state jacobian, residual, and order of state jacobian)
+    // Our return values for this feature (feature jacobian, state jacobian, residual, and order of state jacobian)
     Eigen::MatrixXd H_f;
     Eigen::MatrixXd H_x;
     Eigen::VectorXd res;

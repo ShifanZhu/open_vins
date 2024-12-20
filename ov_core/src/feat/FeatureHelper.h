@@ -127,6 +127,7 @@ public:
     std::vector<double> disparities;
     for (auto &feat : db->get_internal_data()) {
       for (auto &campairs : feat.second->timestamps) {
+        // std::cout << "camid: " << campairs.first << " size: " << campairs.second.size() << std::endl;
 
         // Skip if only one observation
         if (campairs.second.size() < 2)

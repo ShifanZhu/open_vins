@@ -405,10 +405,10 @@ cv::Mat VioManager::get_historical_viz_image() {
 
   // Get the current active tracks
   cv::Mat img_history;
-  std::cout << "current time 1: " << ros::Time::now() << std::endl;
+  // std::cout << "current time 1: " << ros::Time::now() << std::endl;
 
   trackFEATS->display_history(img_history, 255, 255, 0, 255, 255, 255, highlighted_ids, overlay);
-  std::cout << "current time 5: " << ros::Time::now() << std::endl;
+  // std::cout << "current time 5: " << ros::Time::now() << std::endl;
   if (trackARUCO != nullptr) {
     trackARUCO->display_history(img_history, 0, 255, 255, 255, 255, 255, highlighted_ids, overlay);
     // trackARUCO->display_active(img_history, 0, 255, 255, 255, 255, 255, overlay);

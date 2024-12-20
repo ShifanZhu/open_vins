@@ -230,6 +230,7 @@ void FeatureDatabase::cleanup_measurements(double timestamp) {
   for (auto it = features_idlookup.begin(); it != features_idlookup.end();) {
     // Remove the older measurements
     (*it).second->clean_older_measurements(timestamp);
+    // std::cout << "delete older measurement" << std::endl;
     // Count how many measurements
     int ct_meas = 0;
     for (const auto &pair : (*it).second->timestamps) {
