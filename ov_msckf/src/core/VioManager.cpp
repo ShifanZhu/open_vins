@@ -308,6 +308,11 @@ void VioManager::track_image_and_update(const ov_core::CameraData &message_const
   // If we do not have VIO initialization, then try to initialize
   // TODO: Or if we are trying to reset the system, then do that here!
   if (!is_initialized_vio) {
+    // for (auto &feat : trackFEATS->get_feature_database()->get_internal_data()) {
+    //   for (auto &campairs : feat.second->timestamps) {
+    //     std::cout << "camid: " << campairs.first << " size: " << campairs.second.size() << std::endl;
+    //   }
+    // }
     is_initialized_vio = try_to_initialize(message);
     if (!is_initialized_vio) {
       double time_track = (rT2 - rT1).total_microseconds() * 1e-6;
@@ -321,6 +326,7 @@ void VioManager::track_image_and_update(const ov_core::CameraData &message_const
 }
 
 void VioManager::do_feature_propagate_update(const ov_core::CameraData &message) {
+  std::cout << "do_feature_propagate_update at: " << std::setprecision(16) << message.timestamp << std::endl;
 
   //===================================================================================
   // State propagation, and clone augmentation

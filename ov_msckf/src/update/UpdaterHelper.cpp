@@ -94,9 +94,9 @@ void UpdaterHelper::get_feature_jacobian_representation(std::shared_ptr<State> s
     // "Best" feature in the global frame
     Eigen::Vector3d p_FinG_best = R_GtoI.transpose() * R_ItoC.transpose() * (feature.p_FinA - p_IinC) + p_IinG;
     // Transform the best into our anchor frame using FEJ
-    R_GtoI = state->_clones_IMU.at(feature.anchor_clone_timestamp)->Rot_fej();
-    p_IinG = state->_clones_IMU.at(feature.anchor_clone_timestamp)->pos_fej();
-    p_FinA = (R_GtoI.transpose() * R_ItoC.transpose()).transpose() * (p_FinG_best - p_IinG) + p_IinC;
+    R_GtoI = state->_clones_IMU.at(feature.anchor_clone_timestamp)->Rot_fej(); // FEJ orientation
+    p_IinG = state->_clones_IMU.at(feature.anchor_clone_timestamp)->pos_fej(); // FEJ position
+    p_FinA = (R_GtoI.transpose() * R_ItoC.transpose()).transpose() * (p_FinG_best - p_IinG) + p_IinC; // best FinG in anchor frame
   }
   Eigen::Matrix3d R_CtoG = R_GtoI.transpose() * R_ItoC.transpose();
 
@@ -198,22 +198,22 @@ void UpdaterHelper::get_feature_jacobian_representation(std::shared_ptr<State> s
 void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, UpdaterHelperFeature &feature, Eigen::MatrixXd &H_f,
                                               Eigen::MatrixXd &H_x, Eigen::VectorXd &res, std::vector<std::shared_ptr<Type>> &x_order) {
 
-  // Step 1: Get total number of measurements for this feature
+  // Step 1: Get total number of measurements for *this one* feature
   int total_meas = 0;
   for (auto const &pair : feature.timestamps) {
     total_meas += (int)pair.second.size();
   }
 
-  // Step 2: Compute the size of the states involved with this feature. And store the order(start index) of the states
+  // Step 2: Compute the size of the states involved with this feature. And store the order(type and start index) of the states
   int total_hx = 0;
   std::unordered_map<std::shared_ptr<Type>, size_t> map_hx;
-  for (auto const &pair : feature.timestamps) {
+  for (auto const &pair : feature.timestamps) { // loop through all measurements for this feature
 
     // Our extrinsics and intrinsics
     std::shared_ptr<PoseJPL> calibration = state->_calib_IMUtoCAM.at(pair.first);
     std::shared_ptr<Vec> distortion = state->_cam_intrinsics.at(pair.first);
 
-    // If doing calibration extrinsics
+    // If doing calibration extrinsics, we will use this feature to optimize, so we need to calculate jacobian
     if (state->_options.do_calib_camera_pose) {
       map_hx.insert({calibration, total_hx});
       x_order.push_back(calibration);
@@ -230,7 +230,7 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
     // Step 2.1: Loop through all measurements for this specific camera
     for (size_t m = 0; m < feature.timestamps[pair.first].size(); m++) {
 
-      // Add this clone if it is not added already
+      // Add this clone if it is not added already. This camera pose observes this feature, so use the feat to optimize pose
       std::shared_ptr<PoseJPL> clone_Ci = state->_clones_IMU.at(feature.timestamps[pair.first].at(m));
       if (map_hx.find(clone_Ci) == map_hx.end()) {
         map_hx.insert({clone_Ci, total_hx});
@@ -318,7 +318,7 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
   }
 #endif
 
-  // Loop through each camera for this feature
+  // Loop through each camera for *this* feature. This feature will have multiple measurements
   for (auto const &pair : feature.timestamps) {
 
     // Our calibration between the IMU and CAMi frames
@@ -394,10 +394,10 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
       Eigen::MatrixXd dz_dpfg = dz_dpfc * dpfc_dpfg;
 
       // CHAINRULE: get the total feature Jacobian
-      H_f.block(2 * c, 0, 2, H_f.cols()).noalias() = dz_dpfg * dpfg_dlambda;
+      H_f.block(2 * c, 0, 2, H_f.cols()).noalias() = dz_dpfg * dpfg_dlambda; // 2*3 * 3*3
 
       // CHAINRULE: get state clone Jacobian
-      H_x.block(2 * c, map_hx[clone_Ii], 2, clone_Ii->size()).noalias() = dz_dpfc * dpfc_dclone;
+      H_x.block(2 * c, map_hx[clone_Ii], 2, clone_Ii->size()).noalias() = dz_dpfc * dpfc_dclone; // 2*3 * 3*6
 
       // CHAINRULE: loop through all extra states and add their
       // NOTE: we add the Jacobian here as we might be in the anchoring pose for this measurement

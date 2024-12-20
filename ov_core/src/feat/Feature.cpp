@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <iomanip>
 #include "Feature.h"
 
 using namespace ov_core;
@@ -83,9 +84,11 @@ void Feature::clean_invalid_measurements(const std::vector<double> &invalid_time
 }
 
 void Feature::clean_older_measurements(double timestamp) {
+  // std::cout << "===================" << std::endl;
 
   // Loop through each of the cameras we have
   for (auto const &pair : timestamps) {
+    // std::cout << "feat track len: " << timestamps[pair.first].size() << std::endl;
 
     // Assert that we have all the parts of a measurement
     assert(timestamps[pair.first].size() == uvs[pair.first].size());
@@ -98,6 +101,7 @@ void Feature::clean_older_measurements(double timestamp) {
 
     // Loop through measurement times, remove ones that are older then the specified one
     while (it1 != timestamps[pair.first].end()) {
+      // std::cout << std::setprecision(16) << "target timestamp: " << timestamp*1e-6 << "  feat timestamp: " << (*it1)*1e-6 << std::endl;
       if (*it1 <= timestamp) {
         it1 = timestamps[pair.first].erase(it1);
         it2 = uvs[pair.first].erase(it2);

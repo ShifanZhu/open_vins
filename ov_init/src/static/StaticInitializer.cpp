@@ -130,12 +130,16 @@ bool StaticInitializer::initialize(double &timestamp, Eigen::MatrixXd &covarianc
   Eigen::Vector3d bg = w_avg_2to1;
   Eigen::Vector3d ba = a_avg_2to1 - quat_2_Rot(q_GtoI) * gravity_inG;
 
+  std::cout << "static initializer: q_GtoI = " << q_GtoI.transpose() << " | bg = " << bg.transpose() << " | ba = " << ba.transpose() << std::endl;
+
   // Set our state variables
   timestamp = window_2to1.at(window_2to1.size() - 1).timestamp;
   Eigen::VectorXd imu_state = Eigen::VectorXd::Zero(16);
   imu_state.block(0, 0, 4, 1) = q_GtoI;
   imu_state.block(10, 0, 3, 1) = bg;
   imu_state.block(13, 0, 3, 1) = ba;
+  std::cout << "rot: \b" << quat_2_Rot(q_GtoI) << std::endl;
+  // exit(0);
   assert(t_imu != nullptr);
   t_imu->set_value(imu_state);
   t_imu->set_fej(imu_state);
