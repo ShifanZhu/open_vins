@@ -442,7 +442,7 @@ void ROS1Visualizer::callback_inertial(const sensor_msgs::Imu::ConstPtr &msg) {
   message.timestamp = msg->header.stamp.toSec();
   message.wm << msg->angular_velocity.x, msg->angular_velocity.y, msg->angular_velocity.z;
   message.am << msg->linear_acceleration.x, msg->linear_acceleration.y, msg->linear_acceleration.z;
-  std::cout << "Got IMU: "<< std::setprecision(16) << message.timestamp << std::endl;
+  // std::cout << "Got IMU: "<< std::setprecision(16) << message.timestamp << std::endl;
 
   // send it to our VIO system
   _app->feed_measurement_imu(message);
@@ -502,7 +502,7 @@ void ROS1Visualizer::callback_monocular(const sensor_msgs::ImageConstPtr &msg0, 
   double timestamp = msg0->header.stamp.toSec();
   double time_delta = 1.0 / _app->get_params().track_frequency;
   if (camera_last_timestamp.find(cam_id0) != camera_last_timestamp.end() && timestamp < camera_last_timestamp.at(cam_id0) + time_delta) {
-    std::cout << "skip image: " << std::setprecision(16) << timestamp << std::endl;
+    // std::cout << "skip image: " << std::setprecision(16) << timestamp << std::endl;
     return;
   }
   camera_last_timestamp[cam_id0] = timestamp;
@@ -521,7 +521,7 @@ void ROS1Visualizer::callback_monocular(const sensor_msgs::ImageConstPtr &msg0, 
   message.timestamp = cv_ptr->header.stamp.toSec();
   message.sensor_ids.push_back(cam_id0);
   message.images.push_back(cv_ptr->image.clone());
-  std::cout << "Got image: " << std::setprecision(16) << message.timestamp << std::endl;
+  // std::cout << "Got image: " << std::setprecision(16) << message.timestamp << std::endl;
 
   // Load the mask if we are using it, else it is empty
   // TODO: in the future we should get this from external pixel segmentation

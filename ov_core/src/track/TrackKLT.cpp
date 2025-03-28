@@ -475,7 +475,7 @@ void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, 
   if (num_featsneeded < std::min(20, (int)(min_feat_percent * num_features))) // < 20
     return;
   // std::cout << "num_featsneeded: " << num_featsneeded_1 << std::endl;
-  PRINT_INFO("num_featsneeded = %.5d\n", num_featsneeded);
+  // PRINT_INFO("num_featsneeded = %.5d\n", num_featsneeded);
 
   // This is old extraction code that would extract from the whole image
   // This can be slow as this will recompute extractions for grid areas that we have max features already
@@ -501,7 +501,7 @@ void TrackKLT::perform_detection_monocular(const std::vector<cv::Mat> &img0pyr, 
   std::vector<cv::KeyPoint> pts0_ext; // extracted features
   Grider_GRID::perform_griding(img0pyr.at(0), mask0_updated, valid_locs, pts0_ext, num_features, grid_x, grid_y, threshold, true);
   // std::cout << "newly detected before reject: " << pts0_ext.size() << std::endl;
-  PRINT_INFO("newly detected before reject = %.5d\n", pts0_ext.size());
+  // PRINT_INFO("newly detected before reject = %.5d\n", pts0_ext.size());
   // Now, reject features that are close a current feature
   std::vector<cv::KeyPoint> kpts0_new;
   std::vector<cv::Point2f> pts0_new;
