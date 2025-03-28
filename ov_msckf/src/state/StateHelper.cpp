@@ -199,10 +199,10 @@ void StateHelper::EKFUpdate(std::shared_ptr<State> state, const std::vector<std:
 
   // Calculate our delta and update all our active states
   Eigen::VectorXd dx = K * res;
-  std::cout << "time: " << state->_timestamp << " dx: " << dx.transpose() << std::endl;
+  // std::cout << "time: " << state->_timestamp << " dx: " << dx.transpose() << std::endl;
   for (size_t i = 0; i < state->_variables.size(); i++) {
     state->_variables.at(i)->update(dx.block(state->_variables.at(i)->id(), 0, state->_variables.at(i)->size(), 1));
-    std::cout <<"updated value: " << state->_variables.at(i)->value().transpose() << std::endl;
+    // std::cout <<"updated value: " << state->_variables.at(i)->value().transpose() << std::endl;
   }
   // exit(0);
 

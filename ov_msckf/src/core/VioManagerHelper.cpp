@@ -423,6 +423,8 @@ std::vector<Eigen::Vector3d> VioManager::get_features_SLAM() {
   for (auto &f : state->_features_SLAM) {
     if ((int)f.first <= 4 * state->_options.max_aruco_features)
       continue;
+    // std::cout << "feat id: " << f.first << " anchor time: " << f.second->_anchor_clone_timestamp << "  id: " 
+    // << std::endl;
     if (ov_type::LandmarkRepresentation::is_relative_representation(f.second->_feat_representation)) {
       // Assert that we have an anchor pose for this feature
       assert(f.second->_anchor_cam_id != -1);
