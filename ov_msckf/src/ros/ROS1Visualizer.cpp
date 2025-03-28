@@ -231,6 +231,22 @@ void ROS1Visualizer::visualize() {
   // Publish keyframe information
   publish_loopclosure_information();
 
+  // std::string filepath_est = "../../../log/state_estimate.txt";
+  // std::cout << "save to : " << filepath_est << std::endl;
+  // of_state_est.open(filepath_est.c_str());
+  // std::cout << "open" << std::endl;
+  // of_state_est.precision(5);
+  // of_state_est.setf(std::ios::fixed, std::ios::floatfield);
+  // of_state_est.precision(6);
+  // std::shared_ptr<State> state = _app->get_state();
+  // double t_ItoC = state->_calib_dt_CAMtoIMU->value()(0);
+  // double timestamp_inI = state->_timestamp + t_ItoC;
+  // std::cout << "time: " << timestamp_inI << " " << t_ItoC << std::endl;
+  // of_state_est << timestamp_inI << " ";
+  // of_state_est << state->_imu->quat()(0) << " " << state->_imu->quat()(1) << " " << state->_imu->quat()(2) << " " << state->_imu->quat()(3)
+  //              << " ";
+  // of_state_est << state->_imu->pos()(0) << " " << state->_imu->pos()(1) << " " << state->_imu->pos()(2) << " ";
+
   // Save total state
   if (save_total_state) {
     ROSVisualizerHelper::sim_save_total_state_to_file(_app->get_state(), _sim, of_state_est, of_state_std, of_state_gt);
