@@ -9,7 +9,11 @@ if (NOT OpenCV_FOUND)
     message("OpenCV 4 not found, trying OpenCV 3. ov msckf")
     find_package(OpenCV 3 REQUIRED)
 endif ()
-find_package(Boost REQUIRED COMPONENTS system filesystem thread date_time)
+# find_package(Boost REQUIRED COMPONENTS system filesystem thread date_time)
+set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+
 find_package(Ceres REQUIRED)
 message(STATUS "OPENCV: " ${OpenCV_VERSION} " | BOOST: " ${Boost_VERSION} " | CERES: " ${Ceres_VERSION})
 
