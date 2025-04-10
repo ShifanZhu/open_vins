@@ -1,6 +1,0 @@
-Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_core -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_core
-Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_core -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_core
-Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_core -- -j32 -l32
-Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_core -- -j32 -l32
-Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_core
-Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_core
