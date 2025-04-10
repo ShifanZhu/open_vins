@@ -13,6 +13,7 @@ find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(ov_core REQUIRED)
 find_package(ov_init REQUIRED)
+find_package(Boost REQUIRED COMPONENTS filesystem)
 
 # Describe ROS project
 option(ENABLE_ROS "Enable or disable building with ROS (if it is found)" ON)

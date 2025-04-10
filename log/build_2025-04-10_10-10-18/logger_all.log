@@ -1,0 +1,759 @@
+[0.042s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.042s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=32, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7c05fb2a2b90>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7c05fb417760>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7c05fb417760>>)
+[0.100s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.100s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.100s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.100s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.100s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.100s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.100s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/s/repos/ov_ws/src/open_vins'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extensions ['ignore', 'ignore_ament_install']
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extension 'ignore'
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extension 'ignore_ament_install'
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extensions ['colcon_pkg']
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extension 'colcon_pkg'
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extensions ['colcon_meta']
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extension 'colcon_meta'
+[0.105s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extensions ['ros']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extension 'ros'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extensions ['cmake', 'python']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extension 'cmake'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extension 'python'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extensions ['python_setup_py']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config) by extension 'python_setup_py'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extensions ['ignore', 'ignore_ament_install']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extension 'ignore'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extension 'ignore_ament_install'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extensions ['colcon_pkg']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extension 'colcon_pkg'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extensions ['colcon_meta']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extension 'colcon_meta'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extensions ['ros']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extension 'ros'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extensions ['cmake', 'python']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extension 'cmake'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extension 'python'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extensions ['python_setup_py']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/cear) by extension 'python_setup_py'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extensions ['ignore', 'ignore_ament_install']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extension 'ignore'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extension 'ignore_ament_install'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extensions ['colcon_pkg']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extension 'colcon_pkg'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extensions ['colcon_meta']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extension 'colcon_meta'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extensions ['ros']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extension 'ros'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extensions ['cmake', 'python']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extension 'cmake'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extension 'python'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extensions ['python_setup_py']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/euroc_mav) by extension 'python_setup_py'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extensions ['ignore', 'ignore_ament_install']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extension 'ignore'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extension 'ignore_ament_install'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extensions ['colcon_pkg']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extension 'colcon_pkg'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extensions ['colcon_meta']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extension 'colcon_meta'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extensions ['ros']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extension 'ros'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extensions ['cmake', 'python']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extension 'cmake'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extension 'python'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extensions ['python_setup_py']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist) by extension 'python_setup_py'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extensions ['ignore', 'ignore_ament_install']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extension 'ignore'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extension 'ignore_ament_install'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extensions ['colcon_pkg']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extension 'colcon_pkg'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extensions ['colcon_meta']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extension 'colcon_meta'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extensions ['ros']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extension 'ros'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extensions ['cmake', 'python']
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extension 'cmake'
+[0.106s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extension 'python'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extensions ['python_setup_py']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/kaist_vio) by extension 'python_setup_py'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extensions ['ignore', 'ignore_ament_install']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extension 'ignore'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extension 'ignore_ament_install'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extensions ['colcon_pkg']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extension 'colcon_pkg'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extensions ['colcon_meta']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extension 'colcon_meta'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extensions ['ros']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extension 'ros'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extensions ['cmake', 'python']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extension 'cmake'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extension 'python'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extensions ['python_setup_py']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_aruco) by extension 'python_setup_py'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extensions ['ignore', 'ignore_ament_install']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extension 'ignore'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extension 'ignore_ament_install'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extensions ['colcon_pkg']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extension 'colcon_pkg'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extensions ['colcon_meta']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extension 'colcon_meta'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extensions ['ros']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extension 'ros'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extensions ['cmake', 'python']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extension 'cmake'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extension 'python'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extensions ['python_setup_py']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_ironsides) by extension 'python_setup_py'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extensions ['ignore', 'ignore_ament_install']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extension 'ignore'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extension 'ignore_ament_install'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extensions ['colcon_pkg']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extension 'colcon_pkg'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extensions ['colcon_meta']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extension 'colcon_meta'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extensions ['ros']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extension 'ros'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extensions ['cmake', 'python']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extension 'cmake'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extension 'python'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extensions ['python_setup_py']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_plane) by extension 'python_setup_py'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extensions ['ignore', 'ignore_ament_install']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extension 'ignore'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extension 'ignore_ament_install'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extensions ['colcon_pkg']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extension 'colcon_pkg'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extensions ['colcon_meta']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extension 'colcon_meta'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extensions ['ros']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extension 'ros'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extensions ['cmake', 'python']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extension 'cmake'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extension 'python'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extensions ['python_setup_py']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rpng_sim) by extension 'python_setup_py'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extensions ['ignore', 'ignore_ament_install']
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extension 'ignore'
+[0.107s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extension 'ignore_ament_install'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extensions ['colcon_pkg']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extension 'colcon_pkg'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extensions ['colcon_meta']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extension 'colcon_meta'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extensions ['ros']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extension 'ros'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extensions ['cmake', 'python']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extension 'cmake'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extension 'python'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extensions ['python_setup_py']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_d455) by extension 'python_setup_py'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extensions ['ignore', 'ignore_ament_install']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extension 'ignore'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extension 'ignore_ament_install'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extensions ['colcon_pkg']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extension 'colcon_pkg'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extensions ['colcon_meta']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extension 'colcon_meta'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extensions ['ros']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extension 'ros'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extensions ['cmake', 'python']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extension 'cmake'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extension 'python'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extensions ['python_setup_py']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/rs_t265) by extension 'python_setup_py'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extensions ['ignore', 'ignore_ament_install']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extension 'ignore'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extension 'ignore_ament_install'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extensions ['colcon_pkg']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extension 'colcon_pkg'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extensions ['colcon_meta']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extension 'colcon_meta'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extensions ['ros']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extension 'ros'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extensions ['cmake', 'python']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extension 'cmake'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extension 'python'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extensions ['python_setup_py']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/tum_vi) by extension 'python_setup_py'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extensions ['ignore', 'ignore_ament_install']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extension 'ignore'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extension 'ignore_ament_install'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extensions ['colcon_pkg']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extension 'colcon_pkg'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extensions ['colcon_meta']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extension 'colcon_meta'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extensions ['ros']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extension 'ros'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extensions ['cmake', 'python']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extension 'cmake'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extension 'python'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extensions ['python_setup_py']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor) by extension 'python_setup_py'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extensions ['ignore', 'ignore_ament_install']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extension 'ignore'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extension 'ignore_ament_install'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extensions ['colcon_pkg']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extension 'colcon_pkg'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extensions ['colcon_meta']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extension 'colcon_meta'
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extensions ['ros']
+[0.108s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extension 'ros'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extensions ['cmake', 'python']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extension 'cmake'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extension 'python'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extensions ['python_setup_py']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_indoor_45) by extension 'python_setup_py'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extensions ['ignore', 'ignore_ament_install']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extension 'ignore'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extension 'ignore_ament_install'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extensions ['colcon_pkg']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extension 'colcon_pkg'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extensions ['colcon_meta']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extension 'colcon_meta'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extensions ['ros']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extension 'ros'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extensions ['cmake', 'python']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extension 'cmake'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extension 'python'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extensions ['python_setup_py']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor) by extension 'python_setup_py'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extensions ['ignore', 'ignore_ament_install']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extension 'ignore'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extension 'ignore_ament_install'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extensions ['colcon_pkg']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extension 'colcon_pkg'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extensions ['colcon_meta']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extension 'colcon_meta'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extensions ['ros']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extension 'ros'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extensions ['cmake', 'python']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extension 'cmake'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extension 'python'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extensions ['python_setup_py']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(config/uzhfpv_outdoor_45) by extension 'python_setup_py'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['ignore', 'ignore_ament_install']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'ignore'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'ignore_ament_install'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['colcon_pkg']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'colcon_pkg'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['colcon_meta']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'colcon_meta'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['ros']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'ros'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['cmake', 'python']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'cmake'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'python'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['python_setup_py']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'python_setup_py'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extensions ['ignore', 'ignore_ament_install']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extension 'ignore'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extension 'ignore_ament_install'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extensions ['colcon_pkg']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extension 'colcon_pkg'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extensions ['colcon_meta']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extension 'colcon_meta'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extensions ['ros']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extension 'ros'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extensions ['cmake', 'python']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extension 'cmake'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extension 'python'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extensions ['python_setup_py']
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/bib) by extension 'python_setup_py'
+[0.109s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extensions ['ignore', 'ignore_ament_install']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extension 'ignore'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extension 'ignore_ament_install'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extensions ['colcon_pkg']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extension 'colcon_pkg'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extensions ['colcon_meta']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extension 'colcon_meta'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extensions ['ros']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extension 'ros'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extensions ['cmake', 'python']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extension 'cmake'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extension 'python'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extensions ['python_setup_py']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/css) by extension 'python_setup_py'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extensions ['ignore', 'ignore_ament_install']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extension 'ignore'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extension 'ignore_ament_install'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extensions ['colcon_pkg']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extension 'colcon_pkg'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extensions ['colcon_meta']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extension 'colcon_meta'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extensions ['ros']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extension 'ros'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extensions ['cmake', 'python']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extension 'cmake'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extension 'python'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extensions ['python_setup_py']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img) by extension 'python_setup_py'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extensions ['ignore', 'ignore_ament_install']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extension 'ignore'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extension 'ignore_ament_install'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extensions ['colcon_pkg']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extension 'colcon_pkg'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extensions ['colcon_meta']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extension 'colcon_meta'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extensions ['ros']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extension 'ros'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extensions ['cmake', 'python']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extension 'cmake'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extension 'python'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extensions ['python_setup_py']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/datasets) by extension 'python_setup_py'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extensions ['ignore', 'ignore_ament_install']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extension 'ignore'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extension 'ignore_ament_install'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extensions ['colcon_pkg']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extension 'colcon_pkg'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extensions ['colcon_meta']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extension 'colcon_meta'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extensions ['ros']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extension 'ros'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extensions ['cmake', 'python']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extension 'cmake'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extension 'python'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extensions ['python_setup_py']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/img/eval) by extension 'python_setup_py'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extensions ['ignore', 'ignore_ament_install']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extension 'ignore'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extension 'ignore_ament_install'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extensions ['colcon_pkg']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extension 'colcon_pkg'
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extensions ['colcon_meta']
+[0.110s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extension 'colcon_meta'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extensions ['ros']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extension 'ros'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extensions ['cmake', 'python']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extension 'cmake'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extension 'python'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extensions ['python_setup_py']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/mcss_theme) by extension 'python_setup_py'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extensions ['ignore', 'ignore_ament_install']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extension 'ignore'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extension 'ignore_ament_install'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extensions ['colcon_pkg']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extension 'colcon_pkg'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extensions ['colcon_meta']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extension 'colcon_meta'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extensions ['ros']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extension 'ros'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extensions ['cmake', 'python']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extension 'cmake'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extension 'python'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extensions ['python_setup_py']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(docs/youtube) by extension 'python_setup_py'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(ov_core) by extensions ['ignore', 'ignore_ament_install']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(ov_core) by extension 'ignore'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(ov_core) by extension 'ignore_ament_install'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(ov_core) by extensions ['colcon_pkg']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(ov_core) by extension 'colcon_pkg'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(ov_core) by extensions ['colcon_meta']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(ov_core) by extension 'colcon_meta'
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(ov_core) by extensions ['ros']
+[0.111s] Level 1:colcon.colcon_core.package_identification:_identify(ov_core) by extension 'ros'
+[0.115s] DEBUG:colcon.colcon_core.package_identification:Package 'ov_core' with type 'ros.ament_cmake' and name 'ov_core'
+[0.115s] Level 1:colcon.colcon_core.package_identification:_identify(ov_data) by extensions ['ignore', 'ignore_ament_install']
+[0.115s] Level 1:colcon.colcon_core.package_identification:_identify(ov_data) by extension 'ignore'
+[0.115s] Level 1:colcon.colcon_core.package_identification:_identify(ov_data) by extension 'ignore_ament_install'
+[0.115s] Level 1:colcon.colcon_core.package_identification:_identify(ov_data) by extensions ['colcon_pkg']
+[0.115s] Level 1:colcon.colcon_core.package_identification:_identify(ov_data) by extension 'colcon_pkg'
+[0.115s] Level 1:colcon.colcon_core.package_identification:_identify(ov_data) by extensions ['colcon_meta']
+[0.115s] Level 1:colcon.colcon_core.package_identification:_identify(ov_data) by extension 'colcon_meta'
+[0.115s] Level 1:colcon.colcon_core.package_identification:_identify(ov_data) by extensions ['ros']
+[0.115s] Level 1:colcon.colcon_core.package_identification:_identify(ov_data) by extension 'ros'
+[0.116s] DEBUG:colcon.colcon_core.package_identification:Package 'ov_data' with type 'ros.ament_cmake' and name 'ov_data'
+[0.116s] Level 1:colcon.colcon_core.package_identification:_identify(ov_eval) by extensions ['ignore', 'ignore_ament_install']
+[0.116s] Level 1:colcon.colcon_core.package_identification:_identify(ov_eval) by extension 'ignore'
+[0.116s] Level 1:colcon.colcon_core.package_identification:_identify(ov_eval) by extension 'ignore_ament_install'
+[0.116s] Level 1:colcon.colcon_core.package_identification:_identify(ov_eval) by extensions ['colcon_pkg']
+[0.116s] Level 1:colcon.colcon_core.package_identification:_identify(ov_eval) by extension 'colcon_pkg'
+[0.116s] Level 1:colcon.colcon_core.package_identification:_identify(ov_eval) by extensions ['colcon_meta']
+[0.116s] Level 1:colcon.colcon_core.package_identification:_identify(ov_eval) by extension 'colcon_meta'
+[0.116s] Level 1:colcon.colcon_core.package_identification:_identify(ov_eval) by extensions ['ros']
+[0.116s] Level 1:colcon.colcon_core.package_identification:_identify(ov_eval) by extension 'ros'
+[0.124s] DEBUG:colcon.colcon_core.package_identification:Package 'ov_eval' with type 'ros.ament_cmake' and name 'ov_eval'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(ov_init) by extensions ['ignore', 'ignore_ament_install']
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(ov_init) by extension 'ignore'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(ov_init) by extension 'ignore_ament_install'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(ov_init) by extensions ['colcon_pkg']
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(ov_init) by extension 'colcon_pkg'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(ov_init) by extensions ['colcon_meta']
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(ov_init) by extension 'colcon_meta'
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(ov_init) by extensions ['ros']
+[0.124s] Level 1:colcon.colcon_core.package_identification:_identify(ov_init) by extension 'ros'
+[0.127s] DEBUG:colcon.colcon_core.package_identification:Package 'ov_init' with type 'ros.ament_cmake' and name 'ov_init'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(ov_msckf) by extensions ['ignore', 'ignore_ament_install']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(ov_msckf) by extension 'ignore'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(ov_msckf) by extension 'ignore_ament_install'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(ov_msckf) by extensions ['colcon_pkg']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(ov_msckf) by extension 'colcon_pkg'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(ov_msckf) by extensions ['colcon_meta']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(ov_msckf) by extension 'colcon_meta'
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(ov_msckf) by extensions ['ros']
+[0.127s] Level 1:colcon.colcon_core.package_identification:_identify(ov_msckf) by extension 'ros'
+[0.135s] DEBUG:colcon.colcon_core.package_identification:Package 'ov_msckf' with type 'ros.ament_cmake' and name 'ov_msckf'
+[0.135s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.135s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.135s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.135s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.135s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.144s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.144s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.144s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 5 installed packages in /home/s/repos/ov_ws/install
+[0.145s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 266 installed packages in /opt/ros/humble
+[0.145s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_core' build argument 'cmake_args' from command line to 'None'
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_core' build argument 'cmake_target' from command line to 'None'
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_core' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_core' build argument 'cmake_clean_cache' from command line to 'False'
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_core' build argument 'cmake_clean_first' from command line to 'False'
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_core' build argument 'cmake_force_configure' from command line to 'False'
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_core' build argument 'ament_cmake_args' from command line to 'None'
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_core' build argument 'catkin_cmake_args' from command line to 'None'
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_core' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.166s] DEBUG:colcon.colcon_core.verb:Building package 'ov_core' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/s/repos/ov_ws/src/open_vins/build/ov_core', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/s/repos/ov_ws/src/open_vins/install/ov_core', 'merge_install': False, 'path': '/home/s/repos/ov_ws/src/open_vins/ov_core', 'symlink_install': False, 'test_result_base': None}
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_data' build argument 'cmake_args' from command line to 'None'
+[0.166s] Level 5:colcon.colcon_core.verb:set package 'ov_data' build argument 'cmake_target' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_data' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_data' build argument 'cmake_clean_cache' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_data' build argument 'cmake_clean_first' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_data' build argument 'cmake_force_configure' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_data' build argument 'ament_cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_data' build argument 'catkin_cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_data' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.167s] DEBUG:colcon.colcon_core.verb:Building package 'ov_data' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/s/repos/ov_ws/src/open_vins/build/ov_data', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/s/repos/ov_ws/src/open_vins/install/ov_data', 'merge_install': False, 'path': '/home/s/repos/ov_ws/src/open_vins/ov_data', 'symlink_install': False, 'test_result_base': None}
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_eval' build argument 'cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_eval' build argument 'cmake_target' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_eval' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_eval' build argument 'cmake_clean_cache' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_eval' build argument 'cmake_clean_first' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_eval' build argument 'cmake_force_configure' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_eval' build argument 'ament_cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_eval' build argument 'catkin_cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_eval' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.167s] DEBUG:colcon.colcon_core.verb:Building package 'ov_eval' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/s/repos/ov_ws/src/open_vins/build/ov_eval', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/s/repos/ov_ws/src/open_vins/install/ov_eval', 'merge_install': False, 'path': '/home/s/repos/ov_ws/src/open_vins/ov_eval', 'symlink_install': False, 'test_result_base': None}
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_init' build argument 'cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_init' build argument 'cmake_target' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_init' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_init' build argument 'cmake_clean_cache' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_init' build argument 'cmake_clean_first' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_init' build argument 'cmake_force_configure' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_init' build argument 'ament_cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_init' build argument 'catkin_cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_init' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.167s] DEBUG:colcon.colcon_core.verb:Building package 'ov_init' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/s/repos/ov_ws/src/open_vins/build/ov_init', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/s/repos/ov_ws/src/open_vins/install/ov_init', 'merge_install': False, 'path': '/home/s/repos/ov_ws/src/open_vins/ov_init', 'symlink_install': False, 'test_result_base': None}
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_msckf' build argument 'cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_msckf' build argument 'cmake_target' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_msckf' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_msckf' build argument 'cmake_clean_cache' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_msckf' build argument 'cmake_clean_first' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_msckf' build argument 'cmake_force_configure' from command line to 'False'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_msckf' build argument 'ament_cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_msckf' build argument 'catkin_cmake_args' from command line to 'None'
+[0.167s] Level 5:colcon.colcon_core.verb:set package 'ov_msckf' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.167s] DEBUG:colcon.colcon_core.verb:Building package 'ov_msckf' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf', 'merge_install': False, 'path': '/home/s/repos/ov_ws/src/open_vins/ov_msckf', 'symlink_install': False, 'test_result_base': None}
+[0.167s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.168s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.168s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/s/repos/ov_ws/src/open_vins/ov_core' with build type 'ament_cmake'
+[0.168s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/s/repos/ov_ws/src/open_vins/ov_core'
+[0.169s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.169s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.169s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.171s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/s/repos/ov_ws/src/open_vins/ov_data' with build type 'ament_cmake'
+[0.171s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/s/repos/ov_ws/src/open_vins/ov_data'
+[0.171s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.171s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.174s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_core -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_core
+[0.175s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_data': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_data -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_data
+[0.487s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_data' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_data -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_data
+[0.488s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_data': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_data -- -j32 -l32
+[0.508s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_data' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_data -- -j32 -l32
+[0.514s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_data': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_data
+[0.520s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_data)
+[0.520s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_data' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_data
+[0.521s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data' for CMake module files
+[0.521s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data' for CMake config files
+[0.521s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_data', 'cmake_prefix_path')
+[0.521s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/hook/cmake_prefix_path.ps1'
+[0.522s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/hook/cmake_prefix_path.dsv'
+[0.522s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/hook/cmake_prefix_path.sh'
+[0.522s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data/bin'
+[0.522s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data/lib/pkgconfig/ov_data.pc'
+[0.522s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data/lib/python3.10/site-packages'
+[0.522s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data/bin'
+[0.522s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.ps1'
+[0.523s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.dsv'
+[0.523s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.sh'
+[0.523s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.bash'
+[0.524s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.zsh'
+[0.524s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/colcon-core/packages/ov_data)
+[0.524s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_data)
+[0.524s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data' for CMake module files
+[0.524s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data' for CMake config files
+[0.524s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_data', 'cmake_prefix_path')
+[0.524s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/hook/cmake_prefix_path.ps1'
+[0.525s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/hook/cmake_prefix_path.dsv'
+[0.525s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/hook/cmake_prefix_path.sh'
+[0.525s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data/bin'
+[0.525s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data/lib/pkgconfig/ov_data.pc'
+[0.525s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data/lib/python3.10/site-packages'
+[0.525s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_data/bin'
+[0.525s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.ps1'
+[0.525s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.dsv'
+[0.526s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.sh'
+[0.526s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.bash'
+[0.526s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.zsh'
+[0.526s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_data/share/colcon-core/packages/ov_data)
+[0.776s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_core -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_core
+[0.776s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_core -- -j32 -l32
+[38.295s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_core -- -j32 -l32
+[38.295s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_core
+[38.350s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_core)
+[38.350s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core' for CMake module files
+[38.350s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_core' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_core
+[38.350s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core' for CMake config files
+[38.350s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_core', 'cmake_prefix_path')
+[38.350s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/cmake_prefix_path.ps1'
+[38.351s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/cmake_prefix_path.dsv'
+[38.351s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/cmake_prefix_path.sh'
+[38.351s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib'
+[38.351s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_core', 'ld_library_path_lib')
+[38.351s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/ld_library_path_lib.ps1'
+[38.351s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/ld_library_path_lib.dsv'
+[38.351s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/ld_library_path_lib.sh'
+[38.352s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/bin'
+[38.352s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib/pkgconfig/ov_core.pc'
+[38.352s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib/python3.10/site-packages'
+[38.352s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/bin'
+[38.352s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.ps1'
+[38.352s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.dsv'
+[38.352s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.sh'
+[38.352s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.bash'
+[38.353s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.zsh'
+[38.353s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/colcon-core/packages/ov_core)
+[38.353s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_core)
+[38.353s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core' for CMake module files
+[38.353s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core' for CMake config files
+[38.353s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_core', 'cmake_prefix_path')
+[38.353s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/cmake_prefix_path.ps1'
+[38.353s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/cmake_prefix_path.dsv'
+[38.354s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/cmake_prefix_path.sh'
+[38.354s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib'
+[38.354s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_core', 'ld_library_path_lib')
+[38.354s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/ld_library_path_lib.ps1'
+[38.354s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/ld_library_path_lib.dsv'
+[38.354s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/hook/ld_library_path_lib.sh'
+[38.354s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/bin'
+[38.354s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib/pkgconfig/ov_core.pc'
+[38.354s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib/python3.10/site-packages'
+[38.354s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_core/bin'
+[38.354s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.ps1'
+[38.355s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.dsv'
+[38.355s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.sh'
+[38.355s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.bash'
+[38.355s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/package.zsh'
+[38.355s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/colcon-core/packages/ov_core)
+[38.355s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/s/repos/ov_ws/src/open_vins/ov_init' with build type 'ament_cmake'
+[38.355s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/s/repos/ov_ws/src/open_vins/ov_init'
+[38.356s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[38.356s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[38.357s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/s/repos/ov_ws/src/open_vins/ov_eval' with build type 'ament_cmake'
+[38.357s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/s/repos/ov_ws/src/open_vins/ov_eval'
+[38.357s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[38.357s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[38.361s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_init': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_init -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_init
+[38.362s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_eval -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_eval
+[38.944s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_eval -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_eval
+[38.945s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_eval -- -j32 -l32
+[38.954s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_init' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_init -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_init
+[38.955s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_init': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_init -- -j32 -l32
+[56.542s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_eval -- -j32 -l32
+[56.543s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_eval
+[56.588s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_eval)
+[56.588s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval' for CMake module files
+[56.588s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_eval
+[56.589s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval' for CMake config files
+[56.589s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_eval', 'cmake_prefix_path')
+[56.589s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/cmake_prefix_path.ps1'
+[56.589s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/cmake_prefix_path.dsv'
+[56.589s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/cmake_prefix_path.sh'
+[56.589s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib'
+[56.590s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_eval', 'ld_library_path_lib')
+[56.590s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/ld_library_path_lib.ps1'
+[56.590s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/ld_library_path_lib.dsv'
+[56.590s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/ld_library_path_lib.sh'
+[56.590s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/bin'
+[56.590s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/pkgconfig/ov_eval.pc'
+[56.590s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/python3.10/site-packages'
+[56.590s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/bin'
+[56.590s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.ps1'
+[56.591s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.dsv'
+[56.591s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.sh'
+[56.591s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.bash'
+[56.591s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.zsh'
+[56.591s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/colcon-core/packages/ov_eval)
+[56.591s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_eval)
+[56.591s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval' for CMake module files
+[56.592s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval' for CMake config files
+[56.592s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_eval', 'cmake_prefix_path')
+[56.592s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/cmake_prefix_path.ps1'
+[56.592s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/cmake_prefix_path.dsv'
+[56.592s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/cmake_prefix_path.sh'
+[56.592s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib'
+[56.592s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_eval', 'ld_library_path_lib')
+[56.593s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/ld_library_path_lib.ps1'
+[56.593s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/ld_library_path_lib.dsv'
+[56.593s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/hook/ld_library_path_lib.sh'
+[56.593s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/bin'
+[56.593s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/pkgconfig/ov_eval.pc'
+[56.593s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/python3.10/site-packages'
+[56.593s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/bin'
+[56.593s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.ps1'
+[56.593s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.dsv'
+[56.594s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.sh'
+[56.594s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.bash'
+[56.594s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.zsh'
+[56.594s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/colcon-core/packages/ov_eval)
+[93.517s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_init' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_init -- -j32 -l32
+[93.518s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_init': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_init
+[93.587s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_init)
+[93.587s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init' for CMake module files
+[93.587s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_init' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_init
+[93.588s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init' for CMake config files
+[93.588s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_init', 'cmake_prefix_path')
+[93.588s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/cmake_prefix_path.ps1'
+[93.588s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/cmake_prefix_path.dsv'
+[93.588s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/cmake_prefix_path.sh'
+[93.589s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib'
+[93.589s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_init', 'ld_library_path_lib')
+[93.589s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/ld_library_path_lib.ps1'
+[93.589s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/ld_library_path_lib.dsv'
+[93.589s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/ld_library_path_lib.sh'
+[93.589s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/bin'
+[93.589s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib/pkgconfig/ov_init.pc'
+[93.589s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib/python3.10/site-packages'
+[93.590s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/bin'
+[93.590s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.ps1'
+[93.590s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.dsv'
+[93.590s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.sh'
+[93.590s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.bash'
+[93.590s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.zsh'
+[93.590s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/colcon-core/packages/ov_init)
+[93.591s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_init)
+[93.591s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init' for CMake module files
+[93.591s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init' for CMake config files
+[93.591s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_init', 'cmake_prefix_path')
+[93.591s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/cmake_prefix_path.ps1'
+[93.591s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/cmake_prefix_path.dsv'
+[93.591s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/cmake_prefix_path.sh'
+[93.592s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib'
+[93.592s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_init', 'ld_library_path_lib')
+[93.592s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/ld_library_path_lib.ps1'
+[93.592s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/ld_library_path_lib.dsv'
+[93.592s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/hook/ld_library_path_lib.sh'
+[93.592s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/bin'
+[93.592s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib/pkgconfig/ov_init.pc'
+[93.592s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib/python3.10/site-packages'
+[93.592s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_init/bin'
+[93.592s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.ps1'
+[93.593s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.dsv'
+[93.593s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.sh'
+[93.593s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.bash'
+[93.593s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/package.zsh'
+[93.593s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/colcon-core/packages/ov_init)
+[93.593s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/s/repos/ov_ws/src/open_vins/ov_msckf' with build type 'ament_cmake'
+[93.593s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/s/repos/ov_ws/src/open_vins/ov_msckf'
+[93.593s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[93.593s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[93.601s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_msckf -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_msckf
+[94.287s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_msckf -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_msckf
+[94.287s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_msckf -- -j32 -l32
+[192.652s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_msckf -- -j32 -l32
+[192.653s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_msckf
+[192.851s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_msckf)
+[192.851s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf' for CMake module files
+[192.852s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_msckf
+[192.852s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf' for CMake config files
+[192.853s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_msckf', 'cmake_prefix_path')
+[192.853s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/cmake_prefix_path.ps1'
+[192.853s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/cmake_prefix_path.dsv'
+[192.854s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/cmake_prefix_path.sh'
+[192.854s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib'
+[192.854s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_msckf', 'ld_library_path_lib')
+[192.854s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/ld_library_path_lib.ps1'
+[192.855s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/ld_library_path_lib.dsv'
+[192.855s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/ld_library_path_lib.sh'
+[192.855s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/bin'
+[192.855s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/pkgconfig/ov_msckf.pc'
+[192.856s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/python3.10/site-packages'
+[192.856s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/bin'
+[192.856s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.ps1'
+[192.857s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.dsv'
+[192.857s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.sh'
+[192.858s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.bash'
+[192.858s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.zsh'
+[192.858s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/colcon-core/packages/ov_msckf)
+[192.859s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ov_msckf)
+[192.859s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf' for CMake module files
+[192.859s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf' for CMake config files
+[192.860s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_msckf', 'cmake_prefix_path')
+[192.860s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/cmake_prefix_path.ps1'
+[192.860s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/cmake_prefix_path.dsv'
+[192.861s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/cmake_prefix_path.sh'
+[192.861s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib'
+[192.861s] Level 1:colcon.colcon_core.shell:create_environment_hook('ov_msckf', 'ld_library_path_lib')
+[192.862s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/ld_library_path_lib.ps1'
+[192.862s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/ld_library_path_lib.dsv'
+[192.862s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/hook/ld_library_path_lib.sh'
+[192.862s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/bin'
+[192.863s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/pkgconfig/ov_msckf.pc'
+[192.863s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/python3.10/site-packages'
+[192.863s] Level 1:colcon.colcon_core.environment:checking '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/bin'
+[192.863s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.ps1'
+[192.864s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.dsv'
+[192.864s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.sh'
+[192.865s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.bash'
+[192.865s] INFO:colcon.colcon_core.shell:Creating package script '/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.zsh'
+[192.865s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/colcon-core/packages/ov_msckf)
+[192.866s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[192.866s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[192.866s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[192.866s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[192.871s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[192.871s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[192.872s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[192.883s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[192.883s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/s/repos/ov_ws/src/open_vins/install/local_setup.ps1'
+[192.884s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/s/repos/ov_ws/src/open_vins/install/_local_setup_util_ps1.py'
+[192.886s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/s/repos/ov_ws/src/open_vins/install/setup.ps1'
+[192.887s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/s/repos/ov_ws/src/open_vins/install/local_setup.sh'
+[192.887s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/s/repos/ov_ws/src/open_vins/install/_local_setup_util_sh.py'
+[192.888s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/s/repos/ov_ws/src/open_vins/install/setup.sh'
+[192.889s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/s/repos/ov_ws/src/open_vins/install/local_setup.bash'
+[192.889s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/s/repos/ov_ws/src/open_vins/install/setup.bash'
+[192.890s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/s/repos/ov_ws/src/open_vins/install/local_setup.zsh'
+[192.891s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/s/repos/ov_ws/src/open_vins/install/setup.zsh'

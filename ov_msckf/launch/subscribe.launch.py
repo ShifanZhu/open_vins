@@ -17,8 +17,8 @@ launch_args = [
     ),
     DeclareLaunchArgument(
         name="config",
-        default_value="euroc_mav",
-        description="euroc_mav, tum_vi, rpng_aruco...",
+        default_value="cear",
+        description="cear, euroc_mav, tum_vi, rpng_aruco...",
     ),
     DeclareLaunchArgument(
         name="config_path",
@@ -37,7 +37,7 @@ launch_args = [
     ),
     DeclareLaunchArgument(
         name="max_cameras",
-        default_value="2",
+        default_value="1",
         description="how many cameras we have 1 = mono, 2 = stereo, >2 = binocular (all mono tracking)",
     ),
     DeclareLaunchArgument(

@@ -1,0 +1,131 @@
+[0.005s] Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_eval -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_eval
+[0.034s] -- The C compiler identification is GNU 11.4.0
+[0.061s] -- The CXX compiler identification is GNU 11.4.0
+[0.064s] -- Detecting C compiler ABI info
+[0.102s] -- Detecting C compiler ABI info - done
+[0.105s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.105s] -- Detecting C compile features
+[0.105s] -- Detecting C compile features - done
+[0.107s] -- Detecting CXX compiler ABI info
+[0.149s] -- Detecting CXX compiler ABI info - done
+[0.152s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.153s] -- Detecting CXX compile features
+[0.153s] -- Detecting CXX compile features - done
+[0.244s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem thread date_time 
+[0.249s] -- PYTHON VERSION: 3.10.12
+[0.249s] -- PYTHON INCLUDE: /usr/include/python3.10
+[0.249s] -- PYTHON LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[0.315s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.355s] -- ROS *2* version found, building ROS2.cmake
+[0.356s] -- Found rclcpp: 16.0.12 (/opt/ros/humble/share/rclcpp/cmake)
+[0.374s] -- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.376s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.380s] -- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.385s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.392s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.412s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.413s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.461s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.473s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.494s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.498s] -- Found Threads: TRUE  
+[0.521s] -- Found ov_core: 2.7.0 (/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/cmake)
+[0.558s] -- Configuring done
+[0.575s] -- Generating done
+[0.582s] -- Build files have been written to: /home/s/repos/ov_ws/src/open_vins/build/ov_eval
+[0.587s] Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_eval -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_eval
+[0.588s] Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_eval -- -j32 -l32
+[0.618s] [  3%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/alignment/AlignUtils.cpp.o[0m
+[0.618s] [  7%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/utils/Loader.cpp.o[0m
+[0.619s] [ 11%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/dummy.cpp.o[0m
+[0.619s] [ 14%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/alignment/AlignTrajectory.cpp.o[0m
+[0.619s] [ 18%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/calc/ResultTrajectory.cpp.o[0m
+[0.620s] [ 22%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/calc/ResultSimulation.cpp.o[0m
+[11.509s] [ 25%] [32m[1mLinking CXX shared library libov_eval_lib.so[0m
+[11.785s] [ 25%] Built target ov_eval_lib
+[11.798s] [ 37%] [32mBuilding CXX object CMakeFiles/plot_trajectories.dir/src/plot_trajectories.cpp.o[0m
+[11.798s] [ 37%] [32mBuilding CXX object CMakeFiles/error_comparison.dir/src/error_comparison.cpp.o[0m
+[11.799s] [ 37%] [32mBuilding CXX object CMakeFiles/timing_percentages.dir/src/timing_percentages.cpp.o[0m
+[11.799s] [ 40%] [32mBuilding CXX object CMakeFiles/timing_flamegraph.dir/src/timing_flamegraph.cpp.o[0m
+[11.800s] [ 51%] [32mBuilding CXX object CMakeFiles/error_simulation.dir/src/error_simulation.cpp.o[0m
+[11.800s] [ 51%] [32mBuilding CXX object CMakeFiles/format_converter.dir/src/format_converter.cpp.o[0m
+[11.800s] [ 55%] [32mBuilding CXX object CMakeFiles/error_dataset.dir/src/error_dataset.cpp.o[0m
+[11.800s] [ 59%] [32mBuilding CXX object CMakeFiles/timing_comparison.dir/src/timing_comparison.cpp.o[0m
+[11.800s] [ 59%] [32mBuilding CXX object CMakeFiles/error_singlerun.dir/src/error_singlerun.cpp.o[0m
+[11.800s] [ 62%] [32mBuilding CXX object CMakeFiles/timing_histogram.dir/src/timing_histogram.cpp.o[0m
+[14.527s] [ 66%] [32m[1mLinking CXX executable timing_comparison[0m
+[14.565s] [ 70%] [32m[1mLinking CXX executable timing_histogram[0m
+[14.567s] [ 74%] [32m[1mLinking CXX executable format_converter[0m
+[14.627s] [ 74%] Built target timing_comparison
+[14.662s] [ 74%] Built target format_converter
+[14.676s] [ 74%] Built target timing_histogram
+[15.095s] [ 77%] [32m[1mLinking CXX executable timing_flamegraph[0m
+[15.183s] [ 77%] Built target timing_flamegraph
+[15.352s] [ 81%] [32m[1mLinking CXX executable error_simulation[0m
+[15.478s] [ 81%] Built target error_simulation
+[15.797s] [ 85%] [32m[1mLinking CXX executable timing_percentages[0m
+[15.883s] [ 85%] Built target timing_percentages
+[16.431s] [ 88%] [32m[1mLinking CXX executable plot_trajectories[0m
+[16.566s] [ 88%] Built target plot_trajectories
+[16.864s] [ 92%] [32m[1mLinking CXX executable error_singlerun[0m
+[16.980s] [ 92%] Built target error_singlerun
+[17.736s] [ 96%] [32m[1mLinking CXX executable error_comparison[0m
+[17.858s] [ 96%] Built target error_comparison
+[18.054s] [100%] [32m[1mLinking CXX executable error_dataset[0m
+[18.177s] [100%] Built target error_dataset
+[18.185s] Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_eval -- -j32 -l32
+[18.186s] Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_eval
+[18.192s] -- Install configuration: ""
+[18.192s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/libov_eval_lib.so
+[18.206s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/libov_eval_lib.so" to ""
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/alignment
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/alignment/AlignTrajectory.h
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/alignment/AlignUtils.h
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/calc
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/calc/ResultTrajectory.h
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/calc/ResultSimulation.h
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/utils
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/utils/Statistics.h
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/utils/Loader.h
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/utils/Recorder.h
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/library_path.sh
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/library_path.dsv
+[18.206s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/format_converter
+[18.207s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/format_converter" to ""
+[18.207s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_comparison
+[18.211s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_comparison" to ""
+[18.211s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_dataset
+[18.215s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_dataset" to ""
+[18.215s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_singlerun
+[18.218s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_singlerun" to ""
+[18.218s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_simulation
+[18.221s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_simulation" to ""
+[18.221s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_comparison
+[18.222s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_comparison" to ""
+[18.222s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_flamegraph
+[18.223s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_flamegraph" to ""
+[18.223s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_histogram
+[18.224s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_histogram" to ""
+[18.224s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_percentages
+[18.225s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_percentages" to ""
+[18.225s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/plot_trajectories
+[18.229s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/plot_trajectories" to ""
+[18.229s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ament_index/resource_index/package_run_dependencies/ov_eval
+[18.229s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ament_index/resource_index/parent_prefix_path/ov_eval
+[18.229s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/ament_prefix_path.sh
+[18.229s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/ament_prefix_path.dsv
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/path.sh
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/path.dsv
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/local_setup.bash
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/local_setup.sh
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/local_setup.zsh
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/local_setup.dsv
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.dsv
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ament_index/resource_index/packages/ov_eval
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/cmake/ament_cmake_export_include_directories-extras.cmake
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/cmake/ament_cmake_export_libraries-extras.cmake
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/cmake/ov_evalConfig.cmake
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/cmake/ov_evalConfig-version.cmake
+[18.230s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.xml
+[18.231s] Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_eval' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_eval

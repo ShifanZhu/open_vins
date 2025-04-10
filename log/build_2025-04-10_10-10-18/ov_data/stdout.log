@@ -1,0 +1,33 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- ROS *2* version found
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/s/repos/ov_ws/src/open_vins/build/ov_data
+-- Install configuration: ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ament_index/resource_index/package_run_dependencies/ov_data
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ament_index/resource_index/parent_prefix_path/ov_data
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/environment/ament_prefix_path.sh
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/environment/ament_prefix_path.dsv
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/environment/path.sh
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/environment/path.dsv
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/local_setup.bash
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/local_setup.sh
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/local_setup.zsh
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/local_setup.dsv
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.dsv
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ament_index/resource_index/packages/ov_data
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/cmake/ov_dataConfig.cmake
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/cmake/ov_dataConfig-version.cmake
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_data/share/ov_data/package.xml

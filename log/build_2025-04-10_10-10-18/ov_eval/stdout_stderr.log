@@ -1,0 +1,125 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem thread date_time 
+-- PYTHON VERSION: 3.10.12
+-- PYTHON INCLUDE: /usr/include/python3.10
+-- PYTHON LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- ROS *2* version found, building ROS2.cmake
+-- Found rclcpp: 16.0.12 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found Threads: TRUE  
+-- Found ov_core: 2.7.0 (/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/cmake)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/s/repos/ov_ws/src/open_vins/build/ov_eval
+[  3%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/alignment/AlignUtils.cpp.o[0m
+[  7%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/utils/Loader.cpp.o[0m
+[ 11%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/dummy.cpp.o[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/alignment/AlignTrajectory.cpp.o[0m
+[ 18%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/calc/ResultTrajectory.cpp.o[0m
+[ 22%] [32mBuilding CXX object CMakeFiles/ov_eval_lib.dir/src/calc/ResultSimulation.cpp.o[0m
+[ 25%] [32m[1mLinking CXX shared library libov_eval_lib.so[0m
+[ 25%] Built target ov_eval_lib
+[ 37%] [32mBuilding CXX object CMakeFiles/plot_trajectories.dir/src/plot_trajectories.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/error_comparison.dir/src/error_comparison.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/timing_percentages.dir/src/timing_percentages.cpp.o[0m
+[ 40%] [32mBuilding CXX object CMakeFiles/timing_flamegraph.dir/src/timing_flamegraph.cpp.o[0m
+[ 51%] [32mBuilding CXX object CMakeFiles/error_simulation.dir/src/error_simulation.cpp.o[0m
+[ 51%] [32mBuilding CXX object CMakeFiles/format_converter.dir/src/format_converter.cpp.o[0m
+[ 55%] [32mBuilding CXX object CMakeFiles/error_dataset.dir/src/error_dataset.cpp.o[0m
+[ 59%] [32mBuilding CXX object CMakeFiles/timing_comparison.dir/src/timing_comparison.cpp.o[0m
+[ 59%] [32mBuilding CXX object CMakeFiles/error_singlerun.dir/src/error_singlerun.cpp.o[0m
+[ 62%] [32mBuilding CXX object CMakeFiles/timing_histogram.dir/src/timing_histogram.cpp.o[0m
+[ 66%] [32m[1mLinking CXX executable timing_comparison[0m
+[ 70%] [32m[1mLinking CXX executable timing_histogram[0m
+[ 74%] [32m[1mLinking CXX executable format_converter[0m
+[ 74%] Built target timing_comparison
+[ 74%] Built target format_converter
+[ 74%] Built target timing_histogram
+[ 77%] [32m[1mLinking CXX executable timing_flamegraph[0m
+[ 77%] Built target timing_flamegraph
+[ 81%] [32m[1mLinking CXX executable error_simulation[0m
+[ 81%] Built target error_simulation
+[ 85%] [32m[1mLinking CXX executable timing_percentages[0m
+[ 85%] Built target timing_percentages
+[ 88%] [32m[1mLinking CXX executable plot_trajectories[0m
+[ 88%] Built target plot_trajectories
+[ 92%] [32m[1mLinking CXX executable error_singlerun[0m
+[ 92%] Built target error_singlerun
+[ 96%] [32m[1mLinking CXX executable error_comparison[0m
+[ 96%] Built target error_comparison
+[100%] [32m[1mLinking CXX executable error_dataset[0m
+[100%] Built target error_dataset
+-- Install configuration: ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/libov_eval_lib.so
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/libov_eval_lib.so" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/alignment
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/alignment/AlignTrajectory.h
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/alignment/AlignUtils.h
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/calc
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/calc/ResultTrajectory.h
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/calc/ResultSimulation.h
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/utils
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/utils/Statistics.h
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/utils/Loader.h
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/include/utils/Recorder.h
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/library_path.sh
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/library_path.dsv
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/format_converter
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/format_converter" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_comparison
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_comparison" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_dataset
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_dataset" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_singlerun
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_singlerun" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_simulation
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/error_simulation" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_comparison
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_comparison" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_flamegraph
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_flamegraph" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_histogram
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_histogram" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_percentages
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/timing_percentages" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/plot_trajectories
+-- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_eval/lib/ov_eval/plot_trajectories" to ""
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ament_index/resource_index/package_run_dependencies/ov_eval
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ament_index/resource_index/parent_prefix_path/ov_eval
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/ament_prefix_path.sh
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/ament_prefix_path.dsv
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/path.sh
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/environment/path.dsv
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/local_setup.bash
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/local_setup.sh
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/local_setup.zsh
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/local_setup.dsv
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.dsv
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ament_index/resource_index/packages/ov_eval
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/cmake/ov_evalConfig.cmake
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/cmake/ov_evalConfig-version.cmake
+-- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_eval/share/ov_eval/package.xml

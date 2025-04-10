@@ -123,13 +123,13 @@ public:
 
 #if ROS_AVAILABLE == 1
     if (nh != nullptr && nh->getParam(node_name, node_result)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, node_name.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS1!\n" RESET, node_name.c_str());
       nh->param<T>(node_name, node_result);
       return;
     }
 #elif ROS_AVAILABLE == 2
     if (node != nullptr && node->has_parameter(node_name)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, node_name.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS2!\n" RESET, node_name.c_str());
       node->get_parameter<T>(node_name, node_result);
       return;
     }
@@ -161,14 +161,14 @@ public:
 #if ROS_AVAILABLE == 1
     std::string rosnode = sensor_name + "_" + node_name;
     if (nh != nullptr && nh->getParam(rosnode, node_result)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, rosnode.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS1!\n" RESET, rosnode.c_str());
       nh->param<T>(rosnode, node_result);
       return;
     }
 #elif ROS_AVAILABLE == 2
     std::string rosnode = sensor_name + "_" + node_name;
     if (node != nullptr && node->has_parameter(rosnode)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, rosnode.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS2!\n" RESET, rosnode.c_str());
       node->get_parameter<T>(rosnode, node_result);
       return;
     }
@@ -201,7 +201,7 @@ public:
     std::string rosnode = sensor_name + "_" + node_name;
     std::vector<double> matrix_RCtoI;
     if (nh != nullptr && nh->getParam(rosnode, matrix_RCtoI)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, rosnode.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS1!\n" RESET, rosnode.c_str());
       nh->param<std::vector<double>>(rosnode, matrix_RCtoI);
       node_result << matrix_RCtoI.at(0), matrix_RCtoI.at(1), matrix_RCtoI.at(2), matrix_RCtoI.at(3), matrix_RCtoI.at(4), matrix_RCtoI.at(5),
           matrix_RCtoI.at(6), matrix_RCtoI.at(7), matrix_RCtoI.at(8);
@@ -213,7 +213,7 @@ public:
     std::string rosnode = sensor_name + "_" + node_name;
     std::vector<double> matrix_RCtoI;
     if (node != nullptr && node->has_parameter(rosnode)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, rosnode.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS2!\n" RESET, rosnode.c_str());
       node->get_parameter<std::vector<double>>(rosnode, matrix_RCtoI);
       node_result << matrix_RCtoI.at(0), matrix_RCtoI.at(1), matrix_RCtoI.at(2), matrix_RCtoI.at(3), matrix_RCtoI.at(4), matrix_RCtoI.at(5),
           matrix_RCtoI.at(6), matrix_RCtoI.at(7), matrix_RCtoI.at(8);
@@ -248,7 +248,7 @@ public:
     std::string rosnode = sensor_name + "_" + node_name;
     std::vector<double> matrix_TCtoI;
     if (nh != nullptr && nh->getParam(rosnode, matrix_TCtoI)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, rosnode.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS1!\n" RESET, rosnode.c_str());
       nh->param<std::vector<double>>(rosnode, matrix_TCtoI);
       node_result << matrix_TCtoI.at(0), matrix_TCtoI.at(1), matrix_TCtoI.at(2), matrix_TCtoI.at(3), matrix_TCtoI.at(4), matrix_TCtoI.at(5),
           matrix_TCtoI.at(6), matrix_TCtoI.at(7), matrix_TCtoI.at(8), matrix_TCtoI.at(9), matrix_TCtoI.at(10), matrix_TCtoI.at(11),
@@ -261,7 +261,7 @@ public:
     std::string rosnode = sensor_name + "_" + node_name;
     std::vector<double> matrix_TCtoI;
     if (node != nullptr && node->has_parameter(rosnode)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, rosnode.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS2!\n" RESET, rosnode.c_str());
       node->get_parameter<std::vector<double>>(rosnode, matrix_TCtoI);
       node_result << matrix_TCtoI.at(0), matrix_TCtoI.at(1), matrix_TCtoI.at(2), matrix_TCtoI.at(3), matrix_TCtoI.at(4), matrix_TCtoI.at(5),
           matrix_TCtoI.at(6), matrix_TCtoI.at(7), matrix_TCtoI.at(8), matrix_TCtoI.at(9), matrix_TCtoI.at(10), matrix_TCtoI.at(11),
@@ -280,7 +280,7 @@ public:
   void parse_config(const std::string &node_name, int &node_result, bool required = true) {
     int64_t val = node_result;
     if (node != nullptr && node->has_parameter(node_name)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, node_name.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS2!\n" RESET, node_name.c_str());
       node->get_parameter<int64_t>(node_name, val);
       node_result = (int)val;
       return;
@@ -296,7 +296,7 @@ public:
       val.push_back(tmp);
     std::string rosnode = sensor_name + "_" + node_name;
     if (node != nullptr && node->has_parameter(rosnode)) {
-      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS!\n" RESET, rosnode.c_str());
+      PRINT_INFO(GREEN "overriding node " BOLDGREEN "%s" RESET GREEN " with value from ROS2!\n" RESET, rosnode.c_str());
       node->get_parameter<std::vector<int64_t>>(rosnode, val);
       node_result.clear();
       for (auto tmp : val)

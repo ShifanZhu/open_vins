@@ -1,0 +1,270 @@
+[0.007s] Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_msckf -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_msckf
+[0.041s] -- The C compiler identification is GNU 11.4.0
+[0.073s] -- The CXX compiler identification is GNU 11.4.0
+[0.077s] -- Detecting C compiler ABI info
+[0.112s] -- Detecting C compiler ABI info - done
+[0.115s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.116s] -- Detecting C compile features
+[0.116s] -- Detecting C compile features - done
+[0.117s] -- Detecting CXX compiler ABI info
+[0.161s] -- Detecting CXX compiler ABI info - done
+[0.165s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.165s] -- Detecting CXX compile features
+[0.165s] -- Detecting CXX compile features - done
+[0.170s] -- Looking for pthread.h
+[0.209s] -- Looking for pthread.h - found
+[0.209s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.248s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.248s] -- Found Threads: TRUE  
+[0.249s] -- Found required Ceres dependency: Eigen version 3.4.0 in /usr/local/include/eigen3
+[0.251s] -- Found required Ceres dependency: glog
+[0.251s] -- Found required Ceres dependency: gflags
+[0.251s] -- Found Ceres version: 2.0.0 installed in: /usr with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, CXSparse, SchurSpecializations, Multithreading]
+[0.251s] -- OPENCV: 4.5.5 | BOOST:  | CERES: 2.0.0
+[0.251s] [33mCMake Warning at CMakeLists.txt:28 (message):
+[0.251s]   DISABLING ARUCOTAG TRACKING!
+[0.251s] 
+[0.251s] [0m
+[0.320s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.360s] -- ROS *2* version found, building ROS2.cmake
+[0.361s] -- Found rclcpp: 16.0.12 (/opt/ros/humble/share/rclcpp/cmake)
+[0.379s] -- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.381s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.385s] -- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.390s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.397s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.416s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.417s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.465s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.479s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.500s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.529s] -- Found tf2_ros: 0.25.12 (/opt/ros/humble/share/tf2_ros/cmake)
+[0.580s] -- Found tf2_geometry_msgs: 0.25.12 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[0.584s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[0.584s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[0.584s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[0.585s] -- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.593s] -- Found nav_msgs: 4.8.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[0.601s] -- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)
+[0.602s] -- Found image_transport: 3.1.11 (/opt/ros/humble/share/image_transport/cmake)
+[0.610s] -- Found ov_core: 2.7.0 (/home/s/repos/ov_ws/src/open_vins/install/ov_core/share/ov_core/cmake)
+[0.611s] -- Found ov_init: 2.7.0 (/home/s/repos/ov_ws/src/open_vins/install/ov_init/share/ov_init/cmake)
+[0.615s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: filesystem 
+[0.662s] -- Configuring done
+[0.680s] -- Generating done
+[0.686s] -- Build files have been written to: /home/s/repos/ov_ws/src/open_vins/build/ov_msckf
+[0.693s] Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /home/s/repos/ov_ws/src/open_vins/ov_msckf -DCMAKE_INSTALL_PREFIX=/home/s/repos/ov_ws/src/open_vins/install/ov_msckf
+[0.693s] Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_msckf -- -j32 -l32
+[0.722s] [  4%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/core/VioManager.cpp.o[0m
+[0.722s] [  9%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/update/UpdaterHelper.cpp.o[0m
+[0.722s] [ 13%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/dummy.cpp.o[0m
+[0.722s] [ 18%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/update/UpdaterZeroVelocity.cpp.o[0m
+[0.723s] [ 36%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/ros/ROS2Visualizer.cpp.o[0m
+[0.723s] [ 36%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/state/StateHelper.cpp.o[0m
+[0.723s] [ 36%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/state/State.cpp.o[0m
+[0.723s] [ 36%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/sim/Simulator.cpp.o[0m
+[0.723s] [ 45%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/ros/ROSVisualizerHelper.cpp.o[0m
+[0.723s] [ 45%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/state/Propagator.cpp.o[0m
+[0.723s] [ 50%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/core/VioManagerHelper.cpp.o[0m
+[0.724s] [ 54%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/update/UpdaterMSCKF.cpp.o[0m
+[0.724s] [ 59%] [32mBuilding CXX object CMakeFiles/ov_msckf_lib.dir/src/update/UpdaterSLAM.cpp.o[0m
+[0.907s] In file included from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROSVisualizerHelper.h:37[m[K,
+[0.907s]                  from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROSVisualizerHelper.cpp:22[m[K:
+[0.907s] [01m[K/opt/ros/humble/include/tf2_geometry_msgs/tf2_geometry_msgs/tf2_geometry_msgs.h:35:2:[m[K [01;35m[Kwarning: [m[K#warning This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[0.907s]    35 | #[01;35m[Kwarning[m[K This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead
+[0.907s]       |  [01;35m[K^~~~~~~[m[K
+[0.929s] In file included from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.h:45[m[K,
+[0.929s]                  from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.cpp:22[m[K:
+[0.929s] [01m[K/opt/ros/humble/include/tf2_geometry_msgs/tf2_geometry_msgs/tf2_geometry_msgs.h:35:2:[m[K [01;35m[Kwarning: [m[K#warning This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[0.930s]    35 | #[01;35m[Kwarning[m[K This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead
+[0.930s]       |  [01;35m[K^~~~~~~[m[K
+[2.106s] In file included from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.h:28[m[K,
+[2.106s]                  from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.cpp:22[m[K:
+[2.106s] [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+[2.106s]    32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+[2.106s]       |                                                                                         [01;36m[K^[m[K
+[61.705s] [ 63%] [32m[1mLinking CXX shared library libov_msckf_lib.so[0m
+[65.117s] [ 63%] Built target ov_msckf_lib
+[65.130s] [ 68%] [32mBuilding CXX object CMakeFiles/test_sim_meas.dir/src/test_sim_meas.cpp.o[0m
+[65.135s] [ 81%] [32mBuilding CXX object CMakeFiles/run_simulation.dir/src/run_simulation.cpp.o[0m
+[65.135s] [ 81%] [32mBuilding CXX object CMakeFiles/run_subscribe_msckf.dir/src/run_subscribe_msckf.cpp.o[0m
+[65.135s] [ 81%] [32mBuilding CXX object CMakeFiles/test_sim_repeat.dir/src/test_sim_repeat.cpp.o[0m
+[65.885s] In file included from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.h:45[m[K,
+[65.886s]                  from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/run_simulation.cpp:36[m[K:
+[65.886s] [01m[K/opt/ros/humble/include/tf2_geometry_msgs/tf2_geometry_msgs/tf2_geometry_msgs.h:35:2:[m[K [01;35m[Kwarning: [m[K#warning This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[65.886s]    35 | #[01;35m[Kwarning[m[K This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead
+[65.886s]       |  [01;35m[K^~~~~~~[m[K
+[66.054s] In file included from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.h:45[m[K,
+[66.054s]                  from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/run_subscribe_msckf.cpp:32[m[K:
+[66.054s] [01m[K/opt/ros/humble/include/tf2_geometry_msgs/tf2_geometry_msgs/tf2_geometry_msgs.h:35:2:[m[K [01;35m[Kwarning: [m[K#warning This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[66.054s]    35 | #[01;35m[Kwarning[m[K This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead
+[66.054s]       |  [01;35m[K^~~~~~~[m[K
+[71.908s] In file included from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.h:28[m[K,
+[71.908s]                  from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/run_simulation.cpp:36[m[K:
+[71.908s] [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+[71.908s]    32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+[71.908s]       |                                                                                         [01;36m[K^[m[K
+[72.855s] In file included from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.h:28[m[K,
+[72.856s]                  from [01m[K/home/s/repos/ov_ws/src/open_vins/ov_msckf/src/run_subscribe_msckf.cpp:32[m[K:
+[72.856s] [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+[72.856s]    32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+[72.856s]       |                                                                                         [01;36m[K^[m[K
+[90.979s] [ 86%] [32m[1mLinking CXX executable test_sim_meas[0m
+[91.134s] /usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.405
+[91.135s] /usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.405
+[91.637s] [ 86%] Built target test_sim_meas
+[96.366s] [ 90%] [32m[1mLinking CXX executable test_sim_repeat[0m
+[96.515s] /usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.405
+[96.516s] /usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.405
+[97.185s] [ 90%] Built target test_sim_repeat
+[98.193s] [ 95%] [32m[1mLinking CXX executable run_simulation[0m
+[98.350s] /usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.405
+[98.351s] /usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.405
+[98.352s] [100%] [32m[1mLinking CXX executable run_subscribe_msckf[0m
+[98.464s] /usr/bin/ld: warning: libopencv_imgcodecs.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.405
+[98.465s] /usr/bin/ld: warning: libopencv_core.so.4.5d, needed by /opt/ros/humble/lib/libcv_bridge.so, may conflict with libopencv_core.so.405
+[98.906s] [100%] Built target run_subscribe_msckf
+[99.047s] [100%] Built target run_simulation
+[99.058s] Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /home/s/repos/ov_ws/src/open_vins/build/ov_msckf -- -j32 -l32
+[99.059s] Invoking command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_msckf
+[99.067s] -- Install configuration: ""
+[99.067s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/libov_msckf_lib.so
+[99.174s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/libov_msckf_lib.so" to ""
+[99.174s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include
+[99.174s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/state
+[99.174s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/state/StateOptions.h
+[99.174s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/state/Propagator.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/state/State.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/state/StateHelper.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/update
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/update/UpdaterOptions.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/update/UpdaterZeroVelocity.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/update/UpdaterHelper.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/update/UpdaterMSCKF.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/update/UpdaterSLAM.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/sim
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/sim/Simulator.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/utils
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/utils/NoiseManager.h
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/core
+[99.175s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/core/VioManagerOptions.h
+[99.176s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/core/VioManager.h
+[99.176s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/ros
+[99.176s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/ros/ROSVisualizerHelper.h
+[99.176s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/ros/ROS1Visualizer.h
+[99.176s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/include/ros/ROS2Visualizer.h
+[99.176s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/environment/library_path.sh
+[99.176s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/environment/library_path.dsv
+[99.176s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/ov_msckf/run_subscribe_msckf
+[99.190s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/ov_msckf/run_subscribe_msckf" to ""
+[99.190s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/ov_msckf/run_simulation
+[99.204s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/ov_msckf/run_simulation" to ""
+[99.204s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/ov_msckf/test_sim_meas
+[99.218s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/ov_msckf/test_sim_meas" to ""
+[99.218s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/ov_msckf/test_sim_repeat
+[99.232s] -- Set runtime path of "/home/s/repos/ov_ws/src/open_vins/install/ov_msckf/lib/ov_msckf/test_sim_repeat" to ""
+[99.232s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/launch/
+[99.232s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/launch//display_driving.rviz
+[99.232s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/launch//serial.launch
+[99.232s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/launch//display.rviz
+[99.232s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/launch//subscribe.launch.py
+[99.232s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/launch//subscribe.launch
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/launch//display_ros2.rviz
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/launch//simulation.launch
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config/
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_indoor_45
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_indoor_45/estimator_config.yaml
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_indoor_45/kalibr_imucam_chain.yaml
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_indoor_45/kalibr_imu_chain.yaml
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_sim
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_sim/estimator_config.yaml
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_sim/kalibr_imucam_chain.yaml
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_sim/kalibr_imu_chain.yaml
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//kaist_vio
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//kaist_vio/estimator_config.yaml
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//kaist_vio/kalibr_imucam_chain.yaml
+[99.233s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//kaist_vio/kalibr_imu_chain.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_indoor
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_indoor/estimator_config.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_indoor/kalibr_imucam_chain.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_indoor/kalibr_imu_chain.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//euroc_mav
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//euroc_mav/estimator_config.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//euroc_mav/kalibr_imucam_chain.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//euroc_mav/kalibr_imu_chain.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//cear
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//cear/estimator_config.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//cear/kalibr_imucam_chain.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//cear/kalibr_imu_chain.yaml
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor
+[99.234s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor/mask_uzhfpv_outdoor_mask0.xcf
+[99.235s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor/estimator_config.yaml
+[99.235s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor/mask_uzhfpv_outdoor_mask1.png
+[99.235s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor/kalibr_imucam_chain.yaml
+[99.235s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor/mask_uzhfpv_outdoor_mask0.png
+[99.235s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor/mask_uzhfpv_outdoor_mask1.xcf
+[99.236s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor/kalibr_imu_chain.yaml
+[99.236s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_plane
+[99.236s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_plane/estimator_config.yaml
+[99.236s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_plane/kalibr_imucam_chain.yaml
+[99.237s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_plane/kalibr_imu_chain.yaml
+[99.237s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//tum_vi
+[99.237s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//tum_vi/estimator_config.yaml
+[99.237s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//tum_vi/mask_tumvi1.xcf
+[99.238s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//tum_vi/mask_tumvi0.png
+[99.238s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//tum_vi/mask_tumvi1.png
+[99.238s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//tum_vi/mask_tumvi0.xcf
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//tum_vi/kalibr_imucam_chain.yaml
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//tum_vi/kalibr_imu_chain.yaml
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_d455
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_d455/launch_d455.example
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_d455/estimator_config.yaml
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_d455/kalibr_imucam_chain.yaml
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_d455/kalibr_imu_chain.yaml
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//kaist
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//kaist/estimator_config.yaml
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//kaist/kalibr_imucam_chain.yaml
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//kaist/kalibr_imu_chain.yaml
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_aruco
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_aruco/estimator_config.yaml
+[99.240s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_aruco/kalibr_imucam_chain.yaml
+[99.241s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_aruco/kalibr_imu_chain.yaml
+[99.241s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor_45
+[99.241s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor_45/estimator_config.yaml
+[99.241s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor_45/kalibr_imucam_chain.yaml
+[99.241s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//uzhfpv_outdoor_45/kalibr_imu_chain.yaml
+[99.241s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_t265
+[99.241s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_t265/estimator_config.yaml
+[99.241s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_t265/mask_t265_cam1.xcf
+[99.244s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_t265/mask_t265_cam1.png
+[99.244s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_t265/launch_t265.example
+[99.245s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_t265/mask_t265_cam0.png
+[99.245s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_t265/kalibr_imucam_chain.yaml
+[99.245s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_t265/kalibr_imu_chain.yaml
+[99.245s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rs_t265/mask_t265_cam0.xcf
+[99.249s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_ironsides
+[99.250s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_ironsides/estimator_config.yaml
+[99.250s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_ironsides/mask_ironsides0.xcf
+[99.251s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_ironsides/mask_ironsides1.png
+[99.251s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_ironsides/mask_ironsides0.png
+[99.251s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_ironsides/kalibr_imucam_chain.yaml
+[99.251s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_ironsides/kalibr_imu_chain.yaml
+[99.252s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/config//rpng_ironsides/mask_ironsides1.xcf
+[99.254s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ament_index/resource_index/package_run_dependencies/ov_msckf
+[99.254s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ament_index/resource_index/parent_prefix_path/ov_msckf
+[99.254s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/environment/ament_prefix_path.sh
+[99.254s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/environment/ament_prefix_path.dsv
+[99.254s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/environment/path.sh
+[99.254s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/environment/path.dsv
+[99.254s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/local_setup.bash
+[99.254s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/local_setup.sh
+[99.254s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/local_setup.zsh
+[99.255s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/local_setup.dsv
+[99.255s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.dsv
+[99.255s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ament_index/resource_index/packages/ov_msckf
+[99.255s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/cmake/ament_cmake_export_include_directories-extras.cmake
+[99.255s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/cmake/ament_cmake_export_libraries-extras.cmake
+[99.255s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/cmake/ov_msckfConfig.cmake
+[99.255s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/cmake/ov_msckfConfig-version.cmake
+[99.255s] -- Installing: /home/s/repos/ov_ws/src/open_vins/install/ov_msckf/share/ov_msckf/package.xml
+[99.258s] Invoked command in '/home/s/repos/ov_ws/src/open_vins/build/ov_msckf' returned '0': AMENT_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init:/home/s/repos/ov_ws/src/open_vins/install/ov_core:/home/s/repos/ov_ws/install/ov_msckf:/home/s/repos/ov_ws/install/ov_init:/home/s/repos/ov_ws/install/ov_eval:/home/s/repos/ov_ws/install/ov_data:/home/s/repos/ov_ws/install/ov_core:/opt/ros/humble LD_LIBRARY_PATH=/home/s/repos/ov_ws/src/open_vins/install/ov_init/lib:/home/s/repos/ov_ws/src/open_vins/install/ov_core/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /home/s/repos/ov_ws/src/open_vins/build/ov_msckf
