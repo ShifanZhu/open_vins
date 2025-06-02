@@ -362,9 +362,9 @@ bool Simulator::get_next_imu(double &time_imu, Eigen::Vector3d &wm, Eigen::Vecto
   if (has_skipped_first_bias) {
 
     // Move the biases forward in time
-    true_bias_gyro(0) += params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
-    true_bias_gyro(1) += params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
-    true_bias_gyro(2) += params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
+    true_bias_gyro(0) +=  params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
+    true_bias_gyro(1) +=  params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
+    true_bias_gyro(2) +=  params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
     true_bias_accel(0) += params.imu_noises.sigma_ab * std::sqrt(dt) * w(gen_meas_imu);
     true_bias_accel(1) += params.imu_noises.sigma_ab * std::sqrt(dt) * w(gen_meas_imu);
     true_bias_accel(2) += params.imu_noises.sigma_ab * std::sqrt(dt) * w(gen_meas_imu);
@@ -450,6 +450,7 @@ bool Simulator::get_next_cam(double &time_cam, std::vector<int> &camids,
     for (size_t f = 0; f < uvs.size() && !params.use_stereo; f++) {
       uvs.at(f).first += i * featmap.size();
     }
+    cam_out << std::fixed << std::setprecision(9) << time_cam << " ";
 
     cam_out << std::fixed << std::setprecision(9) << time_cam << " ";
     // Loop through and add noise to each uv measurement

@@ -2,14 +2,14 @@
 
 verbosity: "INFO" # ALL, DEBUG, INFO, WARNING, ERROR, SILENT
 
-use_fej: true # if first-estimate Jacobians should be used (enable for good consistency)
-integration: "rk4" # discrete, rk4, analytical (if rk4 or analytical used then analytical covariance propagation is used)
+use_fej: false # if first-estimate Jacobians should be used (enable for good consistency)
+integration: "discrete" # discrete, rk4, analytical (if rk4 or analytical used then analytical covariance propagation is used)
 use_stereo: false # if we have more than 1 camera, if we should try to track stereo constraints between pairs
 max_cameras: 1 # how many cameras we have 1 = mono, 2 = stereo, >2 = binocular (all mono tracking)
 
 calib_cam_extrinsics: false # if the transform between camera and IMU should be optimized R_ItoC, p_CinI
 calib_cam_intrinsics: false # if camera intrinsics should be optimized (focal, center, distortion)
-calib_cam_timeoffset: true # if timeoffset between camera and IMU should be optimized
+calib_cam_timeoffset: false # if timeoffset between camera and IMU should be optimized
 calib_imu_intrinsics: false # if imu intrinsics should be calibrated (rotation and skew-scale matrix)
 calib_imu_g_sensitivity: false # if gyroscope gravity sensitivity (Tg) should be calibrated
 
@@ -22,8 +22,8 @@ dt_slam_delay: 1 # delay before initializing (helps with stability from bad init
 gravity_mag: 9.81 # magnitude of gravity in this location
 
 feat_rep_msckf: "GLOBAL_3D" # default: GLOBAL_3D, ANCHORED_INVERSE_DEPTH_SINGLE
-feat_rep_slam: "ANCHORED_MSCKF_INVERSE_DEPTH" # default: ANCHORED_MSCKF_INVERSE_DEPTH, ANCHORED_INVERSE_DEPTH_SINGLE
-feat_rep_aruco: "ANCHORED_MSCKF_INVERSE_DEPTH"
+feat_rep_slam: "GLOBAL_3D" # default: ANCHORED_MSCKF_INVERSE_DEPTH, ANCHORED_INVERSE_DEPTH_SINGLE
+feat_rep_aruco: "GLOBAL_3D"
 
 # zero velocity update parameters we can use
 # we support either IMU-based or disparity detection.
@@ -78,7 +78,6 @@ filepath_gt: "/tmp/ov_groundtruth.txt"
 # our front-end feature tracking parameters
 # we have a KLT and descriptor based (KLT is better implemented...)
 use_klt: true # if true we will use KLT, otherwise use a ORB descriptor + robust matching
-num_pts: 50 # 200 number of points (per camera) we will extract and try to track
 fast_threshold: 20 # threshold for fast extraction (warning: lower threshs can be expensive)
 grid_x: 5 # extraction sub-grid count for horizontal direction (uniform tracking)
 grid_y: 5 # extraction sub-grid count for vertical direction (uniform tracking)
@@ -116,29 +115,15 @@ relative_config_imucam: "kalibr_imucam_chain.yaml"
 
 
 
-# ==================================================================
-# ==================================================================
 
 
 sim_seed_state_init: 0
 sim_seed_preturb: 0
 sim_seed_measurements: 0
-sim_do_perturbation: true
-# sim_traj_path: "src/open_vins/ov_data/sim/tum_corridor1_512_16_okvis.txt"
-# sim_traj_path: "src/open_vins/ov_data/sim/euroc_V1_01_easy.txt"
-# sim_traj_path: "src/open_vins/ov_data/sim/tum_magistrale1_512_16_vinsmono.txt"
-# sim_traj_path: "src/open_vins/ov_data/sim/udel_arl_short.txt"
-# sim_traj_path: "src/open_vins/ov_data/sim/udel_arl.txt"
-# sim_traj_path: "src/open_vins/ov_data/sim/udel_garage.txt"
-# sim_traj_path: "src/open_vins/ov_data/sim/udel_gore.txt"
-# sim_traj_path: "src/open_vins/ov_data/sim/udel_gore_zupt.txt"
-# sim_traj_path: "src/open_vins/ov_data/sim/udel_neighborhood.txt"
-# sim_traj_path: "src/open_vins/ov_data/sim/dininghall_well-lit_trot.txt"
+sim_do_perturbation: false
 sim_traj_path: "src/open_vins/ov_data/sim/mocap1_well-lit_trot.txt"
-
 sim_distance_threshold: 1.5
 sim_freq_cam: 10
 sim_freq_imu: 400
 sim_min_feature_gen_dist: 5.0
 sim_max_feature_gen_dist: 7.0
-
