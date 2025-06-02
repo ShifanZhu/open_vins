@@ -79,7 +79,7 @@ Simulator::Simulator(VioManagerOptions &params_) {
 
   // Find the timestamp that we move enough to be considered "moved"
   double distance = 0.0;
-  double distancethreshold = params.sim_distance_threshold;
+  double distance_threshold = params.sim_distance_threshold;
   while (true) {
 
     // Get the pose at the current timestep
@@ -98,7 +98,7 @@ Simulator::Simulator(VioManagerOptions &params_) {
     p_IinG_init = p_IinG;
 
     // Now check if we have an acceleration, else move forward in time
-    if (distance > distancethreshold) {
+    if (distance > distance_threshold) {
       break;
     } else {
       timestamp += 1.0 / params.sim_freq_cam;
@@ -189,7 +189,7 @@ Simulator::Simulator(VioManagerOptions &params_) {
       std::vector<std::pair<size_t, Eigen::VectorXf>> uvs = project_pointcloud(R_GtoI, p_IinG, i, featmap);
       // If we do not have enough, generate more
       if ((int)uvs.size() < params.num_pts) {
-        generate_points(R_GtoI, p_IinG, i, featmap, params.num_pts - (int)uvs.size());
+        generate_points(R_GtoI, p_IinG, i, params.num_pts - (int)uvs.size());
       }
 
       // Move forward in time
@@ -384,6 +384,16 @@ bool Simulator::get_next_imu(double &time_imu, Eigen::Vector3d &wm, Eigen::Vecto
   am(1) = accel_inACC(1) + true_bias_accel(1) + params.imu_noises.sigma_a / std::sqrt(dt) * w(gen_meas_imu);
   am(2) = accel_inACC(2) + true_bias_accel(2) + params.imu_noises.sigma_a / std::sqrt(dt) * w(gen_meas_imu);
 
+  if (record_sim_data_) {
+    static std::ofstream imu_file(data_path_ + "/vectornav_sim.txt", std::ios::out);
+    if (imu_file.is_open()) {
+      imu_file << std::fixed << std::setprecision(9) << int64_t(timestamp_last_imu*1e6) << " "
+              << wm(0) << " " << wm(1) << " " << wm(2) << " "
+              << am(0) << " " << am(1) << " " << am(2) << "\n";
+    } else {
+      std::cerr << "Failed to open IMU output file at " << data_path_ + "/vectornav_sim.txt" << std::endl;
+    }
+  }
   // Return success
   return true;
 }
@@ -410,6 +420,13 @@ bool Simulator::get_next_cam(double &time_cam, std::vector<int> &camids,
     is_running = false;
     return false;
   }
+  static std::ofstream cam_out(data_path_ + "/cam_obs_sim.txt", std::ios::out);
+  if (record_sim_data_) {
+    if (!cam_out.is_open()) {
+      std::cerr << "Failed to open cam_obs.txt for writing!" << std::endl;
+      return false;
+    }
+  }
 
   // Loop through each camera
   for (int i = 0; i < params.state_options.num_cameras; i++) {
@@ -434,12 +451,35 @@ bool Simulator::get_next_cam(double &time_cam, std::vector<int> &camids,
       uvs.at(f).first += i * featmap.size();
     }
 
+    cam_out << std::fixed << std::setprecision(9) << time_cam << " ";
     // Loop through and add noise to each uv measurement
     std::normal_distribution<double> w(0, 1);
     for (size_t j = 0; j < uvs.size(); j++) {
       uvs.at(j).second(0) += params.msckf_options.sigma_pix * w(gen_meas_cams.at(i));
       uvs.at(j).second(1) += params.msckf_options.sigma_pix * w(gen_meas_cams.at(i));
+
+      if (uvs.at(j).second(0) < 0 || uvs.at(j).second(0) > params.camera_intrinsics.at(i)->w() ||
+          uvs.at(j).second(1) < 0 || uvs.at(j).second(1) > params.camera_intrinsics.at(i)->h()) {
+        continue; // Skip this feature if it is out of bounds
+      }
+
+      // LOG(INFO) << "[SIM]: Camera " << i << " feature " << uvs.at(j).first
+      //           << " at uv: " << uvs.at(j).second.transpose();
+
+      if (record_sim_data_) {
+        if (cam_out.is_open()) {
+          // Write to file: id u v
+          cam_out << std::fixed << std::setprecision(9)
+                  << uvs.at(j).first << " "
+                  << uvs.at(j).second(0) << " "
+                  << uvs.at(j).second(1) << " ";
+        } else {
+          std::cerr << "Failed to write to cam_obs_sim.txt!" << std::endl;
+          return false;
+        }
+      }
     }
+    cam_out << "\n"; // New line after each camera's measurements
 
     // Push back for this camera
     feats.push_back(uvs);
@@ -499,7 +539,7 @@ std::vector<std::pair<size_t, Eigen::VectorXf>> Simulator::project_pointcloud(co
 }
 
 void Simulator::generate_points(const Eigen::Matrix3d &R_GtoI, const Eigen::Vector3d &p_IinG, int camid,
-                                std::unordered_map<size_t, Eigen::Vector3d> &feats, int numpts) {
+                                int numpts) {
 
   // Assert we have good camera
   assert(camid < params.state_options.num_cameras);

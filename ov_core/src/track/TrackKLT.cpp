@@ -94,7 +94,7 @@ void TrackKLT::feed_new_camera(const CameraData &message) {
 }
 
 void TrackKLT::feed_monocular(const CameraData &message, size_t msg_id) {
-  std::cout << "Current time is: " << std::setprecision(16) << message.timestamp << std::endl;
+  // std::cout << "Current time is: " << std::setprecision(16) << message.timestamp << std::endl;
 
   // Lock this data feed for this camera
   size_t cam_id = message.sensor_ids.at(msg_id);

@@ -90,7 +90,6 @@ bool InertialInitializer::initialize(double &timestamp, Eigen::MatrixXd &covaria
   // Remove all measurements that are older then our initialization window
   // Then we will try to use all features that are in the feature database!
   _db->cleanup_measurements(oldest_time);
-  std::cout << "exit cleanup_measurements: " << std::setprecision(16) << oldest_time << std::endl;
   auto it_imu = imu_data->begin();
   while (it_imu != imu_data->end() && it_imu->timestamp < oldest_time + params.calib_camimu_dt) {
     it_imu = imu_data->erase(it_imu);

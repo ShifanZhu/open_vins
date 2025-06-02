@@ -138,7 +138,7 @@ protected:
    * @param numpts Number of points we should generate
    */
   void generate_points(const Eigen::Matrix3d &R_GtoI, const Eigen::Vector3d &p_IinG, int camid,
-                       std::unordered_map<size_t, Eigen::Vector3d> &feats, int numpts);
+                       int numpts);
 
   //===================================================================
   // Configuration variables
@@ -200,6 +200,9 @@ protected:
   std::vector<double> hist_true_bias_time;
   std::vector<Eigen::Vector3d> hist_true_bias_accel;
   std::vector<Eigen::Vector3d> hist_true_bias_gyro;
+
+  bool record_sim_data_ = true;
+  std::string data_path_ = "/home/s/data/cear/indoor/mocap1_well-lit_trot";
 };
 
 } // namespace ov_msckf

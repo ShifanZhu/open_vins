@@ -165,7 +165,7 @@ int main(int argc, char **argv) {
     std::vector<std::vector<std::pair<size_t, Eigen::VectorXf>>> feats;
     bool hascam = sim->get_next_cam(time_cam, camids, feats);
     if (hascam) {
-      if (buffer_timecam != -1) {
+      if (buffer_timecam != -1) { // always feed the previous buffer
         sys->feed_measurement_simulation(buffer_timecam, buffer_camids, buffer_feats);
 #if ROS_AVAILABLE == 1 || ROS_AVAILABLE == 2
         viz->visualize();
