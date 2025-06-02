@@ -362,9 +362,9 @@ bool Simulator::get_next_imu(double &time_imu, Eigen::Vector3d &wm, Eigen::Vecto
   if (has_skipped_first_bias) {
 
     // Move the biases forward in time
-    true_bias_gyro(0) += params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
-    true_bias_gyro(1) += params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
-    true_bias_gyro(2) += params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
+    true_bias_gyro(0) +=  params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
+    true_bias_gyro(1) +=  params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
+    true_bias_gyro(2) +=  params.imu_noises.sigma_wb * std::sqrt(dt) * w(gen_meas_imu);
     true_bias_accel(0) += params.imu_noises.sigma_ab * std::sqrt(dt) * w(gen_meas_imu);
     true_bias_accel(1) += params.imu_noises.sigma_ab * std::sqrt(dt) * w(gen_meas_imu);
     true_bias_accel(2) += params.imu_noises.sigma_ab * std::sqrt(dt) * w(gen_meas_imu);
@@ -411,6 +411,12 @@ bool Simulator::get_next_cam(double &time_cam, std::vector<int> &camids,
     return false;
   }
 
+  static std::ofstream cam_out("/home/zh/data/cear/indoor/mocap1_well-lit_trot/cam_obs_sim_ov.txt", std::ios::out);
+  if (!cam_out.is_open()) {
+    std::cerr << "Failed to open cam_obs_sim_ov.txt for writing!";
+    return false;
+  }
+
   // Loop through each camera
   for (int i = 0; i < params.state_options.num_cameras; i++) {
 
@@ -433,13 +439,31 @@ bool Simulator::get_next_cam(double &time_cam, std::vector<int> &camids,
     for (size_t f = 0; f < uvs.size() && !params.use_stereo; f++) {
       uvs.at(f).first += i * featmap.size();
     }
+    cam_out << std::fixed << std::setprecision(9) << time_cam << " ";
 
     // Loop through and add noise to each uv measurement
     std::normal_distribution<double> w(0, 1);
     for (size_t j = 0; j < uvs.size(); j++) {
       uvs.at(j).second(0) += params.msckf_options.sigma_pix * w(gen_meas_cams.at(i));
       uvs.at(j).second(1) += params.msckf_options.sigma_pix * w(gen_meas_cams.at(i));
+
+      if (uvs.at(j).second(0) < 0 || uvs.at(j).second(0) > params.camera_intrinsics.at(i)->w() ||
+          uvs.at(j).second(1) < 0 || uvs.at(j).second(1) > params.camera_intrinsics.at(i)->h()) {
+        continue;
+      }
+
+      if (cam_out.is_open()) {
+        // Write to file: id u v
+        cam_out << std::fixed << std::setprecision(9)
+                << uvs.at(j).first << " "
+                << uvs.at(j).second(0) << " "
+                << uvs.at(j).second(1) << " ";
+      } else {
+        std::cerr << "Failed to write to cam_obs_sim.txt!";
+        return false;
+      }
     }
+    cam_out << "\n";
 
     // Push back for this camera
     feats.push_back(uvs);
