@@ -165,6 +165,15 @@ int main(int argc, char **argv) {
     std::vector<std::vector<std::pair<size_t, Eigen::VectorXf>>> feats;
     bool hascam = sim->get_next_cam(time_cam, camids, feats);
     if (hascam) {
+      // std::cout << "CAM: " << std::setprecision(16) << time_cam << " " 
+      //       << camids.size() << " features" << std::endl;
+      // for (size_t i = 0; i < camids.size(); ++i) {
+      //   std::cout << "CAM: " << camids[i] << " features: " << std::endl;
+      //   for (size_t j = 0; j < feats[i].size() && j < 10; ++j) {
+      //     std::cout << "CAM: " << feats[i][j].first << " " << feats[i][j].second.transpose() << std::endl;
+      //   }
+      // }
+      // std::exit(EXIT_SUCCESS);
       if (buffer_timecam != -1) {
         sys->feed_measurement_simulation(buffer_timecam, buffer_camids, buffer_feats);
 #if ROS_AVAILABLE == 1 || ROS_AVAILABLE == 2
