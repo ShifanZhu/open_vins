@@ -47,14 +47,14 @@ launch_args = [
     ),
     DeclareLaunchArgument(
         name="filepath_est",
-        default_value="/home/s/data/cear/indoor/mocap3_well-lit_comb/ov/ov_est.txt",
+        default_value="/home/s/data/cear/indoor/mocap1_well-lit_trot/ov/ov_est.txt",
         description="path that we will save the total state",
     ),
-    DeclareLaunchArgument(
-        name="filepath_std",
-        default_value="/home/s/data/cear/indoor/mocap3_well-lit_comb/ov/ov_std.txt",
-        description="path that we will save the total state",
-    )
+    # DeclareLaunchArgument(
+    #     name="filepath_std",
+    #     default_value="/home/s/data/cear/indoor/mocap3_well-lit_comb/ov/ov_std.txt",
+    #     description="path that we will save the total state",
+    # )
 ]
 
 def launch_setup(context):
@@ -96,7 +96,7 @@ def launch_setup(context):
             {"max_cameras": LaunchConfiguration("max_cameras")},
             {"save_total_state": LaunchConfiguration("save_total_state")},
             {"filepath_est": LaunchConfiguration("filepath_est")},
-            {"filepath_std": LaunchConfiguration("filepath_std")},
+            # {"filepath_std": LaunchConfiguration("filepath_std")},
             {"config_path": config_path},
         ],
     )

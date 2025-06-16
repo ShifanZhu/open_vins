@@ -106,14 +106,14 @@ ROS2Visualizer::ROS2Visualizer(std::shared_ptr<rclcpp::Node> node, std::shared_p
 
     // files we will open
     std::string filepath_est = "state_estimate.txt";
-    std::string filepath_std = "state_deviation.txt";
+    // std::string filepath_std = "state_deviation.txt";
     std::string filepath_gt = "state_groundtruth.txt";
     if (node->has_parameter("filepath_est")) {
       node->get_parameter<std::string>("filepath_est", filepath_est);
     }
-    if (node->has_parameter("filepath_std")) {
-      node->get_parameter<std::string>("filepath_std", filepath_std);
-    }
+    // if (node->has_parameter("filepath_std")) {
+    //   node->get_parameter<std::string>("filepath_std", filepath_std);
+    // }
     if (node->has_parameter("filepath_gt")) {
       node->get_parameter<std::string>("filepath_gt", filepath_gt);
     }
@@ -121,21 +121,21 @@ ROS2Visualizer::ROS2Visualizer(std::shared_ptr<rclcpp::Node> node, std::shared_p
     // If it exists, then delete it
     if (boost::filesystem::exists(filepath_est))
       boost::filesystem::remove(filepath_est);
-    if (boost::filesystem::exists(filepath_std))
-      boost::filesystem::remove(filepath_std);
+    // if (boost::filesystem::exists(filepath_std))
+    //   boost::filesystem::remove(filepath_std);
 
     // Create folder path to this location if not exists
     boost::filesystem::create_directories(boost::filesystem::path(filepath_est.c_str()).parent_path());
-    boost::filesystem::create_directories(boost::filesystem::path(filepath_std.c_str()).parent_path());
+    // boost::filesystem::create_directories(boost::filesystem::path(filepath_std.c_str()).parent_path());
 
     // Open the files
     of_state_est.open(filepath_est.c_str());
-    of_state_std.open(filepath_std.c_str());
+    // of_state_std.open(filepath_std.c_str());
     // of_state_est << "# timestamp(s) q p v bg ba cam_imu_dt num_cam cam0_k cam0_d cam0_rot cam0_trans ... imu_model dw da tg wtoI atoI etc"
     //              << std::endl;
     of_state_est << "# timestamp(s) p q" << std::endl;
-    of_state_std << "# timestamp(s) q p v bg ba cam_imu_dt num_cam cam0_k cam0_d cam0_rot cam0_trans ... imu_model dw da tg wtoI atoI etc"
-                 << std::endl;
+    // of_state_std << "# timestamp(s) q p v bg ba cam_imu_dt num_cam cam0_k cam0_d cam0_rot cam0_trans ... imu_model dw da tg wtoI atoI etc"
+    //              << std::endl;
 
     // Groundtruth if we are simulating
     if (_sim != nullptr) {

@@ -98,7 +98,7 @@ downsize_aruco: true
 # ==================================================================
 
 # camera noises and chi-squared threshold multipliers
-up_msckf_sigma_px: 1
+up_msckf_sigma_px: 100
 up_msckf_chi2_multipler: 1
 up_slam_sigma_px: 1
 up_slam_chi2_multipler: 1
