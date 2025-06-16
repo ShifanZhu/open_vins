@@ -9,4 +9,7 @@ doxgen_generated
 *.swo
 doc
 .vscode
+<<<<<<< HEAD
 log
+=======
+>>>>>>> origin/master
