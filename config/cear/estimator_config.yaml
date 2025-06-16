@@ -116,14 +116,17 @@ relative_config_imucam: "kalibr_imucam_chain.yaml"
 
 
 
-
+num_pts: 100
 sim_seed_state_init: 0
 sim_seed_preturb: 0
 sim_seed_measurements: 0
 sim_do_perturbation: false
 sim_traj_path: "src/open_vins/ov_data/sim/mocap1_well-lit_trot.txt"
-sim_distance_threshold: 1.5
-sim_freq_cam: 10
+# sim_traj_path: "src/open_vins/ov_data/sim/dininghall_well-lit_trot.txt"
+sim_distance_threshold: 3
+sim_freq_cam: 5
 sim_freq_imu: 400
 sim_min_feature_gen_dist: 5.0
 sim_max_feature_gen_dist: 7.0
+sim_recorded_data : false
+sim_save_path: "/home/s/data/cear/indoor/dininghall_well-lit_trot"

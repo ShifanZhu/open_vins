@@ -42,18 +42,8 @@ launch_args = [
     ),
     DeclareLaunchArgument(
         name="save_total_state",
-        default_value="true",
+        default_value="false",
         description="record the total state with calibration and features to a txt file",
-    ),
-    DeclareLaunchArgument(
-        name="filepath_est",
-        default_value="/home/s/data/cear/indoor/mocap3_well-lit_comb/ov/ov_est.txt",
-        description="path that we will save the total state",
-    ),
-    DeclareLaunchArgument(
-        name="filepath_std",
-        default_value="/home/s/data/cear/indoor/mocap3_well-lit_comb/ov/ov_std.txt",
-        description="path that we will save the total state",
     )
 ]
 
@@ -86,7 +76,7 @@ def launch_setup(context):
             ]
     node1 = Node(
         package="ov_msckf",
-        executable="run_subscribe_msckf",
+        executable="run_simulation_offline",
         condition=IfCondition(LaunchConfiguration("ov_enable")),
         namespace=LaunchConfiguration("namespace"),
         output='screen',
@@ -95,8 +85,6 @@ def launch_setup(context):
             {"use_stereo": LaunchConfiguration("use_stereo")},
             {"max_cameras": LaunchConfiguration("max_cameras")},
             {"save_total_state": LaunchConfiguration("save_total_state")},
-            {"filepath_est": LaunchConfiguration("filepath_est")},
-            {"filepath_std": LaunchConfiguration("filepath_std")},
             {"config_path": config_path},
         ],
     )

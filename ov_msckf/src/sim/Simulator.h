@@ -116,6 +116,7 @@ public:
 
   /// Access function to get the true parameters (i.e. calibration and settings)
   VioManagerOptions get_true_parameters() { return params; }
+  std::string sim_save_path;
 
 protected:
   /**
@@ -202,7 +203,6 @@ protected:
   std::vector<Eigen::Vector3d> hist_true_bias_gyro;
 
   bool record_sim_data_ = true;
-  std::string data_path_ = "/home/s/data/cear/indoor/mocap1_well-lit_trot";
 };
 
 } // namespace ov_msckf

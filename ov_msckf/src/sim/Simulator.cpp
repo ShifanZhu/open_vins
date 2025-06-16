@@ -385,13 +385,17 @@ bool Simulator::get_next_imu(double &time_imu, Eigen::Vector3d &wm, Eigen::Vecto
   am(2) = accel_inACC(2) + true_bias_accel(2) + params.imu_noises.sigma_a / std::sqrt(dt) * w(gen_meas_imu);
 
   if (record_sim_data_) {
-    static std::ofstream imu_file(data_path_ + "/vectornav_sim.txt", std::ios::out);
+    // static std::ofstream imu_file(sim_save_path + "/mocap1_well-lit_trot_data.txt", std::ios::out);
+    static std::ofstream imu_file(sim_save_path + "/vectornav_sim.txt", std::ios::out);
     if (imu_file.is_open()) {
+      // std::cout << "IMU at time " << std::setprecision(16) << int64_t(timestamp_last_imu*1e6) << " with wm: "
+      //           << wm.transpose() << " and am: " << am.transpose() << std::endl;
+      // imu_file << std::fixed << std::setprecision(9) << "IMU " << int64_t(timestamp_last_imu*1e6) << " "
       imu_file << std::fixed << std::setprecision(9) << int64_t(timestamp_last_imu*1e6) << " "
               << wm(0) << " " << wm(1) << " " << wm(2) << " "
               << am(0) << " " << am(1) << " " << am(2) << "\n";
     } else {
-      std::cerr << "Failed to open IMU output file at " << data_path_ + "/vectornav_sim.txt" << std::endl;
+      std::cerr << "Failed to open IMU output file at " << sim_save_path + "/vectornav_sim.txt" << std::endl;
     }
   }
   // Return success
@@ -420,10 +424,10 @@ bool Simulator::get_next_cam(double &time_cam, std::vector<int> &camids,
     is_running = false;
     return false;
   }
-  static std::ofstream cam_out(data_path_ + "/cam_obs_sim.txt", std::ios::out);
+  static std::ofstream cam_out(sim_save_path + "/cam_obs_sim.txt", std::ios::out);
   if (record_sim_data_) {
     if (!cam_out.is_open()) {
-      std::cerr << "Failed to open cam_obs.txt for writing!" << std::endl;
+      std::cerr << "Failed to open cam_obs_sim.txt for writing!" << std::endl;
       return false;
     }
   }
@@ -450,9 +454,9 @@ bool Simulator::get_next_cam(double &time_cam, std::vector<int> &camids,
     for (size_t f = 0; f < uvs.size() && !params.use_stereo; f++) {
       uvs.at(f).first += i * featmap.size();
     }
-    cam_out << std::fixed << std::setprecision(9) << time_cam << " ";
-
-    cam_out << std::fixed << std::setprecision(9) << time_cam << " ";
+    // cam_out << std::fixed << std::setprecision(9) << "FEAT " << int64_t(time_cam*1e6) << " ";
+    cam_out << std::fixed << std::setprecision(9) << int64_t(time_cam*1e6) << " ";
+    // std::cout << "FEAT at time " << std::setprecision(16) << int64_t(time_cam*1e6) << " for camera " << i << " with " << uvs.size() << " features\n";
     // Loop through and add noise to each uv measurement
     std::normal_distribution<double> w(0, 1);
     for (size_t j = 0; j < uvs.size(); j++) {

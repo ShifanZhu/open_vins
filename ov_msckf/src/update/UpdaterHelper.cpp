@@ -229,7 +229,7 @@ void UpdaterHelper::get_feature_jacobian_full(std::shared_ptr<State> state, Upda
 
     // Step 2.1: Loop through all measurements for this specific camera
     for (size_t m = 0; m < feature.timestamps[pair.first].size(); m++) {
-      std::cout << "Camera: " << pair.first << " has " << feature.timestamps[pair.first].size() << " measurements" << std::endl;
+      // std::cout << "Camera: " << pair.first << " has " << feature.timestamps[pair.first].size() << " measurements" << std::endl;
 
       // Add this clone if it is not added already. This camera pose observes this feature, so use the feat to optimize pose
       std::shared_ptr<PoseJPL> clone_Ci = state->_clones_IMU.at(feature.timestamps[pair.first].at(m));

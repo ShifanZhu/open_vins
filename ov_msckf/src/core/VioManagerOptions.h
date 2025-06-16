@@ -536,6 +536,10 @@ struct VioManagerOptions {
   /// Feature distance we generate features from (maximum)
   double sim_max_feature_gen_distance = 10;
 
+  /// If we want to run from recorded feature/IMU data
+  bool sim_recorded_data = false;
+
+  std::string sim_save_path;
   /**
    * @brief This function will load print out all simulated parameters.
    * This allows for visual checking that everything was loaded properly from ROS/CMD parsers.
@@ -554,6 +558,8 @@ struct VioManagerOptions {
       parser->parse_config("sim_freq_imu", sim_freq_imu);
       parser->parse_config("sim_min_feature_gen_dist", sim_min_feature_gen_distance);
       parser->parse_config("sim_max_feature_gen_dist", sim_max_feature_gen_distance);
+      parser->parse_config("sim_recorded_data", sim_recorded_data);
+      parser->parse_config("sim_save_path", sim_save_path);
     }
     PRINT_DEBUG("SIMULATION PARAMETERS:\n");
     PRINT_WARNING(BOLDRED "  - state init seed: %d \n" RESET, sim_seed_state_init);

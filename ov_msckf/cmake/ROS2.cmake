@@ -99,6 +99,11 @@ ament_target_dependencies(run_simulation ${ament_libraries})
 target_link_libraries(run_simulation ov_msckf_lib ${thirdparty_libraries})
 install(TARGETS run_simulation DESTINATION lib/${PROJECT_NAME})
 
+add_executable(run_simulation_offline src/run_simulation_offline.cpp)
+ament_target_dependencies(run_simulation_offline ${ament_libraries})
+target_link_libraries(run_simulation_offline ov_msckf_lib ${thirdparty_libraries})
+install(TARGETS run_simulation_offline DESTINATION lib/${PROJECT_NAME})
+
 add_executable(test_sim_meas src/test_sim_meas.cpp)
 ament_target_dependencies(test_sim_meas ${ament_libraries})
 target_link_libraries(test_sim_meas ov_msckf_lib ${thirdparty_libraries})
