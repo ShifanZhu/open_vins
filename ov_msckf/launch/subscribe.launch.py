@@ -47,7 +47,7 @@ launch_args = [
     ),
     DeclareLaunchArgument(
         name="filepath_est",
-        default_value="/home/s/data/cear/indoor/mocap1_well-lit_trot/ov/ov_est.txt",
+        default_value="/home/s/data/cear/indoor/mocap1_well-lit_trot/algo_pose/Open-VINS.txt",
         description="path that we will save the total state",
     ),
     # DeclareLaunchArgument(
